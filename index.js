@@ -9,7 +9,7 @@ app.get("/add", (req, res) => {
   res.send("Hello World! add");
 });
 app.get("/min", (req, res) => {
-  res.send("Hello World! min");
+  res.send("Hello World! cp");
 });
 app.get("/plus", (req, res) => {
   res.send("Hello World! plus");
