@@ -5,11 +5,11 @@ const knex = require('knex')({
       user:"root",
       password:"Admin@123",
       port:"3306",
-      database:"Member"
+      database:"MasterEmail"
   }
 })
 
-  knex('members').select('*')
+  knex('TemplateData').select('*')
   .then(rows => {
     console.log(rows);
   })
