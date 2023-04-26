@@ -9,6 +9,10 @@ const routes: Routes = [{
 {
   path: 'home',
   loadChildren: ()=> import('./home/home.module').then(m=> m.HomeModule)
+},
+{
+  path: 'filter',
+  loadChildren: ()=> import('../app/filter/filter/filter.module').then(m=> m.FilterModule)
 }
 ];
 
