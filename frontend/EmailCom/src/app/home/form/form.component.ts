@@ -7,4 +7,18 @@ import { Component } from '@angular/core';
 })
 export class FormComponent {
 
+  TemplateName:any
+  TemplateCode:any
+  Scenario:any
+  Providers:any
+  User:any
+  Tier:any
+  EmailType:any
+  Activity:any
+  Status:any
+  TargetAudience:any
+  Subject:any
+  Body:any
+  Preview:any
+
 }
