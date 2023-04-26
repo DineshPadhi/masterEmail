@@ -14,9 +14,16 @@ app.get("/min", (req, res) => {
 app.get("/plus", (req, res) => {
   res.send("Hello World! plus");
 });
+app.get("/divide", (req, res) => {
+  res.send("Hello World! plus");
+});
 app.get("/div", (req, res) => {
   res.send("Hello World! div");
 });
+app.get("/hello", (req, res) => {
+  res.send("Hello from pranay");
+});
+
 app.listen(Port, () => {
   console.log("Server listening on port 3000");
 });
