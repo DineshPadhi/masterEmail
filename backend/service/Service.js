@@ -9,4 +9,9 @@ module.exports = class EmailService {
     const result = templateModel.displayForm(data);
     return result;
   }
+
+  async showDatas(){
+    const result = templateModel.ShowData()
+    return result
+  }
 };
