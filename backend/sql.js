@@ -9,7 +9,7 @@ const knex = require('knex')({
   }
 })
 
-knex('TemplateData').select('*')
+  knex('TemplateData').select('*')
   .then(rows => {
     console.log(rows);
   })

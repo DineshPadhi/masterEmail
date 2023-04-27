@@ -15,4 +15,10 @@ module.exports = class SegmentController {
     //   return res.json({ success: false, error: error });
     // });
   }
+
+  async showAllDatas(req, res){
+    await EmailService.showDatas().then((result)=>{
+      return res.json({success: true, data: result, message: "ok"})
+    })
+  }
 };
