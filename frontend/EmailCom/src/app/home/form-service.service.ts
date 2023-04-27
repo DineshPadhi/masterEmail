@@ -11,7 +11,7 @@ export class FormServiceService {
 
 
   submitForm(data:any){
-    return this.http.post('http://localhost:3000', data)
+    return this.http.post('http://localhost:3000/', {data})
   }
 
 }

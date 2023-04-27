@@ -35,14 +35,34 @@ export class FormComponent {
       TargetAudience : ['', Validators.required],
       Subject : ['', Validators.required],
       Body : ['', Validators.required],
-      Preview : ['', Validators.required]
+      // Preview : ['', Validators.required]
     })
   }
 
   submit(e:any){
     e.preventDefault();
-    this.formService.submitForm(this.myForm).subscribe((result:any)=>{
-     console.log(result);
+    let formData:any = new FormData();
+    formData.append('TemplateName', this.myForm.get('TemplateName'))
+    formData.append('TemplateCode', this.myForm.get('TemplateCode'))
+    formData.append('Scenario', this.myForm.get('Scenario'))
+    formData.append('Providers', this.myForm.get('Providers'))
+    formData.append('User', this.myForm.get('User'))
+    formData.append('Tier', this.myForm.get('Tier'))
+    formData.append('EmailType', this.myForm.get('EmailType'))
+    formData.append('Activity', this.myForm.get('Activity'))
+    formData.append('Status', this.myForm.get('Status'))
+    formData.append('TargetAudience', this.myForm.get('TargetAudience'))
+    formData.append('Subject', this.myForm.get('Subject'))
+    formData.append('Body', this.myForm.get('Body'))
+
+
+
+
+    this.formService.submitForm(formData).subscribe((result:any)=>{
+      // let get = JSON.stringify(result)
+      // get = JSON.parse(get)
+      // console.log(get);
+      console.log(result);
       
     })
   }
