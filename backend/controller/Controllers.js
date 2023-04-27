@@ -8,7 +8,7 @@ module.exports = class SegmentController {
   async templateForm(req, res) {
     const result = formatter.data(req);
     console.log("request is", result);
-    await EmailService.postEmail(result).then(() => {
+    EmailService.postEmail(result).then(() => {
       return res.json({ success: true, data: result, message: "ok" });
     });
     // .catch(() => {

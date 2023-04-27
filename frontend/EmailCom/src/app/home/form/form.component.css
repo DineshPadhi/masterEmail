@@ -33,3 +33,7 @@
     display: flex;
     justify-content: center;
   }
+
+  /* div > textarea > .length{
+    height: 400px;
+  } */
