@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormServiceService } from '../form-service.service';
 
@@ -8,11 +8,13 @@ import { FormServiceService } from '../form-service.service';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent {
+export class FormComponent implements OnInit{
 
 
   data:any = []
+  formData:any = []
   myForm:FormGroup
+  preview:any = []
 
   constructor(private fb:FormBuilder, private formService:FormServiceService){
     this.createForm()
@@ -26,7 +28,7 @@ export class FormComponent {
   createForm() {
     this.myForm = this.fb.group({
       TemplateName : ['', Validators.required],
-      TemplateCode : ['', Validators.required],
+      Template_Code : ['', Validators.required],
       Scenario : [''],
       Providers : ['', Validators.required],
       User : ['', Validators.required],
@@ -36,37 +38,31 @@ export class FormComponent {
       Status : ['', Validators.required],
       TargetAudience : ['', Validators.required],
       Subject : ['', Validators.required],
-      Body : ['', Validators.required],
-      // Preview : ['', Validators.required]
+      Body : ['', Validators.required]
     })
   }
 
-  submit(){
-    // e.preventDefault();
-    let formData:any = new FormData();
-    formData.append('TemplateName', this.myForm.get('TemplateName').value)
-    formData.append('TemplateCode', this.myForm.get('TemplateCode').value)
-    formData.append('Scenario', this.myForm.get('Scenario').value)
-    formData.append('Providers', this.myForm.get('Providers').value)
-    formData.append('User', this.myForm.get('User').value)
-    formData.append('Tier', this.myForm.get('Tier').value)
-    formData.append('EmailType', this.myForm.get('EmailType').value)
-    formData.append('Activity', this.myForm.get('Activity').value)
-    formData.append('Status', this.myForm.get('Status').value)
-    formData.append('TargetAudience', this.myForm.get('TargetAudience').value)
-    formData.append('Subject', this.myForm.get('Subject').value)
-    formData.append('Body', this.myForm.get('Body').value)
+  submit(data:any){
 
-
-
-
-    this.formService.submitForm(formData).subscribe((result:any)=>{
-      // let get = JSON.stringify(result)
-      // get = JSON.parse(get)
-      // console.log(get);
+    this.formService.submitForm(data).subscribe((result:any)=>{
+     
       console.log('result========>>>>>>>>',result.data);
       
     })
+  }
+
+
+  reset(){
+    if(this.myForm.dirty || this.myForm.valid){
+      this.myForm.reset();
+    }
+  }
+
+  seePreview(event:any){
+    
+    this.preview.push(event.target.value)
+    
+    console.log(this.preview)
   }
 
 }
