@@ -1,19 +1,41 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FormServiceService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http:HttpClient) { }
-
-
-  submitForm(data:any){
-console.log({service:data});
-    let {TemplateName, Template_Code, Scenario, Providers, User, Tier, EmailType, Activity, Status, TargetAudience, Subject, Body} = data;
-    return this.http.post('http://localhost:3000/', {TemplateName, Template_Code, Scenario, Providers, User, Tier, EmailType, Activity, Status, TargetAudience, Subject, Body})
+  submitForm(data: any) {
+    console.log({ service: data });
+    let {
+      templateName,
+      templateCode,
+      scenario,
+      providers,
+      user,
+      tier,
+      emailType,
+      activity,
+      status,
+      targetAudience,
+      subject,
+      body,
+    } = data;
+    return this.http.post('http://localhost:3000/', {
+      templateName,
+      templateCode,
+      scenario,
+      providers,
+      user,
+      tier,
+      emailType,
+      activity,
+      status,
+      targetAudience,
+      subject,
+      body,
+    });
   }
-
 }
