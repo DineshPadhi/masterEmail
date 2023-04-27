@@ -12,13 +12,15 @@ export class FormComponent {
 
 
   data:any = []
-  myForm?:FormGroup
+  myForm:FormGroup
 
-  constructor(private fb:FormBuilder, private formService:FormServiceService){}
+  constructor(private fb:FormBuilder, private formService:FormServiceService){
+    this.createForm()
+  }
 
 
   ngOnInit():void {
-    this.createForm()
+    
   }
 
   createForm() {
@@ -39,21 +41,21 @@ export class FormComponent {
     })
   }
 
-  submit(e:any){
-    e.preventDefault();
+  submit(){
+    // e.preventDefault();
     let formData:any = new FormData();
-    formData.append('TemplateName', this.myForm.get('TemplateName'))
-    formData.append('TemplateCode', this.myForm.get('TemplateCode'))
-    formData.append('Scenario', this.myForm.get('Scenario'))
-    formData.append('Providers', this.myForm.get('Providers'))
-    formData.append('User', this.myForm.get('User'))
-    formData.append('Tier', this.myForm.get('Tier'))
-    formData.append('EmailType', this.myForm.get('EmailType'))
-    formData.append('Activity', this.myForm.get('Activity'))
-    formData.append('Status', this.myForm.get('Status'))
-    formData.append('TargetAudience', this.myForm.get('TargetAudience'))
-    formData.append('Subject', this.myForm.get('Subject'))
-    formData.append('Body', this.myForm.get('Body'))
+    formData.append('TemplateName', this.myForm.get('TemplateName').value)
+    formData.append('TemplateCode', this.myForm.get('TemplateCode').value)
+    formData.append('Scenario', this.myForm.get('Scenario').value)
+    formData.append('Providers', this.myForm.get('Providers').value)
+    formData.append('User', this.myForm.get('User').value)
+    formData.append('Tier', this.myForm.get('Tier').value)
+    formData.append('EmailType', this.myForm.get('EmailType').value)
+    formData.append('Activity', this.myForm.get('Activity').value)
+    formData.append('Status', this.myForm.get('Status').value)
+    formData.append('TargetAudience', this.myForm.get('TargetAudience').value)
+    formData.append('Subject', this.myForm.get('Subject').value)
+    formData.append('Body', this.myForm.get('Body').value)
 
 
 
@@ -62,7 +64,7 @@ export class FormComponent {
       // let get = JSON.stringify(result)
       // get = JSON.parse(get)
       // console.log(get);
-      console.log(result);
+      console.log('result========>>>>>>>>',result.data);
       
     })
   }

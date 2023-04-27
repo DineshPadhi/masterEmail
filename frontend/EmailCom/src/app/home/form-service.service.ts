@@ -11,7 +11,9 @@ export class FormServiceService {
 
 
   submitForm(data:any){
-    return this.http.post('http://localhost:3000/', {data})
+
+    let {TemplateName, TemplateCode, Scenario, Providers, User, Tier, EmailType, Activity, Status, TargetAudience, Subject, Body} = data;
+    return this.http.post('http://localhost:3000/', {TemplateName, TemplateCode, Scenario, Providers, User, Tier, EmailType, Activity, Status, TargetAudience, Subject, Body})
   }
 
 }
