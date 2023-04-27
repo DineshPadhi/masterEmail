@@ -1,7 +1,6 @@
 {
   "name": "3idiots-project",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,7 +16,13 @@
   "dependencies": {
     "body-parser": "^1.20.2",
     "knex": "^2.4.2",
+<<<<<<< HEAD
     "mysql2": "^3.2.4",
     "validatorjs": "^3.22.1"
   }
+=======
+    "mysql2": "^3.2.4"
+  },
+  "description": ""
+>>>>>>> 07db44b697e6528f9b8d6d6763d58ba0b9708e9a
 }
