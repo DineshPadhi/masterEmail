@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormServiceService } from '../form-service.service';
 
@@ -8,36 +8,27 @@ import { FormServiceService } from '../form-service.service';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent {
+export class FormComponent implements OnInit{
 
-  // TemplateName:any
-  // TemplateCode:any
-  // Scenario:any
-  // Providers:any
-  // User:any
-  // Tier:any
-  // EmailType:any
-  // Activity:any
-  // Status:any
-  // TargetAudience:any
-  // Subject:any
-  // Body:any
-  // Preview:any
 
   data:any = []
-  myForm?:FormGroup
+  formData:any = []
+  myForm:FormGroup
+  preview:any = []
 
-  constructor(private fb:FormBuilder, private formService:FormServiceService){}
+  constructor(private fb:FormBuilder, private formService:FormServiceService){
+    this.createForm()
+  }
 
 
   ngOnInit():void {
-    this.createForm()
+    
   }
 
   createForm() {
     this.myForm = this.fb.group({
       TemplateName : ['', Validators.required],
-      TemplateCode : ['', Validators.required],
+      Template_Code : ['', Validators.required],
       Scenario : [''],
       Providers : ['', Validators.required],
       User : ['', Validators.required],
@@ -47,16 +38,31 @@ export class FormComponent {
       Status : ['', Validators.required],
       TargetAudience : ['', Validators.required],
       Subject : ['', Validators.required],
-      Body : ['', Validators.required],
-      Preview : ['', Validators.required]
+      Body : ['', Validators.required]
     })
   }
 
-  submit(e:any){
-    this.formService.submitForm(this.myForm).subscribe((result:any)=>{
-     console.log(result);
+  submit(data:any){
+
+    this.formService.submitForm(data).subscribe((result:any)=>{
+     
+      console.log('result========>>>>>>>>',result.data);
       
     })
+  }
+
+
+  reset(){
+    if(this.myForm.dirty || this.myForm.valid){
+      this.myForm.reset();
+    }
+  }
+
+  seePreview(event:any){
+    
+    this.preview.push(event.target.value)
+    
+    console.log(this.preview)
   }
 
 }
