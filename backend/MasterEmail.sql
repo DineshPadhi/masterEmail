@@ -2,18 +2,18 @@ create database MasterEmail;
 
 create table TemplateData(
 id int not null auto_increment primary key,
-TemplateName varchar(100) null,
-Template_Code varchar(50) null,
-Scenario varchar(255) null,
-Providers varchar(100) null,
-User varchar(100) null,
-Tier varchar(100) null,
-Email_Type varchar(255) null,
-Activity varchar(100) null,
+TemplateName varchar(100) not null,
+Template_Code varchar(50) not null,
+Scenario varchar(255) not null,
+Providers varchar(100) not null,
+User varchar(100) not null,
+Tier varchar(100) not null,
+Email_Type varchar(255) not null,
+Activity varchar(100) not null,
 Status varchar(10),
 Target_Audience varchar(255),
 Subject varchar(255),
-Body varchar(255)
+Body text
 );
 
 use MasterEmail;
