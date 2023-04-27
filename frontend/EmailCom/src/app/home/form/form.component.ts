@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormServiceService } from '../form-service.service';
 
 
 @Component({
@@ -23,10 +24,10 @@ export class FormComponent {
   // Body:any
   // Preview:any
 
-
+  data:any = []
   myForm?:FormGroup
 
-  constructor(private fb:FormBuilder){}
+  constructor(private fb:FormBuilder, private formService:FormServiceService){}
 
 
   ngOnInit():void {
@@ -48,6 +49,13 @@ export class FormComponent {
       Subject : ['', Validators.required],
       Body : ['', Validators.required],
       Preview : ['', Validators.required]
+    })
+  }
+
+  submit(e:any){
+    this.formService.submitForm(this.myForm).subscribe((result:any)=>{
+     console.log(result);
+      
     })
   }
 
