@@ -8,19 +8,16 @@ module.exports = class SegmentController {
   }
   async templateForm(req, res) {
     const result = formatter.data(req);
-    console.log("request is", result);
-<<<<<<< HEAD
-    let rules = formValidator();
+    let rules = formValidator.formValidator();
     let validation = new Validator(result, rules);
     if (validation.passes()) {
       console.log("it passes");
+    } else if (validation.fails()) {
+      console.log("it failed");
     } else {
       console.log("it didnt passes");
     }
     await EmailService.postEmail(result).then(() => {
-=======
-    EmailService.postEmail(result).then(() => {
->>>>>>> 406bf01de403a699d87e799fb3c1400ff03331ce
       return res.json({ success: true, data: result, message: "ok" });
     });
     // .catch(() => {
