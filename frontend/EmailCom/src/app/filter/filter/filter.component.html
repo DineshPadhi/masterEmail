@@ -15,12 +15,16 @@
     </div>
     <div class="btn"  >
       
+
+
         <button class="btn btn-primary">Search</button>
         <button class="btn btn-primary" >Reset</button>
 
         
     </div>
     </div>
+
+    
     <div class="table" >
 
     <table class="table  table-bordered" >
@@ -34,9 +38,10 @@
           <th scope="col">Action</th>
         </tr>
       </thead>
-      <tbody *ngFor="let data of filter">
+      <tbody *ngFor="let data of templateData   ;let i = index" >
         <tr>
-          <th scope="row">1</th>
+          
+          <td >{{i+1}}</td>
           <td>{{data.templateName}}</td>
           <td>{{data.templateCode}}</td>
           <td>{{data.tier}}</td>
