@@ -24,7 +24,7 @@ filerAllData(){
   this.FilterService.getAllData().subscribe((res:any)=>{
     console.log('table is',res.data)
     this.templateData = res.data;
-    console.log('bab is',this.templateData.id)
+    // console.log(this.templateData.templateName)
   })
   
   
