@@ -9,6 +9,7 @@
           placeholder="Enter Template Name"
           aria-label="Enter Template Name"
           formControlName="templateName"
+         
         />
 
         <div
@@ -33,6 +34,7 @@
           placeholder="Enter Template Code"
           aria-label="Enter Template Code"
           formControlName="templateCode"
+          
         />
 
         <div
@@ -182,7 +184,6 @@
             placeholder="Select Email Type"
             aria-label="Select Email Type"
             formControlName="emailType"
-            value="jhgcvbn"
           />
           <div
             *ngIf="
@@ -235,7 +236,6 @@
             placeholder="Select Status"
             aria-label="Select Status"
             formControlName="status"
-            value="mkjnbhvgcf"
           />
           <div
             *ngIf="
@@ -266,7 +266,6 @@
             placeholder="Select Target Audience"
             aria-label="Select Target Audience"
             formControlName="targetAudience"
-            value="jhgfddfvb"
           />
           <div
             *ngIf="
@@ -306,7 +305,9 @@
           placeholder="Select Subject"
           aria-label="Select Subject"
           formControlName="subject"
-          value="jnbhvgdtf"
+         
+          #f
+          (keyup)="(f.value)"
         />
         <div
           *ngIf="
@@ -334,6 +335,9 @@
           id="floatingTextarea"
           formControlName="body"
           style="height: 300px"
+          
+          #t
+          (keyup)="(t.value)"
         ></textarea>
         <div
           *ngIf="
@@ -355,7 +359,9 @@
           class="form-control"
           id="floatingTextarea"
           style="height: 300px"
-          value="{{ preview }}"
+          *ngIf="myForm.controls['subject'].dirty || myForm.controls['body'].dirty"
+          value="Subject: {{ f.value }}
+Body: {{ t.value }}"
         ></textarea>
         <!-- <div *ngIf="myForm!.controls['Preview'].invalid && (myForm!.controls['Preview'].dirty || myForm!.controls['Preview'].touched)" class="alert">
     <div *ngIf="myForm!.controls['Preview'].errors!.required">
@@ -373,6 +379,7 @@
           type="submit"
           (click)="submit(myForm.value)"
           [disabled]="!myForm.valid"
+          (click)="navigate()"
         >
           Submit
         </button>
