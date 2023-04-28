@@ -54,13 +54,13 @@ export class FormComponent implements OnInit {
   }
 
   seePreview(event: any) {
-    this.preview.push(event.target.value);
+    this.preview = event.target.value;
 
     console.log(this.preview);
   }
 
 
-  nevigate(){
+  navigate(){
     if(this.myForm.valid){
     this.router.navigate(['/allTemplateData'])
     }
