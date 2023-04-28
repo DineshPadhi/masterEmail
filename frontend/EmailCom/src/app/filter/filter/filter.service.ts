@@ -3,33 +3,27 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'environment/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class FilterService implements OnInit{
-
+export class FilterService implements OnInit {
   // FormData : any;
 
-  url = environment.BS_BASE_URL
+  url = environment.BS_BASE_URL;
 
-  constructor(private httpClient:HttpClient) { }
-  ngOnInit(): void {
-    
-  }
+  constructor(private httpClient: HttpClient) {}
+  ngOnInit(): void {}
 
-
-  getAllData(){
+  getAllData() {
     return this.httpClient.get(`${this.url}get`);
     // console.log("result is",this.FormData);
-    
+
     // return this.FormData;
   }
 
-  getFilterData(result:any){
-   
-    console.log("search",result)
-    let data =  this.httpClient.post(`${this.url}search`,result); 
+  getFilterData(data: any) {
+    console.log('search', data);
+    let result = this.httpClient.post(`${this.url}search`, data);
     // console.log("data issssss ",data);
-    return data;
-     
+    return result;
   }
 }
