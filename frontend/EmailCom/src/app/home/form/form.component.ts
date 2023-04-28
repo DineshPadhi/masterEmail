@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormServiceService } from '../form-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -15,7 +16,8 @@ export class FormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private formService: FormServiceService
+    private formService: FormServiceService,
+    private router: Router
   ) {
     this.createForm();
   }
@@ -56,4 +58,12 @@ export class FormComponent implements OnInit {
 
     console.log(this.preview);
   }
+
+
+  nevigate(){
+    if(this.myForm.valid){
+    this.router.navigate(['/allTemplateData'])
+    }
+  }
+
 }
