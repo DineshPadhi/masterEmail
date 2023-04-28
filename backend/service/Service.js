@@ -13,4 +13,8 @@ module.exports = class EmailService {
     const result = templateModel.ShowData();
     return result;
   }
+  async searchDatas(searchCriteria) {
+    const result = templateModel.searchData(searchCriteria);
+    return result;
+  }
 };
