@@ -15,14 +15,16 @@
     </div>
     <div class="btn"  >
       
-        <button class="btn btn-primary"  >Search</button>
+        <button class="btn btn-primary">Search</button>
         <button class="btn btn-primary" >Reset</button>
 
         
     </div>
     </div>
-    <div class="table">
+    <div class="table" >
+
     <table class="table  table-bordered" >
+      <div ></div>
       <thead>
         <tr class="table-active">
           <th scope="col">Sr No</th>
@@ -32,40 +34,19 @@
           <th scope="col">Action</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngFor="let data of filter">
         <tr>
           <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+          <td>{{data.templateName}}</td>
+          <td>{{data.templateCode}}</td>
+          <td>{{data.tier}}</td>
           <td>
             <div class="form-check">
               <i class="fas fa-edit" style="color: #000000;"></i>     
                    </div>
         </td>
         </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-          <td>          
-            <div class="form-check">
-              <i class="fas fa-edit" style="color: #000000;"></i>     
-            </div>
-        </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-          <td>
-            <div class="form-check">
-              <i class="fas fa-edit" style="color: #000000;"></i>     
-            </div>
-        </td>
-        </tr>
+
       </tbody>
     </table>
   </div>
