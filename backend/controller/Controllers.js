@@ -36,4 +36,9 @@ module.exports = class SegmentController {
       return res.json({ success: true, data: result, message: "ok" });
     });
   }
+  async updateData(req, res) {
+    const id = req.params.id;
+
+    // const book = await Book.find({ isbn_13: isbn_13, visibility: true });
+  }
 };

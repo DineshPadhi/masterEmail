@@ -6,5 +6,6 @@ let segmentController = new (require("../controller/Controllers.js"))();
 router.post("/", segmentController.templateForm);
 router.get("/get", segmentController.showAllDatas);
 router.post("/search", segmentController.searchAllDatas);
+router.get("/update/:id", segmentController.updateData);
 
 module.exports = router;
