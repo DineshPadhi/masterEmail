@@ -1,13 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from './../../../environment/environment'
+import { environment } from './../../../environment/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FormServiceService {
-
-  url = environment.BS_BASE_URL
+  url = environment.BS_BASE_URL;
 
   constructor(private http: HttpClient) {}
 
