@@ -5,13 +5,12 @@ module.exports = class EmailService {
     //
   }
   async postEmail(data) {
-    console.log("req,body", data);
     const result = templateModel.displayForm(data);
     return result;
   }
 
-  async showDatas(){
-    const result = templateModel.ShowData()
-    return result
+  async showDatas() {
+    const result = templateModel.ShowData();
+    return result;
   }
 };

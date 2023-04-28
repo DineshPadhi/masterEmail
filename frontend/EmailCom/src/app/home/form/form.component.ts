@@ -1,62 +1,59 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormServiceService } from '../form-service.service';
-
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  styleUrls: ['./form.component.css'],
 })
-export class FormComponent {
+export class FormComponent implements OnInit {
+  data: any = [];
+  formData: any = [];
+  myForm: FormGroup;
+  preview: any = [];
 
-  // TemplateName:any
-  // TemplateCode:any
-  // Scenario:any
-  // Providers:any
-  // User:any
-  // Tier:any
-  // EmailType:any
-  // Activity:any
-  // Status:any
-  // TargetAudience:any
-  // Subject:any
-  // Body:any
-  // Preview:any
-
-  data:any = []
-  myForm?:FormGroup
-
-  constructor(private fb:FormBuilder, private formService:FormServiceService){}
-
-
-  ngOnInit():void {
-    this.createForm()
+  constructor(
+    private fb: FormBuilder,
+    private formService: FormServiceService
+  ) {
+    this.createForm();
   }
+
+  ngOnInit(): void {}
 
   createForm() {
     this.myForm = this.fb.group({
-      TemplateName : ['', Validators.required],
-      TemplateCode : ['', Validators.required],
-      Scenario : [''],
-      Providers : ['', Validators.required],
-      User : ['', Validators.required],
-      Tier : ['', Validators.required],
-      EmailType : ['', Validators.required],
-      Activity : [''],
-      Status : ['', Validators.required],
-      TargetAudience : ['', Validators.required],
-      Subject : ['', Validators.required],
-      Body : ['', Validators.required],
-      Preview : ['', Validators.required]
-    })
+      templateName: ['', Validators.required],
+      templateCode: ['', Validators.required],
+      scenario: [''],
+      providers: ['', Validators.required],
+      user: ['', Validators.required],
+      tier: ['', Validators.required],
+      emailType: ['', Validators.required],
+      activity: [''],
+      status: ['', Validators.required],
+      targetAudience: ['', Validators.required],
+      subject: ['', Validators.required],
+      body: ['', Validators.required],
+    });
   }
 
-  submit(e:any){
-    this.formService.submitForm(this.myForm).subscribe((result:any)=>{
-     console.log(result);
-      
-    })
+  submit(data: any) {
+    this.formService.submitForm(data).subscribe((result: any) => {
+      console.log('result========>>>>>>>>', result.data);
+    });
   }
 
+  reset() {
+    if (this.myForm.dirty || this.myForm.valid) {
+      this.myForm.reset();
+    }
+  }
+
+  seePreview(event: any) {
+    this.preview.push(event.target.value);
+
+    console.log(this.preview);
+  }
 }
