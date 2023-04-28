@@ -1,17 +1,17 @@
 const data = (req) => {
   user = {
-    TemplateName: req.body.templateName,
-    Template_Code: req.body.templateCode,
-    Scenario: req.body.scenario,
-    Providers: req.body.providers,
-    User: req.body.user,
-    Tier: req.body.tier,
-    Email_Type: req.body.emailType,
-    Activity: req.body.activity,
-    Status: req.body.status,
-    Target_Audience: req.body.targetAudience,
-    Subject: req.body.subject,
-    Body: req.body.body,
+    templateName: req.body.templateName,
+    templateCode: req.body.templateCode,
+    scenario: req.body.scenario,
+    providers: req.body.providers,
+    user: req.body.user,
+    tier: req.body.tier,
+    emailType: req.body.emailType,
+    activity: req.body.activity,
+    status: req.body.status,
+    targetAudience: req.body.targetAudience,
+    subject: req.body.subject,
+    body: req.body.body,
   };
   return user;
 };
