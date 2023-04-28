@@ -22,7 +22,10 @@ export class FormComponent implements OnInit {
     this.createForm();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('length===',this.myForm.value.templateName.length)
+    // console.log('submit=========',this.submit.length)
+  }
 
   createForm() {
     this.myForm = this.fb.group({
@@ -44,6 +47,9 @@ export class FormComponent implements OnInit {
   submit(data: any) {
     this.formService.submitForm(data).subscribe((result: any) => {
       console.log('result========>>>>>>>>', result.data);
+      if(result){
+        this.router.navigate(['/allTemplateData'])
+      }
     });
   }
 
@@ -58,10 +64,5 @@ export class FormComponent implements OnInit {
   }
 
 
-  navigate(){
-    if(this.myForm.valid){
-    this.router.navigate(['/allTemplateData'])
-    }
-  }
 
 }

@@ -6,8 +6,7 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
-import { Ng2SearchPipeModule,
- } from 'ng2-search-filter';
+import { Ng2SearchPipeModule} from 'ng2-search-filter';
 
 
 
