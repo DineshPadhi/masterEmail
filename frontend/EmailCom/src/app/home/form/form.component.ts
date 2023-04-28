@@ -23,8 +23,7 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('length===',this.myForm.value.templateName.length)
-    // console.log('submit=========',this.submit.length)
+    console.log(this.selectedValue.length);
   }
 
   createForm() {
@@ -46,7 +45,7 @@ export class FormComponent implements OnInit {
 
   submit(data: any) {
     this.formService.submitForm(data).subscribe((result: any) => {
-      console.log('result========>>>>>>>>', result.data);
+      // console.log('result========>>>>>>>>', result.data);
       if(result){
         this.router.navigate(['/allTemplateData'])
       }
@@ -60,9 +59,20 @@ export class FormComponent implements OnInit {
   seePreview(event: any) {
     this.preview = event.target.value;
 
-    console.log(this.preview);
+    // console.log(this.preview);
   }
 
+  // getDropdown(){
+  //   document.getElementById('TaDrop2').ariaValueText = document.getElementById('TaDrop').ariaValueText
+  // }
 
+
+  selectedValue:any = ''
+  error:any
+
+  onSelect(value:any){
+    this.selectedValue = value;
+    this.error = this.selectedValue.length <= 0
+  }
 
 }
