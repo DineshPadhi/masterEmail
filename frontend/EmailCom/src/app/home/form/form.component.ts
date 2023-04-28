@@ -48,9 +48,7 @@ export class FormComponent implements OnInit {
   }
 
   reset() {
-    if (this.myForm.dirty || this.myForm.valid) {
       this.myForm.reset();
-    }
   }
 
   seePreview(event: any) {
