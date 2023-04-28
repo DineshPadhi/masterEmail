@@ -1,3 +1,7 @@
+const {MongoClient} = require('mongodb');
+const {configureDetails} = require('../config/Config')
+const url = configureDetails.mongodb
+
 const knex = require("knex")({
   client: "mysql2",
   connection: {
@@ -9,6 +13,15 @@ const knex = require("knex")({
   },
 });
 
-knex.raw("use MasterEmail").then(() => console.log("Database Connected"));
+knex.raw("use MasterEmail").then(() => console.log("Mysql Database Connected"));
+
+const client = new MongoClient(url)
+
+ async function main(){
+  await client.connect();
+ console.log("MongoDB Connected")
+}
+main();
 
 module.exports = knex;
+
