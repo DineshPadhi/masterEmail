@@ -1,28 +1,28 @@
-<div class="m-4">
+<form #formName='ngForm' (ngSubmit)="filterSearch(formName.value)" class="m-4">
     <div class="row">
         <div class="col">
             <label for="">Email Template Name<span></span></label>
-          <input type="text" class="form-control" placeholder="Enter Template Name" aria-label="Enter Template Name">
+          <input type="text" ngModel name="tname" class="form-control" placeholder="Enter Template Name" aria-label="Enter Template Name">
         </div>
         <div class="col">
             <label for="">Email Template Code<span></span></label>
-          <input type="text" class="form-control" placeholder="Enter Template Code" aria-label="Enter Template Code">
+          <input type="text" ngModel name="tcode" class="form-control" placeholder="Enter Template Code" aria-label="Enter Template Code">
         </div>
         <div class="col">
             <label for="">Status<span></span></label>
-          <input type="text" class="form-control" placeholder="Enter Template Code" aria-label="Enter Template Code">
+          <input type="text" ngModel name="status" class="form-control" placeholder="Enter Template Code" aria-label="Enter Template Code">
         </div>
     </div>
-    <div class="btn"  >
+    <div class="btnn"  >
       
 
 
-        <button class="btn btn-primary">Search</button>
-        <button class="btn btn-primary" >Reset</button>
+        <button class="btn btn-primary btnn" (click)="filterSearch('data')">Search</button>
+        <button class="btn btn-primary btnn" >Reset</button>
 
         
     </div>
-    </div>
+  </form>
 
     
     <div class="table" >

@@ -10,6 +10,7 @@ import { FilterService } from './filter.service';
 export class FilterComponent implements OnInit{
 
   templateData : any = []
+  
   term:any;
 
 
@@ -17,17 +18,35 @@ export class FilterComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.filerAllData()
+    this.allData()
   }
 
-filerAllData(){
+allData(){
   this.FilterService.getAllData().subscribe((res:any)=>{
     console.log('table is',res.data)
     this.templateData = res.data;
     // console.log(this.templateData.templateName)
   })
   
+}
+
+
+Filter:any= {};
+
+filterSearch(data:any){
+  // console.log('data probably is',data);
   
+    this.FilterService.getFilterData(data).subscribe((resu:any)=>{
+      // console.log('resu is',resu.data[0]);
+      // let update = resu.data[0];
+
+      
+      
+      this.Filter  = data
+    console.log('filter is',this.Filter);
+    
+  })
+
 }
 
 // searchData(){

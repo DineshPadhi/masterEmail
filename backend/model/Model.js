@@ -8,23 +8,33 @@ const ShowData = () => {
   return knex("TemplateData").select("*");
 };
 const searchData = (searchCriteria) => {
-  // console.log("data is", data);
+
+
+
+
+
+
+
+
+  // console.log("data is", searchCriteria);
   return knex("TemplateData")
     .select("*")
-    .where("templateName", "diensh") //default single where clause
+    .where("templateName", "sushant") //default single where clause
     .where((qb) => {
-      if (searchCriteria.searchTerm) {
-        qb.where("templateName", "like", `%${searchCriteria.searchTerm}%`);
-      }
+      // if (searchCriteria.templateName) {
+        qb.where("templateName","sushant");
+      // }
 
-      if (searchCriteria.itemType) {
-        qb.orWhere("items.itemType", "=", searchCriteria.itemType);
-      }
+    //   if (searchCriteria.templateCode) {
+    //     qb.orWhere("items.itemType", "=", searchCriteria.templateCode);
+    //   }
 
-      if (searchCriteria.category) {
-        qb.orWhere("items.category", "=", searchCriteria.category);
-      }
-    });
+    //   if (searchCriteria.Status) {
+    //     qb.orWhere("items.category", "=", searchCriteria.category);
+    //   }
+    // });
+    })
+    
 };
 
 module.exports = {

@@ -23,4 +23,13 @@ export class FilterService implements OnInit{
     
     // return this.FormData;
   }
+
+  getFilterData(result:any){
+   
+    console.log("search",result)
+    let data =  this.httpClient.post(`${this.url}search`,result); 
+    // console.log("data issssss ",data);
+    return data;
+     
+  }
 }
