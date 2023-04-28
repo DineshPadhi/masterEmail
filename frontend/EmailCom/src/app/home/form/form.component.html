@@ -1,5 +1,5 @@
 <form [formGroup]="myForm">
-  <div class="m-4" (keyup)="seePreview($event)">
+  <div class="m-4">
     <div class="row">
       <div class="col">
         <label for="">Template Name<span style="color: red">*</span></label>
@@ -102,6 +102,7 @@
             </ul>
           </div>
         </div>
+      </div>
       </div>
 
       <div class="row my-3">
@@ -374,10 +375,10 @@
         >
           Submit
         </button>
+
         &nbsp;&nbsp;
         <button class="btn btn-primary" (click)="reset()">Reset</button>
       </div>
-    </div>
-    <!-- </form> -->
+   
   </div>
 </form>
