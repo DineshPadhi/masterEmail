@@ -72,7 +72,7 @@ export class FormComponent implements OnInit {
   error:any
 
   onSelect(value:any){
-    this.selectedValue = document.getElementById('inp');
+    // this.selectedValue = document.getElementById('inp');
     this.selectedValue = value
   }
 

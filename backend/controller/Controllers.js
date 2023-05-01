@@ -15,6 +15,7 @@ module.exports = class SegmentController {
     if (validation.passes()&&!validation.fails()) {
       console.log("it passes");
        result=await EmailService.postEmail(data)
+       console.log('hey');
       return Response.success(res,result)
     } else {
       return Response.error(res,"Validation failed")
@@ -25,14 +26,29 @@ module.exports = class SegmentController {
     
   }
 
-  async showAllDatas(req, res) {
-    try {
-      const result=await EmailService.showDatas()
-      return Response.success(res,result)
-    } catch (error) {
+  // async showAllDatas(req, res) {
+  //   try {
+  //     const result=await EmailService.showDatas()
+  //     return Response.success(res,result)
+  //   } catch (error) {
+  //     return Response.error(res,error)
+  //   }
+  // }
+
+  showAllDatas(req, res){
+    console.log('hii');
+    try{
+      const result = EmailService.showDatas().then((data)=>{
+        return res.json({data})
+        
+      })
+      console.log('result========', result);
+    }
+    catch(error){
       return Response.error(res,error)
     }
   }
+
   async searchAllDatas(req, res) {
     try {
       let searchCriteria = req.body;

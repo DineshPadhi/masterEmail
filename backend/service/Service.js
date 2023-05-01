@@ -5,7 +5,9 @@ module.exports = class EmailService {
     //
   }
   postEmail(data) {
+    console.log('yo');
     const result = templateModel.displayForm(data);
+    // console.log('in service',result);
     return result;
   }
 
