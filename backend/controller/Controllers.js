@@ -2,39 +2,56 @@ let Validator = require("validatorjs");
 const formatter = require("../formatter/Formatter.js");
 const formValidator = require("../validator/Validator.js");
 const EmailService = new (require("../service/Service.js"))();
+const Response = new (require("../responses/Responses.js"))();
 module.exports = class SegmentController {
   constuctor() {
     //
   }
-  async templateForm(req, res) {
-    const result = formatter.data(req);
+   templateForm= async(req, res)=> {
+    try {
+      const data = formatter.data(req);
     let rules = formValidator.formValidator();
-    let validation = new Validator(result, rules);
-    if (validation.passes()) {
+    let validation = new Validator(data, rules);
+    if (validation.passes()&&!validation.fails()) {
       console.log("it passes");
-    } else if (validation.fails()) {
-      console.log("it failed");
+       result=await EmailService.postEmail(data)
+      return Response.success(res,result)
     } else {
-      console.log("it didnt passes");
+      return Response.error(res,"Validation failed")
     }
-    await EmailService.postEmail(result).then(() => {
-      return res.json({ success: true, data: result, message: "ok" });
-    });
-    // .catch(() => {
-    //   return res.json({ success: false, error: error });
-    // });
+    } catch (error) {
+      return Response.error(res,error)
+    }
+    
   }
 
   async showAllDatas(req, res) {
-    await EmailService.showDatas().then((result) => {
-      return res.json({ success: true, data: result, message: "ok" });
-    });
+    try {
+      const result=await EmailService.showDatas()
+      return Response.success(res,result)
+    } catch (error) {
+      return Response.error(res,error)
+    }
   }
   async searchAllDatas(req, res) {
-    await EmailService.searchDatas(searchCriteria).then((result) => {
-      console.log("result in controller is", result);
-      return res.json({ success: true, data: result, message: "ok" });
-    });
+    try {
+      let searchCriteria = req.body;
+      const result= await EmailService.filterDatas(searchCriteria)
+      return Response.success(res,result)
+    } catch (error) {
+      return Response.error(res,error)
+    }
+    
+  }
+  async updateData(req, res) {
+    try {
+      const id=req.params.id
+      const result= await EmailService.updateData(id)
+      return Response.success(res,result)
+    } catch (error) {
+      return Response.error(res,error)
+    }
+    
   }
   async updateData(req, res) {
     const id = req.params.id;

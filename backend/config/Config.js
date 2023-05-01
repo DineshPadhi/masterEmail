@@ -1,4 +1,4 @@
-// require("dotenv").config();
+require("dotenv").config();
 
 const configureDetails = {
   port: process.env.PORT,
@@ -8,5 +8,6 @@ const configureDetails = {
   password: process.env.PASSWORD,
   password: process.env.DB_PORT,
   database: process.env.DATABASE,
+  mongodb: process.env.MONGODB_URI
 };
 module.exports = { configureDetails };

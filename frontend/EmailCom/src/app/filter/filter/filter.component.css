@@ -1,8 +1,9 @@
-.btn{
+.btnn{
     display: flex;
-    margin: 10px;
+    margin: 12px;
+    padding: 10px 12px;
     justify-content: center ;
-    
+    border-color: none;
 }
 .table{
     padding: 30px;

@@ -24,16 +24,11 @@
     font-weight: 400;
   }
 
-  /* .active:focus {
-
-    border-color: red;
-  } */
+ 
 
   .button{
     display: flex;
     justify-content: center;
   }
 
-  /* div > textarea > .length{
-    height: 400px;
-  } */
+  
