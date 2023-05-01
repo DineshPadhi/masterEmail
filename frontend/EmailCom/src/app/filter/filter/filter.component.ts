@@ -9,11 +9,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.css']
- })
-export class FilterComponent implements OnInit{
+  styleUrls: ['./filter.component.css'],
+})
+export class FilterComponent implements OnInit {
+  templateData: any
 
-  templateData : any = []
+  constructor(private FilterService: FilterService) {}
   filterData : any = []
   searchValue: string;
   data: any[];
@@ -22,11 +23,11 @@ export class FilterComponent implements OnInit{
   myForm: FormGroup;
 
 
-  constructor(private FilterService:FilterService, private http: HttpClient,private fb:FormBuilder) {}
+  // constructor(private FilterService:FilterService, private http: HttpClient,private fb:FormBuilder) {}
 
 
   ngOnInit(): void {
-    this.allData()
+    this.allData();
   }
 
 allData(){
@@ -38,9 +39,6 @@ allData(){
 }
 
 
-Filter:any= {};
-update:any;
-
 filterSearch(data:any){
   
     this.FilterService.getFilterData(data).subscribe((resu:any)=>{
@@ -49,11 +47,8 @@ filterSearch(data:any){
   })
 
 }
-// ngForm:any;
 
-reset(){
-// this.ngForm.reset()
-}
 
 }
+
 

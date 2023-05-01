@@ -31,8 +31,7 @@ module.exports = class SegmentController {
     });
   }
   async searchAllDatas(req, res) {
-    // console.log('jbody is ',req.body);
-    let searchCriteria=req.body
+    let searchCriteria = req.body;
     await EmailService.searchDatas(searchCriteria).then((result) => {
       console.log("result in controller is", result);
       return res.json({ success: true, data: result, message: "ok" });
