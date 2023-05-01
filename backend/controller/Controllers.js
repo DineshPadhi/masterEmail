@@ -36,7 +36,17 @@ module.exports = class SegmentController {
   async searchAllDatas(req, res) {
     try {
       let searchCriteria = req.body;
-      const result= await EmailService.searchDatas(searchCriteria)
+      const result= await EmailService.filterDatas(searchCriteria)
+      return Response.success(res,result)
+    } catch (error) {
+      return Response.error(res,error)
+    }
+    
+  }
+  async updateData(req, res) {
+    try {
+      const id=req.params.id
+      const result= await EmailService.updateData(id)
       return Response.success(res,result)
     } catch (error) {
       return Response.error(res,error)

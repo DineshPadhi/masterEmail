@@ -6,7 +6,7 @@ const displayForm = (data) => {
 const ShowData = () => {
   return knex("TemplateData").select("*");
 };
-const searchData = (searchCriteria) => {
+const filterData = (searchCriteria) => {
 
   return knex("TemplateData")
     .select("*")
@@ -22,13 +22,16 @@ const searchData = (searchCriteria) => {
       if (searchCriteria.status) {
         qb.andWhere("status", "=", searchCriteria.status);
       }
-    // });
     })
     
+};
+const update = (id) => {
+  return knex("TemplateData").select("*").where("id",id);
 };
 
 module.exports = {
   displayForm,
   ShowData,
-  searchData,
+  filterData,
+  update
 };

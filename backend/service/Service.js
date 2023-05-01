@@ -13,8 +13,12 @@ module.exports = class EmailService {
     const result = templateModel.ShowData();
     return result;
   }
-  searchDatas(searchCriteria) {
-    const result = templateModel.searchData(searchCriteria);
+  filterDatas(searchCriteria) {
+    const result = templateModel.filterData(searchCriteria);
+    return result;
+  }
+  updateData(id) {
+    const result = templateModel.update(id);
     return result;
   }
 };
