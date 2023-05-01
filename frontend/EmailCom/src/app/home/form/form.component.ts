@@ -48,6 +48,7 @@ export class FormComponent implements OnInit {
       // console.log('result========>>>>>>>>', result.data);
       if(result){
         this.router.navigate(['/allTemplateData'])
+        console.log('result====',result)
       }
     });
   }
@@ -71,8 +72,8 @@ export class FormComponent implements OnInit {
   error:any
 
   onSelect(value:any){
-    this.selectedValue = value;
-    this.error = this.selectedValue.length <= 0
+    this.selectedValue = document.getElementById('inp');
+    this.selectedValue = value
   }
 
 }
