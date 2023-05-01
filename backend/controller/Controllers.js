@@ -6,21 +6,20 @@ module.exports = class SegmentController {
   constuctor() {
     //
   }
-  async templateForm(req, res) {
+   templateForm= async(req, res)=> {
     const result = formatter.data(req);
     let rules = formValidator.formValidator();
     let validation = new Validator(result, rules);
-    if (validation.passes()) {
+    if (validation.passes()&&!validation.fails()) {
       console.log("it passes");
-    } else if (validation.fails()) {
-      console.log("it failed");
+      const result=await EmailService.postEmail(result)
+        return res.status(200).json({ success: true, data: result, message: "ok" });
+      
     } else {
       console.log("it didnt passes");
+      return res.json({ success: false, error:"did not inserted", message: "ok" });
     }
-    await EmailService.postEmail(result).then(() => {
-      return res.json({ success: true, data: result, message: "ok" });
-    });
-    // .catch(() => {
+      // .catch(() => {
     //   return res.json({ success: false, error: error });
     // });
   }

@@ -9,17 +9,8 @@ const ShowData = () => {
 };
 const searchData = (searchCriteria) => {
 
-
-
-
-
-
-
-
-  console.log("data is in backedn", searchCriteria);
   return knex("TemplateData")
     .select("*")
-    // .where("templateName", "sushant") //default single where clause
     .where((qb) => {
       if (searchCriteria.tname) {
         qb.where("templateName",searchCriteria.tname);
