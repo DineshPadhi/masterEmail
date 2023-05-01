@@ -22,7 +22,9 @@ export class FormComponent implements OnInit {
     this.createForm();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.selectedValue.length);
+  }
 
   createForm() {
     this.myForm = this.fb.group({
@@ -43,7 +45,11 @@ export class FormComponent implements OnInit {
 
   submit(data: any) {
     this.formService.submitForm(data).subscribe((result: any) => {
-      console.log('result========>>>>>>>>', result.data);
+      // console.log('result========>>>>>>>>', result.data);
+      if(result){
+        this.router.navigate(['/allTemplateData'])
+        console.log('result====',result)
+      }
     });
   }
 
@@ -54,14 +60,20 @@ export class FormComponent implements OnInit {
   seePreview(event: any) {
     this.preview = event.target.value;
 
-    console.log(this.preview);
+    // console.log(this.preview);
   }
 
+  // getDropdown(){
+  //   document.getElementById('TaDrop2').ariaValueText = document.getElementById('TaDrop').ariaValueText
+  // }
 
-  navigate(){
-    if(this.myForm.valid){
-    this.router.navigate(['/allTemplateData'])
-    }
+
+  selectedValue:any = ''
+  error:any
+
+  onSelect(value:any){
+    this.selectedValue = document.getElementById('inp');
+    this.selectedValue = value
   }
 
 }
