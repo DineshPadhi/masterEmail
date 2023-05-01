@@ -11,6 +11,7 @@ module.exports = class SegmentController {
     let rules = formValidator.formValidator();
     let validation = new Validator(result, rules);
     if (validation.passes()&&!validation.fails()) {
+    if (validation.passes()&&!validation.fails()) {
       console.log("it passes");
       const result=await EmailService.postEmail(result)
         return res.status(200).json({ success: true, data: result, message: "ok" });
@@ -19,9 +20,6 @@ module.exports = class SegmentController {
       console.log("it didnt passes");
       return res.json({ success: false, error:"did not inserted", message: "ok" });
     }
-      // .catch(() => {
-    //   return res.json({ success: false, error: error });
-    // });
   }
 
   async showAllDatas(req, res) {
@@ -32,7 +30,6 @@ module.exports = class SegmentController {
   async searchAllDatas(req, res) {
     let searchCriteria = req.body;
     await EmailService.searchDatas(searchCriteria).then((result) => {
-      console.log("result in controller is", result);
       return res.json({ success: true, data: result, message: "ok" });
     });
   }

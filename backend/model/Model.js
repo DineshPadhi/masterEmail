@@ -4,7 +4,6 @@ const displayForm = (data) => {
   return knex("TemplateData").insert(data);
 };
 const ShowData = () => {
-  // console.log("data is", data);
   return knex("TemplateData").select("*");
 };
 const searchData = (searchCriteria) => {
