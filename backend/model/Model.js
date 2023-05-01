@@ -16,22 +16,22 @@ const searchData = (searchCriteria) => {
 
 
 
-  // console.log("data is", searchCriteria);
+  console.log("data is in backedn", searchCriteria);
   return knex("TemplateData")
     .select("*")
-    .where("templateName", "sushant") //default single where clause
+    // .where("templateName", "sushant") //default single where clause
     .where((qb) => {
-      // if (searchCriteria.templateName) {
-        qb.where("templateName","sushant");
-      // }
+      if (searchCriteria.tname) {
+        qb.where("templateName",searchCriteria.tname);
+      }
 
-    //   if (searchCriteria.templateCode) {
-    //     qb.orWhere("items.itemType", "=", searchCriteria.templateCode);
-    //   }
+      if (searchCriteria.tcode) {
+        qb.andWhere("templateCode", "=", searchCriteria.tcode);
+      }
 
-    //   if (searchCriteria.Status) {
-    //     qb.orWhere("items.category", "=", searchCriteria.category);
-    //   }
+      if (searchCriteria.status) {
+        qb.andWhere("status", "=", searchCriteria.status);
+      }
     // });
     })
     

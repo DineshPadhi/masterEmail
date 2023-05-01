@@ -1,20 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { FilterService } from './filter.service';
+import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
+
 
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.css'],
+  styleUrls: ['./filter.component.css']
  })
 export class FilterComponent implements OnInit{
 
   templateData : any = []
-  
-  term:any;
+  filterData : any = []
+  searchValue: string;
+  data: any[];
+  filteredDatas: any[];
+  searchText:any; 
+  myForm: FormGroup;
 
 
-  constructor(private FilterService:FilterService) {}
+  constructor(private FilterService:FilterService, private http: HttpClient,private fb:FormBuilder) {}
 
 
   ngOnInit(): void {
@@ -23,37 +31,29 @@ export class FilterComponent implements OnInit{
 
 allData(){
   this.FilterService.getAllData().subscribe((res:any)=>{
-    console.log('table is',res.data)
     this.templateData = res.data;
-    // console.log(this.templateData.templateName)
+
   })
   
 }
 
 
 Filter:any= {};
+update:any;
 
 filterSearch(data:any){
-  // console.log('data probably is',data);
   
     this.FilterService.getFilterData(data).subscribe((resu:any)=>{
-      // console.log('resu is',resu.data[0]);
-      // let update = resu.data[0];
-
-      
-      
-      this.Filter  = data
-    console.log('filter is',this.Filter);
+      this.templateData = resu.data;
     
   })
 
 }
+// ngForm:any;
 
-// searchData(){
-//   if()
-// }
-
-
+reset(){
+// this.ngForm.reset()
 }
 
+}
 
