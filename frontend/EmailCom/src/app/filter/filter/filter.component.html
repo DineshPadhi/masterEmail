@@ -15,7 +15,7 @@
     </div>
     <div class="btnn"  >
       <button class="btn btn-primary btnn" (click)="filterSearch(filterForm.value)">Search</button>
-      <button class="btn btn-primary btnn" (click)="filterForm.resetForm()">Reset</button>
+      <button class="btn btn-primary btnn" (click)="filterForm.resetForm();filterSearch(filterForm.value) ">Reset</button>
     </div>   
   </form>
 

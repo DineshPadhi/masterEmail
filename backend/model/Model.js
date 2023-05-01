@@ -4,22 +4,11 @@ const displayForm = (data) => {
   return knex("TemplateData").insert(data);
 };
 const ShowData = () => {
-  // console.log("data is", data);
   return knex("TemplateData").select("*");
 };
 const searchData = (searchCriteria) => {
 
-
-
-
-
-
-
-
-  console.log("data is in backedn", searchCriteria);
   return knex("TemplateData")
-    .select("*")
-    // .where("templateName", "sushant") //default single where clause
     .where((qb) => {
       if (searchCriteria.tname) {
         qb.where("templateName",searchCriteria.tname);

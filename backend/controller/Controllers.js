@@ -10,19 +10,14 @@ module.exports = class SegmentController {
     const result = formatter.data(req);
     let rules = formValidator.formValidator();
     let validation = new Validator(result, rules);
-    if (validation.passes()) {
+    if (validation.passes()&&!validation.fails()) {
       console.log("it passes");
-    } else if (validation.fails()) {
-      console.log("it failed");
-    } else {
+      await EmailService.postEmail(result).then(() => {
+        return res.json({ success: true, data: result, message: "ok" });
+      });
+    }  else {
       console.log("it didnt passes");
     }
-    await EmailService.postEmail(result).then(() => {
-      return res.json({ success: true, data: result, message: "ok" });
-    });
-    // .catch(() => {
-    //   return res.json({ success: false, error: error });
-    // });
   }
 
   async showAllDatas(req, res) {
@@ -33,7 +28,6 @@ module.exports = class SegmentController {
   async searchAllDatas(req, res) {
     let searchCriteria = req.body;
     await EmailService.searchDatas(searchCriteria).then((result) => {
-      console.log("result in controller is", result);
       return res.json({ success: true, data: result, message: "ok" });
     });
   }
