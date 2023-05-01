@@ -4,16 +4,16 @@ module.exports = class EmailService {
   constuctor() {
     //
   }
-  async postEmail(data) {
+  postEmail(data) {
     const result = templateModel.displayForm(data);
     return result;
   }
 
-  async showDatas() {
+  showDatas() {
     const result = templateModel.ShowData();
     return result;
   }
-  async searchDatas(searchCriteria) {
+  searchDatas(searchCriteria) {
     const result = templateModel.searchData(searchCriteria);
     return result;
   }
