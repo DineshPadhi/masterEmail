@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FilterService } from './filter.service';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 
@@ -14,7 +15,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class FilterComponent implements OnInit {
   templateData: any
 
-  constructor(private FilterService: FilterService) {}
+  constructor(private FilterService: FilterService, private router: Router) {}
   filterData : any = []
   searchValue: string;
   data: any[];
@@ -47,6 +48,14 @@ filterSearch(data:any){
   })
 
 }
+
+// updateUser(id:any, data:any){
+//   this.FilterService.update(id, data).subscribe((result:any)=>{
+//     if(result){
+//       this.router.navigate(['/allTemplateData'])
+//     }
+//   })
+// }
 
 
 }

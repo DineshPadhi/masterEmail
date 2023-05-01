@@ -14,7 +14,7 @@ export class FilterService implements OnInit {
   ngOnInit(): void {}
 
   getAllData() {
-    return this.httpClient.get(`${this.url}get`);
+    return this.httpClient.get(`${this.url}/get`);
     // console.log("result is",this.FormData);
 
     // return this.FormData;
@@ -22,8 +22,17 @@ export class FilterService implements OnInit {
 
   getFilterData(data: any) {
     console.log('search', data);
-    let result = this.httpClient.post(`${this.url}search`, data);
+    let result = this.httpClient.post(`${this.url}/search`, data);
     // console.log("data issssss ",data);
     return result;
   }
+
+
+  update(id:any, data:any){
+    // console.log('data........',data);
+    // console.log('id........',id);
+    
+    return this.httpClient.post(`${this.url}/update/${id}`, data)
+  }
+
 }
