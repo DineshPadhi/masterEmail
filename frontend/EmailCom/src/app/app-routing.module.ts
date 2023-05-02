@@ -12,7 +12,7 @@ const routes: Routes = [{
 },
 {
   path: 'allTemplateData',
-  loadChildren: ()=> import('../app/filter/filter/filter.module').then(m=> m.FilterModule)
+  loadChildren: ()=> import('../app/filter/filter.module').then(m=> m.FilterModule)
 }
 ];
 

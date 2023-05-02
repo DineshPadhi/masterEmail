@@ -1,15 +1,20 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 
 import { environment } from './../../../environment/environment';
 
 @Injectable({
   providedIn: 'root',
 })
-export class FormServiceService {
+export class FormServiceService implements OnInit{
   url = environment.BS_BASE_URL;
 
   constructor(private http: HttpClient) {}
+
+  
+  ngOnInit(): void {
+    
+  }
 
   submitForm(data: any) {
     console.log({ service: data });

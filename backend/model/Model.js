@@ -7,13 +7,15 @@ const displayForm = (data) => {
 const ShowData = () => {
   return knex("TemplateData").select("*");
 };
+const ShowByID = (id) => {
+  return knex("TemplateData").select("*").where("id", id);
+};
 const filterData = (searchCriteria) => {
-
   return knex("TemplateData")
     .select("*")
     .where((qb) => {
       if (searchCriteria.tname) {
-        qb.where("templateName",searchCriteria.tname);
+        qb.where("templateName", searchCriteria.tname);
       }
 
       if (searchCriteria.tcode) {
@@ -23,18 +25,18 @@ const filterData = (searchCriteria) => {
       if (searchCriteria.status) {
         qb.andWhere("status", "=", searchCriteria.status);
       }
-    })
-    
+    });
 };
-const updateUser = (id,data) => {
-  console.log('data here is',data);
-  console.log('id here is',id);
-  return knex("TemplateData").update(data).where("id",id);
+const updateUser = (id, data) => {
+  console.log("data here is", data);
+  console.log("id here is", id);
+  return knex("TemplateData").update(data).where("id", id);
 };
 
 module.exports = {
   displayForm,
   ShowData,
+  ShowByID,
   filterData,
-  updateUser
+  updateUser,
 };
