@@ -8,6 +8,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { UpdateUserComponent } from './filter/update-user/update-user.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
+
 
 
 
@@ -24,7 +27,8 @@ import { UpdateUserComponent } from './filter/update-user/update-user.component'
     ReactiveFormsModule,
     FontAwesomeModule,
     HttpClientModule,
-    Ng2SearchPipeModule
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -3,6 +3,9 @@ import { FilterService } from './filter.service';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { count } from 'rxjs';
+
+
 
 
 
@@ -22,6 +25,12 @@ export class FilterComponent implements OnInit {
   filteredDatas: any[];
   searchText:any; 
   myForm: FormGroup;
+  itemsPerPage:number = 5;
+  currentPage: number = 1;
+  totalItems : number = 0;
+  pageIndex: number = 1;
+  pageSize: number = 100;
+ 
 
 
   // constructor(private FilterService:FilterService, private http: HttpClient,private fb:FormBuilder) {}
@@ -49,15 +58,21 @@ filterSearch(data:any){
 
 }
 
-// updateUser(id:any, data:any){
-//   this.FilterService.update(id, data).subscribe((result:any)=>{
-//     if(result){
-//       this.router.navigate(['/allTemplateData'])
-//     }
-//   })
-// }
+updateUser(id:any, data:any){
+  this.FilterService.update(id, data).subscribe((result:any)=>{
+    if(result){
+      this.router.navigate(['/allTemplateData'])
+    }
+  })
+}
 
+onPageChange(event:any){
+  this.currentPage = event
+}
 
+totalPages(data:any){
+  this.totalItems = data.count
+}
 }
 
 

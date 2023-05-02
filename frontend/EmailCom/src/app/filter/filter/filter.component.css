@@ -8,3 +8,17 @@
 .table{
     padding: 30px;
 }
+
+table{
+    width: 100%;
+}
+
+th{
+    width:100px;
+    border:1px solid black;
+}
+td{
+    width:100px;
+    border:1px solid black;
+
+}

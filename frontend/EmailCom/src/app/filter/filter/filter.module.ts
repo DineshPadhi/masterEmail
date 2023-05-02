@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { FilterRoutingModule } from './filter-routing.module';
 import { FilterComponent } from './filter.component';
 import { FilterService } from './filter.service';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -14,6 +14,7 @@ import { FilterService } from './filter.service';
   imports: [
     CommonModule,
     FilterRoutingModule,
+    NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
     

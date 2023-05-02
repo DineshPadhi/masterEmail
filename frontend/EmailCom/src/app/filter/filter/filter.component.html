@@ -23,10 +23,10 @@
 
 <div class="table" >
 
-  <table class="table  table-bordered" >
-    <div ></div>
+  <table border="2" [width]="100" >
+    
     <thead>
-      <tr class="table-active">
+      <tr style="text-align: center;" class="table-active">
         <th scope="col">Sr No</th>
         <th scope="col">Name</th>
         <th scope="col">Code</th>
@@ -34,10 +34,16 @@
         <th scope="col">Action</th>
       </tr>
     </thead>
-    <tbody *ngFor="let data of templateData;let i = index "  >
-      <tr >
+    <tbody *ngFor="let data of templateData |paginate:{
+      itemsPerPage:itemsPerPage ,
+      currentPage : currentPage,
+      totalItems : totalItems,
+      
+
+    }  ;let i = index "  >
+      <tr style="text-align: center;">
         
-        <td >{{i+1}}</td>
+        <td >{{templateData.indexOf(data)+1}}</td>
         <td>{{data.templateName}}</td>
         <td>{{data.templateCode}}</td>
         <td>{{data.tier}}</td>
@@ -50,7 +56,17 @@
 
     </tbody>
   </table>
+  <br>
+  <div class="sticky-bottom d-flex justify-content-center align-items-center">
+    <pagination-controls (pageChange)="onPageChange($event)" screenReaderPaginationLabel="Pagination"
+    screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page"
+    >
+    </pagination-controls>
+  </div>
+<!-- <span>{{templateData.length}}</span> -->
+
 </div>
+<div *ngIf="!(data && data.length > 0)"></div>
 
 
 
