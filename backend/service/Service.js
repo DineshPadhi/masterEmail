@@ -5,9 +5,9 @@ module.exports = class EmailService {
     //
   }
   postEmail(data) {
-    // console.log('yo');
     const result = templateModel.displayForm(data);
-    // console.log('in service',result);
+    // return result;
+    console.log("result is", result);
     return result;
   }
 
@@ -15,12 +15,16 @@ module.exports = class EmailService {
     const result = templateModel.ShowData();
     return result;
   }
+  showByID(id) {
+    const result = templateModel.ShowByID(id);
+    return result;
+  }
   filterDatas(searchCriteria) {
     const result = templateModel.filterData(searchCriteria);
     return result;
   }
-  update(id,data) {
-    const result = templateModel.updateUser(id,data);
+  update(id, data) {
+    const result = templateModel.updateUser(id, data);
     return result;
   }
 };
