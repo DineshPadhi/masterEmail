@@ -65,7 +65,7 @@
       <div class="col">
         <label for="">Select Scenario</label>
         
-          <select class="dropdown dropdown-toggle form-control" data-bs-toggle="dropdown" formControlName="scenario" #scen (change)="onSelect(scen.value)" id="inp">
+          <select class="dropdown dropdown-toggle form-control" data-bs-toggle="#dropdown" formControlName="scenario" #scen (change)="onSelect(scen.value)">
             <option class="dropdown-item" value="Scenario 1">Scenario 1</option>
             <option class="dropdown-item" value="Scenario 2">Scenario 2</option>
             <option class="dropdown-item" value="Scenario 3">Scenario 3</option>
@@ -79,7 +79,7 @@
         <div class="col">
           <label for="">Providers<span style="color: red">*</span></label>
             
-            <select class="dropdown dropdown-toggle form-control" data-bs-toggle="dropdown" formControlName="providers" #pro (change)="onSelect(pro.value)">
+            <select class="dropdown dropdown-toggle form-control" data-bs-toggle="#dropdown" formControlName="providers" #pro (change)="onSelect(pro.value)">
               <option class="dropdown-item" value="Provider 1">Provider 1</option>
               <option class="dropdown-item" value="Provider 2">Provider 2</option>
               <option class="dropdown-item" value="Provider 3">Provider 3</option>
@@ -110,7 +110,7 @@
         <div class="col">
           <label for="">User<span style="color: red">*</span></label>
          
-            <select class="dropdown dropdown-toggle form-control" data-bs-toggle="dropdown" formControlName="user" #user (change)="onSelect(user.value)">
+            <select class="dropdown dropdown-toggle form-control" data-bs-toggle="#dropdown" formControlName="user" #user (change)="onSelect(user.value)">
             <option class="dropdown-item" value="User 1">User 1</option>
             <option class="dropdown-item" value="User 2">User 2</option>
             <option class="dropdown-item" value="User 3">User 3</option>
@@ -137,7 +137,7 @@
         <div class="col">
           <label for="">Tier<span style="color: red">*</span></label>
             
-            <select class="dropdown dropdown-toggle form-control" data-bs-toggle="dropdown" formControlName="tier" #tier (change)="onSelect(tier.value)">
+            <select class="dropdown dropdown-toggle form-control" data-bs-toggle="#dropdown" formControlName="tier" #tier (change)="onSelect(tier.value)">
             <option class="dropdown-item" value="Silver">Silver</option>
             <option class="dropdown-item" value="Gold">Gold</option>
             <option class="dropdown-item" value="Platinum">Platinum</option>
@@ -167,7 +167,7 @@
         <div class="col">
           <label for="">Email Type<span style="color: red">*</span></label>
         
-            <select class="dropdown dropdown-toggle form-control" data-bs-toggle="dropdown" #eType (change)="onSelect(eType.value)" formControlName="emailType">
+            <select class="dropdown dropdown-toggle form-control" data-bs-toggle="#dropdown" #eType (change)="onSelect(eType.value)" formControlName="emailType">
             <option class="dropdown-item" value="Transactional">Transactional</option>
             <option class="dropdown-item" value="Pramotional">Pramotional</option>
             </select>
@@ -192,7 +192,7 @@
         <div class="col">
           <label for="">Activity</label>
          
-            <select class="dropdown dropdown-toggle form-control" data-bs-toggle="dropdown" formControlName="activity" #activ (change)="onSelect(activ.value)">
+            <select class="dropdown dropdown-toggle form-control" data-bs-toggle="#dropdown" formControlName="activity" #activ (change)="onSelect(activ.value)">
             <option class="dropdown-item" value="Activity 1">Activity 1</option>
             <option class="dropdown-item" value="Activity 2">Activity 2</option>
             <option class="dropdown-item" value="Activity 3">Activity 3</option>
@@ -211,7 +211,7 @@
         <div class="col">
           <label for="">Status<span style="color: red">*</span></label>
             
-            <select class="dropdown dropdown-toggle form-control" data-bs-toggle="dropdown" formControlName="status" #status (change)="onSelect(status.value)">
+            <select class="dropdown dropdown-toggle form-control" data-bs-toggle="#dropdown" formControlName="status" #status (change)="onSelect(status.value)">
               <option class="dropdown-item" value="Active" selected>Active</option>
               <option class="dropdown-item" value="InActive">InActive</option>
             </select>
@@ -236,7 +236,7 @@
         <div class="col">
           <label for="">Target Audience<span style="color: red">*</span></label>
           
-            <select class="dropdown dropdown-toggle form-control" data-bs-toggle="dropdown" formControlName="targetAudience" #audi (change)="onSelect(audi.value)">
+            <select class="dropdown dropdown-toggle form-control" data-bs-toggle="#dropdown" formControlName="targetAudience" #audi (change)="onSelect(audi.value)">
               <option class="dropdown-item" value="Action" selected>Action</option>
               <option class="dropdown-item" value="Another action">Another action</option>
               <option class="dropdown-item" value="Something else here">Something else here</option>
