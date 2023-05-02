@@ -56,7 +56,7 @@ module.exports = class SegmentController {
     }
   }
 
-  updateData(req, res) {
+   updateData(req, res) {
     console.log("hiiii");
     try {
       const id = req.params.id;

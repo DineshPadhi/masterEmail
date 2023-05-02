@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FilterService } from '../filter.service';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormServiceService } from 'src/app/home/form-service.service';
 
 
@@ -16,12 +16,13 @@ import { FormServiceService } from 'src/app/home/form-service.service';
 export class FilterComponent implements OnInit {
   templateData: any
 
-  constructor(private FilterService: FilterService, private router: Router) {}
+  constructor(private FilterService: FilterService, private router: Router, private active:ActivatedRoute) {}
   filterData : any = []
   searchValue: string;
   data: any[];
   filteredDatas: any[];
   searchText:any; 
+  id:any
   myForm: FormGroup;
 
 
@@ -56,6 +57,24 @@ filterSearch(data:any){
 //       this.router.navigate(['/allTemplateData'])
 //     }
 //   })
+// }
+
+// preData:any
+
+// getById(id:any){
+
+//   // this.active.paramMap.subscribe((params:any)=>{
+//   //   this.id = params.get('id')
+//   //   if(this.id){
+//       this.FilterService.getDataById(id).subscribe((result:any)=>{
+//         console.log('result.......======',result.data[0].templateName);
+//         this.preData = result.data[0]
+//         console.log('predata=====',this.preData.templateName)
+//     //   })
+//     // }
+//   })
+
+  
 // }
 
 

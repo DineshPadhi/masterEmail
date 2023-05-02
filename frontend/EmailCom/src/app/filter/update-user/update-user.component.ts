@@ -4,6 +4,7 @@ import { FilterService } from '../filter.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormComponent } from 'src/app/home/form/form.component';
 import { FormServiceService } from 'src/app/home/form-service.service';
+import { FilterComponent } from '../searchFilter/filter.component';
 
 
 
@@ -19,10 +20,48 @@ export class UpdateUserComponent {
   myForm: FormGroup;
   id:any
   data:any
+  
   // patch: FilterComponent
 
 constructor(private active: ActivatedRoute, private fb: FormBuilder, private FilterService: FilterService, private router: Router, private form:FormComponent) {
+
+  // this.active.paramMap.subscribe((params)=>{
+  //   this.id = params.get('id')
+    
+  //   if(this.id){
+  //     this.myForm.patchValue({
+  //       templateName: this.filter.preData.templateName,
+  //       status: 'Active'
+
+  //      })
+  //     //  this.createForm()
+  //   }
+  // })
+
+
+ 
+  // this.active.paramMap.subscribe((params:any)=>{
+  //   this.id = params.get('id')
+  //   if(this.id){
+  //     this.FilterService.getDataById(this.id).subscribe((result:any)=>{
+  //       console.log('result.......======',result.data[0].templateName);
+  //       if(result){
+  //         this.myForm.patchValue({
+  //           templateName: result.data[0].templateName
+  //         })
+  //         this.createForm()
+  //       }
+        
+  //     })
+  //   }
+  // })
+
+  
+
+
+
   this.createForm()
+
   // console.log('id====',this.myForm.value)
 }
 
@@ -37,20 +76,34 @@ ngOnInit(): void {
   //   this.data = this.data.data
   //   console.log('data====.......', this.data)
 
-  console.log(this.form.myForm.value)
+  // console.log(this.form.myForm.value)
   // this.form.previewData()
 
 
   this.active.paramMap.subscribe((params)=>{
     this.id = params.get('id')
-    
+
+    this.FilterService.getDataById(this.id).subscribe((result:any)=>{
+      console.log('result.......======',result.data[0].templateName);
     if(this.id){
       this.myForm.patchValue({
-        templateName: this.form.data.templateName,
-        status: 'Active'
+        templateName: result.data[0].templateName,
+        templateCode: result.data[0].templateCode,
+        scenario: result.data[0].scenario,
+        providers: result.data[0].providers,
+        user: result.data[0].user,
+        tier: result.data[0].tier,
+        emailType: result.data[0].emailType,
+        activity: result.data[0].activity,
+        status: result.data[0].status,
+        targetAudience: result.data[0].targetAudience,
+        subject: result.data[0].subject,
+        body: result.data[0].body,
+
         
        })
     }
+  })
   })
 
 
@@ -117,7 +170,7 @@ updateUser(data:any){
       this.FilterService.update(this.id, data).subscribe((result:any)=>{
         if(result){
           this.router.navigate(['/allTemplateData'])
-          // console.log('result......', result)
+          console.log('result......', result)
           
         }
       })
@@ -136,6 +189,23 @@ edit(){
    })
    
 }
+
+// preData:any
+
+// getById(){
+
+//   this.active.paramMap.subscribe((params:any)=>{
+//     this.id = params.get('id')
+//     if(this.id){
+//       this.FilterService.getDataById(this.id).subscribe((result:any)=>{
+//         console.log('result.......======',result);
+//         this.preData = result
+//       })
+//     }
+//   })
+
+  
+// }
 
 
 }
