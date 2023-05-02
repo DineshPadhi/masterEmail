@@ -5,6 +5,10 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
+  host: {
+    '[sandbox]': `'allow-scripts'`,
+    '[attr.sandbox]': `'allow-scripts'`,
+  },
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css'],
 })
@@ -75,5 +79,7 @@ export class FormComponent implements OnInit {
     this.selectedValue = document.getElementById('inp');
     this.selectedValue = value
   }
+
+title:"hello world"
 
 }
