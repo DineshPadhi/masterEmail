@@ -6,19 +6,15 @@ import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UpdateUserComponent } from './filter/update-user/update-user.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 import { FormServiceService } from './home/form-service.service';
 import { FilterService } from './filter/filter.service';
 
-
-
-
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,14 +22,11 @@ import { FilterService } from './filter/filter.service';
     ReactiveFormsModule,
     FontAwesomeModule,
     HttpClientModule,
-    Ng2SearchPipeModule
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule
-  ]
+  exports: [FormsModule, ReactiveFormsModule, HttpClientModule],
 })
-export class AppModule { }
+export class AppModule {}

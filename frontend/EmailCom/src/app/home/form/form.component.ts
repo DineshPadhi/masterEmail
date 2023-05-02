@@ -3,9 +3,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormServiceService } from '../form-service.service';
 import { Router } from '@angular/router';
 import { FilterService } from 'src/app/filter/filter.service';
+import { IDropdownSettings, } from 'ng-multiselect-dropdown';
+
 
 @Component({
   selector: 'app-form',
+  host: {
+    '[sandbox]': `'allow-scripts'`,
+    '[attr.sandbox]': `'allow-scripts'`,
+  },
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
@@ -14,6 +20,8 @@ export class FormComponent implements OnInit {
   formData: any = [];
   myForm: FormGroup;
   preview: any = [];
+  dropdownList = [];
+  dropdownSettings:IDropdownSettings={};
 
   constructor(
     private fb: FormBuilder,
@@ -26,6 +34,15 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     // console.log(this.selectedValue.length);
     // console.log(this.previewData());
+    this.dropdownList = [
+      { item_id: 1, item_text: 'User 1' },
+      { item_id: 2, item_text: 'User 2' },
+      { item_id: 3, item_text: 'User 3' }
+    ];
+    this.dropdownSettings = {
+      idField: 'item_id',
+      textField: 'item_text',
+    };
     
   }
 
@@ -48,11 +65,11 @@ export class FormComponent implements OnInit {
 
   submit(data: any) {
     this.formService.submitForm(data).subscribe((result: any) => {
-      // console.log('result========>>>>>>>>', result.data);
+      console.log('result========>>>>>>>>', result.data);
       // localStorage.setItem('submit', JSON.stringify(result))
       if(result){
         this.router.navigate(['/allTemplateData'])
-        // console.log('result====',result)
+        console.log('result====',result)
         
       }
     });
@@ -90,5 +107,7 @@ export class FormComponent implements OnInit {
     // this.selectedValue = document.getElementById('inp');
     this.selectedValue = value
   }
+
+title:"hello world"
 
 }
