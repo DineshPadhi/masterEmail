@@ -15,9 +15,9 @@ export class FilterService implements OnInit {
 
   getAllData() {
     return this.httpClient.get(`${this.url}/get`);
-    // console.log("result is",this.FormData);
-
-    // return this.FormData;
+  }
+  getDataById(id: any) {
+    return this.httpClient.get(`${this.url}/getById/${id}`);
   }
 
   getFilterData(data: any) {
@@ -27,12 +27,7 @@ export class FilterService implements OnInit {
     return result;
   }
 
-
-  update(id:any, data:any){
-    // console.log('data........',data);
-    // console.log('id........',id);
-    
-    return this.httpClient.post(`${this.url}/update/${id}`, data)
+  update(id: any, data: any) {
+    return this.httpClient.post(`${this.url}/update/${id}`, data);
   }
-
 }

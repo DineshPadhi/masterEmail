@@ -1,4 +1,4 @@
-<form [formGroup]="myForm">
+<form [formGroup]="myForm" *ngIf="this.myForm">
   <div class="m-4" (keyup)="seePreview($event)">
     <div class="row">
       <div class="col">
@@ -56,7 +56,7 @@
 
         <select
           class="dropdown dropdown-toggle form-control"
-          data-bs-toggle="dropdown"
+          data-bs-toggle="#dropdown"
           formControlName="scenario"
           #scen
           (change)="onSelect(scen.value)"
@@ -74,7 +74,7 @@
 
           <select
             class="dropdown dropdown-toggle form-control"
-            data-bs-toggle="dropdown"
+            data-bs-toggle="#dropdown"
             formControlName="providers"
             #pro
             (change)="onSelect(pro.value)"
@@ -106,7 +106,7 @@
 
         <select
           class="dropdown dropdown-toggle form-control"
-          data-bs-toggle="dropdown"
+          data-bs-toggle="#dropdown"
           formControlName="user"
           #user
           (change)="onSelect(user.value)"
@@ -134,7 +134,7 @@
 
         <select
           class="dropdown dropdown-toggle form-control"
-          data-bs-toggle="dropdown"
+          data-bs-toggle="#dropdown"
           formControlName="tier"
           #tier
           (change)="onSelect(tier.value)"
@@ -164,7 +164,7 @@
 
         <select
           class="dropdown dropdown-toggle form-control"
-          data-bs-toggle="dropdown"
+          data-bs-toggle="#dropdown"
           #eType
           (change)="onSelect(eType.value)"
           formControlName="emailType"
@@ -194,7 +194,7 @@
 
         <select
           class="dropdown dropdown-toggle form-control"
-          data-bs-toggle="dropdown"
+          data-bs-toggle="#dropdown"
           formControlName="activity"
           #activ
           (change)="onSelect(activ.value)"
@@ -212,7 +212,7 @@
 
         <select
           class="dropdown dropdown-toggle form-control"
-          data-bs-toggle="dropdown"
+          data-bs-toggle="#dropdown"
           formControlName="status"
           #status
           (change)="onSelect(status.value)"
@@ -240,7 +240,7 @@
 
         <select
           class="dropdown dropdown-toggle form-control"
-          data-bs-toggle="dropdown"
+          data-bs-toggle="#dropdown"
           formControlName="targetAudience"
           #audi
           (change)="onSelect(audi.value)"

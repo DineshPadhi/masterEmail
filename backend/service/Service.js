@@ -15,6 +15,10 @@ module.exports = class EmailService {
     const result = templateModel.ShowData();
     return result;
   }
+  showByID(id) {
+    const result = templateModel.ShowByID(id);
+    return result;
+  }
   filterDatas(searchCriteria) {
     const result = templateModel.filterData(searchCriteria);
     return result;
