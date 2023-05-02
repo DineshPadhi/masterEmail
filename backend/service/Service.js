@@ -8,7 +8,7 @@ module.exports = class EmailService {
     const result = templateModel.displayForm(data);
     // return result;
     console.log("result is", result);
-    return { status: true };
+    return result;
   }
 
   showDatas() {
