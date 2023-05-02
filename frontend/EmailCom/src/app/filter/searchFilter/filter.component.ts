@@ -25,6 +25,9 @@ export class FilterComponent implements OnInit {
   searchText: any;
   id: any;
   myForm: FormGroup;
+  itemsPerPage: number = 5;
+  currentPage: number = 1;
+  totalItems: number = 0;
 
   // constructor(private FilterService:FilterService, private http: HttpClient,private fb:FormBuilder) {}
 
@@ -68,4 +71,7 @@ export class FilterComponent implements OnInit {
   //   })
 
   // }
+  onPageChange($event) {
+    this.currentPage = $event;
+  }
 }
