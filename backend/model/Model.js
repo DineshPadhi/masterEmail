@@ -1,7 +1,6 @@
 const knex = require("../connections/Conn.js");
 
 const displayForm = (data) => {
-  // console.log("no");
   return knex("TemplateData").insert(data);
 };
 const ShowData = () => {
@@ -28,8 +27,6 @@ const filterData = (searchCriteria) => {
     });
 };
 const updateUser = (id, data) => {
-  console.log("data here is", data);
-  console.log("id here is", id);
   return knex("TemplateData").update(data).where("id", id);
 };
 
