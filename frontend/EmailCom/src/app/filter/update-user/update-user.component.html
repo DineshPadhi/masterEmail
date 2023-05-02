@@ -1,0 +1,383 @@
+<form [formGroup]="myForm">
+
+
+
+    <div class="m-4" (keyup)="seePreview($event)">
+  
+  
+      <div class="row">
+        <div class="col">
+          <label for="">Template Name<span style="color: red">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter Template Name"
+            aria-label="Enter Template Name"
+            formControlName="templateName"
+          />
+  
+          <div
+            *ngIf="
+              myForm!.controls['templateName'].invalid &&
+              (myForm!.controls['templateName'].dirty ||
+                myForm!.controls['templateName'].touched)
+            "
+            class="alert"
+          >
+            <div *ngIf="myForm!.controls['templateName'].errors!.required">
+              <span style="color: red">Please Enter Template Name</span>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+  
+        <div class="col">
+          <label for="">Template Code<span style="color: red">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter Template Code"
+            aria-label="Enter Template Code"
+            formControlName="templateCode"
+          />
+  
+          <div
+            *ngIf="
+              myForm!.controls['templateCode'].invalid &&
+              (myForm!.controls['templateCode'].dirty ||
+                myForm!.controls['templateCode'].touched)
+            "
+            class="alert"
+          >
+            <div *ngIf="myForm!.controls['templateCode'].errors!.required">
+              <span style="color: red">Please Enter Template Code</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+  
+  
+      <div class="row my-3">
+        <div class="col">
+          <label for="">Select Scenario</label>
+          
+            <select class="dropdown dropdown-toggle form-control" data-bs-toggle="dropdown" formControlName="scenario" #scen (change)="onSelect(scen.value)" id="inp">
+              <option class="dropdown-item" value="Scenario 1">Scenario 1</option>
+              <option class="dropdown-item" value="Scenario 2">Scenario 2</option>
+              <option class="dropdown-item" value="Scenario 3">Scenario 3</option>
+              </select>
+        
+        </div>
+  
+  
+  
+        <div class="col">
+          <div class="col">
+            <label for="">Providers<span style="color: red">*</span></label>
+              
+              <select class="dropdown dropdown-toggle form-control" data-bs-toggle="dropdown" formControlName="providers" #pro (change)="onSelect(pro.value)">
+                <option class="dropdown-item" value="Provider 1">Provider 1</option>
+                <option class="dropdown-item" value="Provider 2">Provider 2</option>
+                <option class="dropdown-item" value="Provider 3">Provider 3</option>
+                </select>
+  
+              <div
+                *ngIf="
+                  myForm!.controls['providers'].invalid &&
+                  (myForm!.controls['providers'].dirty ||
+                    myForm!.controls['providers'].touched)
+                "
+                class="alert"
+              >
+                <div *ngIf="myForm!.controls['providers'].errors!.required">
+                  <span style="color: red">Please Select Providers</span>
+                </div>
+              </div>
+  
+          </div>
+        </div>
+        </div>
+  
+  
+  
+  
+  
+        <div class="row my-3">
+          <div class="col">
+            <label for="">User<span style="color: red">*</span></label>
+           
+              <select class="dropdown dropdown-toggle form-control" data-bs-toggle="dropdown" formControlName="user" #user (change)="onSelect(user.value)">
+              <option class="dropdown-item" value="User 1">User 1</option>
+              <option class="dropdown-item" value="User 2">User 2</option>
+              <option class="dropdown-item" value="User 3">User 3</option>
+              </select>
+  
+              <div
+                *ngIf="
+                  myForm!.controls['user'].invalid &&
+                  (myForm!.controls['user'].dirty ||
+                    myForm!.controls['user'].touched)
+                "
+                class="alert"
+              >
+                <div *ngIf="myForm!.controls['user'].errors!.required">
+                  <span style="color: red">Please Select User</span>
+                </div>
+              </div>
+  
+          </div>
+  
+  
+  
+  
+          <div class="col">
+            <label for="">Tier<span style="color: red">*</span></label>
+              
+              <select class="dropdown dropdown-toggle form-control" data-bs-toggle="dropdown" formControlName="tier" #tier (change)="onSelect(tier.value)">
+              <option class="dropdown-item" value="Silver">Silver</option>
+              <option class="dropdown-item" value="Gold">Gold</option>
+              <option class="dropdown-item" value="Platinum">Platinum</option>
+              </select>
+  
+              <div
+                *ngIf="
+                  myForm!.controls['tier'].invalid &&
+                  (myForm!.controls['tier'].dirty ||
+                    myForm!.controls['tier'].touched)
+                "
+                class="alert"
+              >
+                <div *ngIf="myForm!.controls['tier'].errors!.required">
+                  <span style="color: red">Please Select Tier</span>
+                </div>
+              </div>
+  
+          </div>
+        </div>
+  
+  
+  
+  
+  
+        <div class="row my-3">
+          <div class="col">
+            <label for="">Email Type<span style="color: red">*</span></label>
+          
+              <select class="dropdown dropdown-toggle form-control" data-bs-toggle="dropdown" #eType (change)="onSelect(eType.value)" formControlName="emailType">
+              <option class="dropdown-item" value="Transactional">Transactional</option>
+              <option class="dropdown-item" value="Pramotional">Pramotional</option>
+              </select>
+  
+              <div
+              *ngIf="
+                myForm!.controls['emailType'].invalid &&
+                (myForm!.controls['emailType'].dirty ||
+                  myForm!.controls['emailType'].touched)
+              "
+              class="alert"
+            >
+              <div *ngIf="myForm!.controls['emailType'].errors!.required">
+                <span style="color: red">Please Select Email Type</span>
+              </div>
+            </div>
+  
+          </div>
+  
+  
+  
+          <div class="col">
+            <label for="">Activity</label>
+           
+              <select class="dropdown dropdown-toggle form-control" data-bs-toggle="dropdown" formControlName="activity" #activ (change)="onSelect(activ.value)">
+              <option class="dropdown-item" value="Activity 1">Activity 1</option>
+              <option class="dropdown-item" value="Activity 2">Activity 2</option>
+              <option class="dropdown-item" value="Activity 3">Activity 3</option>
+              </select>
+           
+          </div>
+        </div>
+  
+  
+  
+  
+  
+  
+        <div class="row my-3">
+  
+          <div class="col">
+            <label for="">Status<span style="color: red">*</span></label>
+              
+              <select class="dropdown dropdown-toggle form-control" data-bs-toggle="dropdown" formControlName="status" #status (change)="onSelect(status.value)">
+                <option class="dropdown-item" value="Active" selected>Active</option>
+                <option class="dropdown-item" value="InActive">InActive</option>
+              </select>
+  
+              <div
+              *ngIf="
+                myForm!.controls['status'].invalid &&
+                (myForm!.controls['status'].dirty ||
+                  myForm!.controls['status'].touched)
+              "
+              class="alert"
+            >
+              <div *ngIf="myForm!.controls['status'].errors!.required">
+                <span style="color: red">Please Select Status</span>
+              </div>
+            </div>
+          </div>
+  
+  
+  
+  
+          <div class="col">
+            <label for="">Target Audience<span style="color: red">*</span></label>
+            
+              <select class="dropdown dropdown-toggle form-control" data-bs-toggle="dropdown" formControlName="targetAudience" #audi (change)="onSelect(audi.value)">
+                <option class="dropdown-item" value="Action" selected>Action</option>
+                <option class="dropdown-item" value="Another action">Another action</option>
+                <option class="dropdown-item" value="Something else here">Something else here</option>
+              </select>
+            
+              <div
+              *ngIf="
+                myForm!.controls['targetAudience'].invalid &&
+                (myForm!.controls['targetAudience'].dirty ||
+                  myForm!.controls['targetAudience'].touched)
+              "
+              class="alert"
+            >
+              <div *ngIf="myForm!.controls['targetAudience'].errors!.required">
+                <span style="color: red">Please Select Status</span>
+              </div>
+            </div>
+  
+          </div>
+        
+        </div>
+  
+  
+  
+  
+  
+  
+        <br />
+  
+  
+  
+  
+        <div>
+          <span class="underlineHover">English</span>
+        </div>
+  
+  
+  
+  
+        <br />
+  
+  
+  
+  
+        <div class="row">
+          <div class="col">
+            <label for="">Subject<span style="color: red">*</span></label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Select Subject"
+              aria-label="Select Subject"
+              formControlName="subject"
+              value="jnbhvgdtf"
+            />
+            <div
+              *ngIf="
+                myForm!.controls['subject'].invalid &&
+                (myForm!.controls['subject'].dirty ||
+                  myForm!.controls['subject'].touched)
+              "
+              class="alert"
+            >
+              <div *ngIf="myForm!.controls['subject'].errors!.required">
+                <span style="color: red">Please Enter Subject</span>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+  
+  
+        <br />
+  
+  
+  
+  
+        <div class="row">
+          <div class="col">
+            <label for="">Body<span style="color: red">*</span></label>
+            <textarea
+              class="form-control length"
+              placeholder="Email Body in English"
+              id="floatingTextarea"
+              formControlName="body"
+              style="height: 300px"
+            ></textarea>
+            <div
+              *ngIf="
+                myForm!.controls['body'].invalid &&
+                (myForm!.controls['body'].dirty ||
+                  myForm!.controls['body'].touched)
+              "
+              class="alert"
+            >
+              <div *ngIf="myForm!.controls['body'].errors!.required">
+                <span style="color: red">Please Enter Body</span>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col">
+            <label for="">Preview</label>
+            <textarea
+              class="form-control"
+              id="floatingTextarea"
+              style="height: 300px"
+             
+            ></textarea>
+            
+          </div>
+        </div>
+  
+  
+  
+  
+  
+        <br /><br />
+  
+  
+  
+  
+        <div class="button">
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="!myForm.valid"
+            (click)="updateUser(myForm.value)"
+          >
+            Submit
+          </button>
+          &nbsp;&nbsp;
+          <button class="btn btn-primary" (click)="reset()">Reset</button>
+        </div>
+  
+  
+  
+  
+      
+    </div>
+  </form>
+  

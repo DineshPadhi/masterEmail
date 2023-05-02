@@ -27,7 +27,7 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.selectedValue.length);
+    // console.log(this.selectedValue.length);
   }
 
   createForm() {
@@ -73,10 +73,10 @@ export class FormComponent implements OnInit {
 
 
   selectedValue:any = ''
-  error:any
+  // error:any
 
   onSelect(value:any){
-    this.selectedValue = document.getElementById('inp');
+    // this.selectedValue = document.getElementById('inp');
     this.selectedValue = value
   }
 
