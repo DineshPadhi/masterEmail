@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from './../../../../environment/environment';
+import { environment } from './../../../environment/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +21,7 @@ export class FilterService implements OnInit {
   }
 
   getFilterData(data: any) {
-    console.log('search', data);
+    // console.log('search', data);
     let result = this.httpClient.post(`${this.url}/search`, data);
     // console.log("data issssss ",data);
     return result;

@@ -7,7 +7,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { UpdateUserComponent } from './filter/update-user/update-user.component';
+import { FormServiceService } from './home/form-service.service';
+import { FilterService } from './filter/filter.service';
+
 
 
 
@@ -15,7 +17,7 @@ import { UpdateUserComponent } from './filter/update-user/update-user.component'
 @NgModule({
   declarations: [
     AppComponent,
-    UpdateUserComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,8 @@ import { UpdateUserComponent } from './filter/update-user/update-user.component'
   bootstrap: [AppComponent],
   exports: [
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class AppModule { }

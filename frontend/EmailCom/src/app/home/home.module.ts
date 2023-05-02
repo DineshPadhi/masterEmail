@@ -5,6 +5,8 @@ import { HomeRoutingModule } from './home-routing.module';
 import { FormComponent } from './form/form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FormServiceService } from './form-service.service';
+import { FilterService } from '../filter/filter.service';
 
 
 @NgModule({
@@ -18,9 +20,15 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
+  providers: [
+    FormComponent
+  ],
   exports: [
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    FormComponent,
+    HttpClientModule
+  ],
+ 
 })
 export class HomeModule { }

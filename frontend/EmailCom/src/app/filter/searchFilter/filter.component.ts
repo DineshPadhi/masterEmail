@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FilterService } from './filter.service';
+import { FilterService } from '../filter.service';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormServiceService } from 'src/app/home/form-service.service';
 
 
 
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.css'],
+  styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
   templateData: any

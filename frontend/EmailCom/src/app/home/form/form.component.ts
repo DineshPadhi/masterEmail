@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormServiceService } from '../form-service.service';
 import { Router } from '@angular/router';
+import { FilterService } from 'src/app/filter/filter.service';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css'],
+  styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
   data: any = [];
@@ -24,6 +25,8 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log(this.selectedValue.length);
+    // console.log(this.previewData());
+    
   }
 
   createForm() {
@@ -46,12 +49,24 @@ export class FormComponent implements OnInit {
   submit(data: any) {
     this.formService.submitForm(data).subscribe((result: any) => {
       // console.log('result========>>>>>>>>', result.data);
+      // localStorage.setItem('submit', JSON.stringify(result))
       if(result){
         this.router.navigate(['/allTemplateData'])
-        console.log('result====',result)
+        // console.log('result====',result)
+        
       }
     });
   }
+
+
+
+  // previewData(){
+  //   this.myForm.patchValue({
+  //     templateName : this.myForm.get('templateName').value
+     
+  //   })
+  // }
+
 
   reset() {
       this.myForm.reset();
