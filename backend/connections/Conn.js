@@ -15,13 +15,13 @@ const knex = require("knex")({
 
 knex.raw("use MasterEmail").then(() => console.log("Mysql Database Connected"));
 
-// const client = new MongoClient(url)
+const client = new MongoClient(url)
 
-//  async function main(){
-//   await client.connect();
-//  console.log("MongoDB Connected")
-// }
-// main();
+ async function main(){
+  await client.connect();
+ console.log("MongoDB Connected")
+}
+main();
 
 module.exports = knex;
 
