@@ -4,17 +4,23 @@ module.exports = class EmailService {
   constuctor() {
     //
   }
-  async postEmail(data) {
+  postEmail(data) {
+    // console.log('yo');
     const result = templateModel.displayForm(data);
+    // console.log('in service',result);
     return result;
   }
 
-  async showDatas() {
+  showDatas() {
     const result = templateModel.ShowData();
     return result;
   }
-  async searchDatas(searchCriteria) {
-    const result = templateModel.searchData(searchCriteria);
+  filterDatas(searchCriteria) {
+    const result = templateModel.filterData(searchCriteria);
+    return result;
+  }
+  update(id,data) {
+    const result = templateModel.updateUser(id,data);
     return result;
   }
 };

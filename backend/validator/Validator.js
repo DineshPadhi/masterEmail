@@ -6,7 +6,7 @@ function formValidator() {
     user: "required",
     tier: "required",
     emailType: "required",
-    status: "required",
+    status: "required|max:10",
     targetAudience: "required",
     subject: "required",
     body: "required",

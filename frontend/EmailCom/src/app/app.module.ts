@@ -3,18 +3,19 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from '../app/app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
-import { Ng2SearchPipeModule,
- } from 'ng2-search-filter';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { UpdateUserComponent } from './filter/update-user/update-user.component';
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +24,7 @@ import { Ng2SearchPipeModule,
     ReactiveFormsModule,
     FontAwesomeModule,
     HttpClientModule,
-    Ng2SearchPipeModule,
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent],
