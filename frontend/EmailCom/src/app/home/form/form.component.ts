@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormServiceService } from '../form-service.service';
 import { Router } from '@angular/router';
-import { FilterService } from 'src/app/filter/filter.service';
-import { IDropdownSettings, } from 'ng-multiselect-dropdown';
-
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-form',
@@ -13,7 +12,7 @@ import { IDropdownSettings, } from 'ng-multiselect-dropdown';
     '[attr.sandbox]': `'allow-scripts'`,
   },
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  styleUrls: ['./form.component.css'],
 })
 export class FormComponent implements OnInit {
   data: any = [];
@@ -21,12 +20,16 @@ export class FormComponent implements OnInit {
   myForm: FormGroup;
   preview: any = [];
   dropdownList = [];
-  dropdownSettings:IDropdownSettings={};
+  dropdownSettings: IDropdownSettings = {};
+  url: string = 'https://www.youtube.com/watch?v=lGPYEvJsP50';
+  urlSafe: SafeResourceUrl;
+  htmlContent: string = '<h1>hii</h1>';
 
   constructor(
     private fb: FormBuilder,
     private formService: FormServiceService,
-    private router: Router
+    private router: Router,
+    public sanitizer: DomSanitizer
   ) {
     this.createForm();
   }
@@ -37,13 +40,19 @@ export class FormComponent implements OnInit {
     this.dropdownList = [
       { item_id: 1, item_text: 'User 1' },
       { item_id: 2, item_text: 'User 2' },
-      { item_id: 3, item_text: 'User 3' }
+      { item_id: 3, item_text: 'User 3' },
     ];
     this.dropdownSettings = {
       idField: 'item_id',
       textField: 'item_text',
     };
-    
+    this.urlSafe = this.sanitizer.bypassSecurityTrustHtml(this.url);
+  }
+  safehtmlinput($event: any) {
+    this.htmlContent = $event.target.value;
+  }
+  safehtml() {
+    return this.sanitizer.bypassSecurityTrustHtml(this.htmlContent);
   }
 
   createForm() {
@@ -67,26 +76,22 @@ export class FormComponent implements OnInit {
     this.formService.submitForm(data).subscribe((result: any) => {
       console.log('result========>>>>>>>>', result.data);
       // localStorage.setItem('submit', JSON.stringify(result))
-      if(result){
-        this.router.navigate(['/allTemplateData'])
-        console.log('result====',result)
-        
+      if (result) {
+        this.router.navigate(['/allTemplateData']);
+        console.log('result====', result);
       }
     });
   }
 
-
-
   // previewData(){
   //   this.myForm.patchValue({
   //     templateName : this.myForm.get('templateName').value
-     
+
   //   })
   // }
 
-
   reset() {
-      this.myForm.reset();
+    this.myForm.reset();
   }
 
   seePreview(event: any) {
@@ -99,15 +104,13 @@ export class FormComponent implements OnInit {
   //   document.getElementById('TaDrop2').ariaValueText = document.getElementById('TaDrop').ariaValueText
   // }
 
-
-  selectedValue:any = ''
+  selectedValue: any = '';
   // error:any
 
-  onSelect(value:any){
+  onSelect(value: any) {
     // this.selectedValue = document.getElementById('inp');
-    this.selectedValue = value
+    this.selectedValue = value;
   }
 
-title:"hello world"
-
+  title: 'hello world';
 }

@@ -74,4 +74,12 @@ module.exports = class SegmentController {
       return Response.error(res, error);
     }
   }
+  // async preview(req, res) {
+  //   try {
+  //     res.render("")
+  //     return Response.success(res, result);
+  //   } catch (error) {
+  //     return Response.error(res, error);
+  //   }
+  // }
 };
