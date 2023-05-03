@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormServiceService } from '../form-service.service';
 import { Router } from '@angular/router';
@@ -15,15 +15,16 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent implements OnInit {
+  @ViewChild('iframe') preview_iframe: ElementRef;
   data: any = [];
   formData: any = [];
   myForm: FormGroup;
   preview: any = [];
   dropdownList = [];
   dropdownSettings: IDropdownSettings = {};
-  url: string = 'https://www.youtube.com/watch?v=lGPYEvJsP50';
+  url: string = 'https://www.abplive.com/';
   urlSafe: SafeResourceUrl;
-  htmlContent: string = '<h1>hii</h1>';
+  htmlContent: string = '<p>hello</p>';
 
   constructor(
     private fb: FormBuilder,
@@ -35,8 +36,6 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log(this.selectedValue.length);
-    // console.log(this.previewData());
     this.dropdownList = [
       { item_id: 1, item_text: 'User 1' },
       { item_id: 2, item_text: 'User 2' },
@@ -46,13 +45,16 @@ export class FormComponent implements OnInit {
       idField: 'item_id',
       textField: 'item_text',
     };
-    this.urlSafe = this.sanitizer.bypassSecurityTrustHtml(this.url);
   }
   safehtmlinput($event: any) {
     this.htmlContent = $event.target.value;
-  }
-  safehtml() {
-    return this.sanitizer.bypassSecurityTrustHtml(this.htmlContent);
+    this.urlSafe = this.sanitizer.bypassSecurityTrustHtml(this.htmlContent);
+    const iframe = document.getElementById('preview_iframe_5');
+    iframe['contentWindow'].document.open();
+    iframe['contentDocument'].write(this.htmlContent);
+    iframe['contentWindow'].document.close();
+
+    return this.urlSafe;
   }
 
   createForm() {

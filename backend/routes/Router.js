@@ -6,7 +6,7 @@ let segmentController = new (require("../controller/Controllers.js"))();
 router.post("/", segmentController.templateForm);
 router.get("/get", segmentController.showAllDatas);
 // for preview purpose
-router.get("/write", segmentController.preview);
+// router.get("/write", segmentController.preview);
 router.get("/getById/:id", segmentController.showById);
 router.post("/search", segmentController.searchAllDatas);
 router.post("/update/:id", segmentController.updateData);
