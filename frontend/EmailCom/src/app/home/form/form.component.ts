@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormServiceService } from '../form-service.service';
 import { Router } from '@angular/router';
 import { FilterService } from 'src/app/filter/filter.service';
-import { IDropdownSettings, } from 'ng-multiselect-dropdown';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 
 @Component({
@@ -12,17 +13,28 @@ import { IDropdownSettings, } from 'ng-multiselect-dropdown';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
+
+  @ViewChild('iframe') preview_iframe: ElementRef
+
+
   data: any = [];
   formData: any = [];
   myForm: FormGroup;
   preview: any = [];
   dropdownList = [];
   dropdownSettings:IDropdownSettings={};
+  dropdownUserList = [];
+  dropdownUser:IDropdownSettings={};
+  userArry:any = []
+  getData:any=''
+  urlSafe:SafeResourceUrl
+  htmlContent:string
 
   constructor(
     private fb: FormBuilder,
     private formService: FormServiceService,
-    private router: Router
+    private router: Router,
+    private sanitizer: DomSanitizer
   ) {
     this.createForm();
   }
@@ -30,18 +42,65 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     // console.log(this.selectedValue.length);
     // console.log(this.previewData());
-    this.dropdownList = [
+    this.dropdownUserList = [
       { item_id: 1, item_text: 'User 1' },
       { item_id: 2, item_text: 'User 2' },
       { item_id: 3, item_text: 'User 3' }
     ];
-    this.dropdownSettings = {
+    this.dropdownUser = {
       idField: 'item_id',
       textField: 'item_text',
     };
+
+
+    this.dropdownList = [
+      { item_id: 1, item_text: 'English' },
+      { item_id: 2, item_text: 'Hindi' },
+      { item_id: 3, item_text: 'Marathi' }
+    ];
+
+    this.dropdownSettings = {
+      idField: 'item_id',
+      textField: 'item_text',
+    }
+
     // console.log(this.dropdownList[0].item_text);
+
+    // this.dropdownList.map((result:any)=>{
+    //   this.getData = result.item_text
+    //   console.log('getData====',this.getData)
+    // })
     
   }
+
+
+  safehtmlInput($event:any){
+    this.htmlContent = $event.target.value
+    this.urlSafe = this.sanitizer.bypassSecurityTrustHtml(this.htmlContent)
+    let iframe = document.getElementById('preview_iframe_5');
+    iframe['contentWindow'].document.open()
+    iframe['contentDocument'].write(this.htmlContent)
+    iframe['contentWindow'].document.close()
+  }
+
+
+  // select(value:any){
+  //   value.map((result:any)=>{
+  //     if(result.item_id){
+  //     this.userArry.push(result.item_text)
+  //     console.log('userArry====',this.userArry)
+  //     }
+  //   })
+  //   // this.userArry.push(value)
+  //   // console.log('getData====',this.userArry)
+  //   // this.userArry = value
+  //   // console.log('getData====',this.userArry)
+
+  // }
+
+
+
+  
 
   createForm() {
     this.myForm = this.fb.group({
@@ -57,6 +116,7 @@ export class FormComponent implements OnInit {
       targetAudience: ['', Validators.required],
       subject: ['', Validators.required],
       body: ['', Validators.required],
+      lang: ['']
     });
   }
 

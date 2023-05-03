@@ -8,6 +8,7 @@ module.exports = class SegmentController {
     //
   }
   templateForm = async (req, res) => {
+    // console.log('hiiiiiiii');
     try {
       const data = formatter.data(req);
       let rules = formValidator.formValidator();
@@ -40,6 +41,10 @@ module.exports = class SegmentController {
     try {
       const id = req.params.id;
       const result = await EmailService.showByID(id);
+      console.log('rrr',result)
+       result[0].user = await result[0].user.split(',')
+      // console.log('result[0].user', result[0].user)
+
       return Response.success(res, result);
     } catch (error) {
       return Response.error(res, error);
@@ -65,6 +70,7 @@ module.exports = class SegmentController {
       let validation = new Validator(data, rules);
       if (validation.passes() && !validation.fails()) {
         console.log("it passes");
+        
         await EmailService.update(id, data);
         return Response.success(res, data);
       } else {

@@ -1,6 +1,6 @@
-const { MongoClient } = require("mongodb");
+// const { MongoClient } = require("mongodb");
 const { configureDetails } = require("../config/Config");
-const url = configureDetails.mongodb;
+// const url = configureDetails.mongodb;
 
 // console.log("client is", configureDetails.client);
 const knex = require("knex")({
@@ -16,12 +16,12 @@ const knex = require("knex")({
 
 knex.raw("use MasterEmail").then(() => console.log("Mysql Database Connected"));
 
-const client = new MongoClient(url);
+// const client = new MongoClient(url);
 
-async function main() {
-  await client.connect();
-  console.log("MongoDB Connected");
-}
-main();
+// async function main() {
+//   await client.connect();
+//   console.log("MongoDB Connected");
+// }
+// main();
 
 module.exports = knex;

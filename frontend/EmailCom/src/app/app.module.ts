@@ -9,7 +9,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { FormServiceService } from './home/form-service.service';
 import { FilterService } from './filter/filter.service';
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 
@@ -26,7 +26,8 @@ import { FilterService } from './filter/filter.service';
     ReactiveFormsModule,
     FontAwesomeModule,
     HttpClientModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    NgMultiSelectDropDownModule
   ],
   providers: [],
   bootstrap: [AppComponent],

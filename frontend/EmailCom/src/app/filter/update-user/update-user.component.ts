@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FilterService } from '../filter.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -6,8 +6,7 @@ import { FormComponent } from 'src/app/home/form/form.component';
 import { FormServiceService } from 'src/app/home/form-service.service';
 import { FilterComponent } from '../searchFilter/filter.component';
 import { IDropdownSettings, } from 'ng-multiselect-dropdown';
-
-
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 
 
@@ -16,17 +15,21 @@ import { IDropdownSettings, } from 'ng-multiselect-dropdown';
   templateUrl: './update-user.component.html',
   styleUrls: ['./update-user.component.css']
 })
-export class UpdateUserComponent {
+export class UpdateUserComponent implements OnInit {
+
+  @ViewChild('iframe') preview_iframe: ElementRef;
 
   myForm: FormGroup;
   id:any
   data:any
   dropdownList = [];
   dropdownSettings:IDropdownSettings={};
+  urlSafe:SafeResourceUrl
+  htmlContent:string
   
   // patch: FilterComponent
 
-constructor(private active: ActivatedRoute, private fb: FormBuilder, private FilterService: FilterService, private router: Router, private form:FormComponent) {
+constructor(private active: ActivatedRoute, private fb: FormBuilder, private FilterService: FilterService, private router: Router, private form:FormComponent, private sanitizer:DomSanitizer) {
 
   // this.active.paramMap.subscribe((params)=>{
   //   this.id = params.get('id')
@@ -83,6 +86,9 @@ ngOnInit(): void {
   // this.form.previewData()
 
 
+ 
+
+
   this.dropdownList = [
     { item_id: 1, item_text: 'User 1' },
     { item_id: 2, item_text: 'User 2' },
@@ -124,6 +130,20 @@ ngOnInit(): void {
   
   
 }
+
+
+
+safehtmlInput($event:any){
+   this.htmlContent = $event.target.value;
+   this.urlSafe = this.sanitizer.bypassSecurityTrustHtml(this.htmlContent);
+   const iframe = document.getElementById('preview_iframe_5');
+   iframe['contentWindow'].document.open();
+   iframe['contentDocument'].write(this.htmlContent);
+   iframe['contentWindow'].document.close() 
+   return this.urlSafe
+}
+
+
 
 createForm() {
   this.myForm = this.fb.group({
