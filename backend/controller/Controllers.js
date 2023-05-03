@@ -25,8 +25,10 @@ module.exports = class SegmentController {
   };
 
   async showAllDatas(req, res) {
+    console.log("hiii");
     try {
       const result = await EmailService.showDatas();
+      console.log("res.....", result);
       return Response.success(res, result);
     } catch (error) {
       return Response.error(res, error);
