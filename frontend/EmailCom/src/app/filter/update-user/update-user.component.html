@@ -115,14 +115,14 @@
           <option class="dropdown-item" value="User 2">User 2</option>
           <option class="dropdown-item" value="User 3">User 3</option>
         </select> -->
-
-        <div style="width:100%">
-          <ng-multiselect-dropdown formControlName="user" 
-              [settings]="dropdownSettings"
-              [data]="dropdownList">
+        <div style="width: 100%">
+          <ng-multiselect-dropdown
+            formControlName="user"
+            [settings]="dropdownSettings"
+            [data]="dropdownList"
+          >
           </ng-multiselect-dropdown>
-      </div>
-
+        </div>
 
         <div
           *ngIf="
@@ -324,7 +324,7 @@
           id="floatingTextarea"
           formControlName="body"
           style="height: 300px"
-          (keyup)="safehtmlInput($event)"
+          (keyup)="safehtmlinput($event)"
         ></textarea>
         <div
           *ngIf="
@@ -341,12 +341,11 @@
 
       <div class="col">
         <label for="">Preview</label>
-        <!-- <textarea
-          class="form-control"
-          id="floatingTextarea"
-          style="height: 300px"
-        ></textarea> -->
-        <iframe width="100%" frameborder="0" id="preview_iframe_5"></iframe>
+        <iframe
+          width="100%"
+          id="preview_iframe_5"
+          style="border: 1px solid black; height: 300px"
+        ></iframe>
       </div>
     </div>
 

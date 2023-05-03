@@ -1,20 +1,42 @@
 const data = (req) => {
+  let userArr = [];
+  let userData = "";
+  console.log("type is", typeof req.body.user[0]);
+  if (req.params.id) {
+    if (typeof req.body.user[0] === "string") {
+      console.log("it is string");
 
-  const userArry = []
+      req.body.user.forEach((element) => {
+        if (!userArr.includes(element)) {
+          userArr.push(element);
+        }
+        userData = userArr.join(",");
+      });
+    } else {
+      const defaultArr = req.body.user;
+      defaultArr.forEach((element) => {
+        userArr.push(element.item_text);
+      });
+      console.log("userArr", userArr);
 
- 
-    let user = req.body.user
-    
+      userData = userArr.join(",");
+    }
+    console.log("user is", req.body.user);
+    // req.body.user.forEach((element) => {
+    //   userArr.push(element.item_text);
+    // });
+    // userData = userArr.join(",");
+    // userData = req.body.user.join(",");
+    console.log("userData is", userData);
+  } else {
+    const defaultArr = req.body.user;
+    defaultArr.forEach((element) => {
+      userArr.push(element.item_text);
+    });
+    userData = userArr.join(",");
+  }
 
-    user.map((result)=>{
-    
-      userArry.push(result.item_text)
-     
-    })
-
-  let userData = userArry.join(',')
-    
-
+  console.log("scenario is", req.body.scenario);
   user = {
     templateName: req.body.templateName,
     templateCode: req.body.templateCode,

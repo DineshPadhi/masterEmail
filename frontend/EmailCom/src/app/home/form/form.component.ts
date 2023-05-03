@@ -14,9 +14,10 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     '[attr.sandbox]': `'allow-scripts'`,
   },
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  styleUrls: ['./form.component.css'],
 })
 export class FormComponent implements OnInit {
+  @ViewChild('iframe') preview_iframe: ElementRef;
 
   @ViewChild('iframe') preview_iframe: ElementRef
 
@@ -26,7 +27,9 @@ export class FormComponent implements OnInit {
   myForm: FormGroup;
   preview: any = [];
   dropdownList = [];
-  dropdownSettings:IDropdownSettings={};
+  dropdownSettings: IDropdownSettings = {};
+  urlSafe: SafeResourceUrl;
+  htmlContent: string = '';
   dropdownUserList = [];
   dropdownUser:IDropdownSettings={};
   userArry:any = []
@@ -38,18 +41,17 @@ export class FormComponent implements OnInit {
     private fb: FormBuilder,
     private formService: FormServiceService,
     private router: Router,
+    public sanitizer: DomSanitizer,
     private sanitizer: DomSanitizer
   ) {
     this.createForm();
   }
 
   ngOnInit(): void {
-    // console.log(this.selectedValue.length);
-    // console.log(this.previewData());
     this.dropdownUserList = [
       { item_id: 1, item_text: 'User 1' },
       { item_id: 2, item_text: 'User 2' },
-      { item_id: 3, item_text: 'User 3' }
+      { item_id: 3, item_text: 'User 3' },
     ];
     this.dropdownUser = {
       idField: 'item_id',
@@ -74,7 +76,17 @@ export class FormComponent implements OnInit {
     //   this.getData = result.item_text
     //   console.log('getData====',this.getData)
     // })
-    
+  }
+
+  safehtmlinput($event: any) {
+    this.htmlContent = $event.target.value;
+    // this.urlSafe = this.sanitizer.bypassSecurityTrustHtml(this.htmlContent);
+    const iframe = document.getElementById('preview_iframe_5');
+    iframe['contentWindow'].document.open();
+    iframe['contentDocument'].write(this.htmlContent);
+    iframe['contentWindow'].document.close();
+
+    return this.urlSafe;
   }
 
 
@@ -128,26 +140,22 @@ export class FormComponent implements OnInit {
     this.formService.submitForm(data).subscribe((result: any) => {
       console.log('result========>>>>>>>>', result.data);
       // localStorage.setItem('submit', JSON.stringify(result))
-      if(result){
-        this.router.navigate(['/allTemplateData'])
-        console.log('result====',result)
-        
+      if (result) {
+        this.router.navigate(['/allTemplateData']);
+        console.log('result====', result);
       }
     });
   }
 
-
-
   // previewData(){
   //   this.myForm.patchValue({
   //     templateName : this.myForm.get('templateName').value
-     
+
   //   })
   // }
 
-
   reset() {
-      this.myForm.reset();
+    this.myForm.reset();
   }
 
   seePreview(event: any) {
@@ -160,15 +168,13 @@ export class FormComponent implements OnInit {
   //   document.getElementById('TaDrop2').ariaValueText = document.getElementById('TaDrop').ariaValueText
   // }
 
-
-  selectedValue:any = ''
+  selectedValue: any = '';
   // error:any
 
-  onSelect(value:any){
+  onSelect(value: any) {
     // this.selectedValue = document.getElementById('inp');
-    this.selectedValue = value
+    this.selectedValue = value;
   }
 
-title:"hello world"
-
+  title: 'hello world';
 }

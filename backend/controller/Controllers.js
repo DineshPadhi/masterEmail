@@ -15,12 +15,8 @@ module.exports = class SegmentController {
       let validation = new Validator(data, rules);
       if (validation.passes() && !validation.fails()) {
         console.log("it passes");
-        let result = await EmailService.postEmail(data);
-        //  console.log('hey');
-        //  console.log('data', data);
-        //  console.log('result', result);
+        await EmailService.postEmail(data);
         return Response.success(res, data);
-        //  console.log('success');
       } else {
         return Response.error(res, "Validation failed");
       }
@@ -30,8 +26,10 @@ module.exports = class SegmentController {
   };
 
   async showAllDatas(req, res) {
+    console.log("hiii");
     try {
       const result = await EmailService.showDatas();
+      console.log("res.....", result);
       return Response.success(res, result);
     } catch (error) {
       return Response.error(res, error);
@@ -41,10 +39,8 @@ module.exports = class SegmentController {
     try {
       const id = req.params.id;
       const result = await EmailService.showByID(id);
-      console.log('rrr',result)
-       result[0].user = await result[0].user.split(',')
-      // console.log('result[0].user', result[0].user)
 
+      result[0].user = result[0].user.split(",");
       return Response.success(res, result);
     } catch (error) {
       return Response.error(res, error);
@@ -61,8 +57,7 @@ module.exports = class SegmentController {
     }
   }
 
-   async updateData(req, res) {
-    console.log("hiiii");
+  async updateData(req, res) {
     try {
       const id = req.params.id;
       const data = formatter.data(req);
@@ -70,9 +65,12 @@ module.exports = class SegmentController {
       let validation = new Validator(data, rules);
       if (validation.passes() && !validation.fails()) {
         console.log("it passes");
-        
-        await EmailService.update(id, data);
-        return Response.success(res, data);
+        let resutllt = await EmailService.update(id, data);
+        if (resutllt) {
+          return Response.success(res, data);
+        } else {
+          return Response.error(res, "NOt inserted");
+        }
       } else {
         return Response.error(res, "Validation failed");
       }
@@ -80,4 +78,12 @@ module.exports = class SegmentController {
       return Response.error(res, error);
     }
   }
+  // async preview(req, res) {
+  //   try {
+  //     res.render("")
+  //     return Response.success(res, result);
+  //   } catch (error) {
+  //     return Response.error(res, error);
+  //   }
+  // }
 };
