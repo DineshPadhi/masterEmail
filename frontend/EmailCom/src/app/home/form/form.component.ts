@@ -39,6 +39,7 @@ export class FormComponent implements OnInit {
       idField: 'item_id',
       textField: 'item_text',
     };
+    // console.log(this.dropdownList[0].item_text);
     
   }
 

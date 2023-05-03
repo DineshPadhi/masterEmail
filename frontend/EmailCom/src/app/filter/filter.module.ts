@@ -8,6 +8,7 @@ import { FilterService } from './filter.service';
 import { HomeModule } from '../home/home.module'
 import { HttpClientModule } from '@angular/common/http';
 import { FormServiceService } from '../home/form-service.service';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 
@@ -23,7 +24,8 @@ import { FormServiceService } from '../home/form-service.service';
     FormsModule,
     ReactiveFormsModule,
     HomeModule,
-    HttpClientModule
+    HttpClientModule,
+    NgMultiSelectDropDownModule
     
   ],
   providers: [

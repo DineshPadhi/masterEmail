@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormComponent } from 'src/app/home/form/form.component';
 import { FormServiceService } from 'src/app/home/form-service.service';
 import { FilterComponent } from '../searchFilter/filter.component';
+import { IDropdownSettings, } from 'ng-multiselect-dropdown';
 
 
 
@@ -20,6 +21,8 @@ export class UpdateUserComponent {
   myForm: FormGroup;
   id:any
   data:any
+  dropdownList = [];
+  dropdownSettings:IDropdownSettings={};
   
   // patch: FilterComponent
 
@@ -78,6 +81,17 @@ ngOnInit(): void {
 
   // console.log(this.form.myForm.value)
   // this.form.previewData()
+
+
+  this.dropdownList = [
+    { item_id: 1, item_text: 'User 1' },
+    { item_id: 2, item_text: 'User 2' },
+    { item_id: 3, item_text: 'User 3' }
+  ];
+  this.dropdownSettings = {
+    idField: 'item_id',
+    textField: 'item_text',
+  };
 
 
   this.active.paramMap.subscribe((params)=>{
