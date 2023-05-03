@@ -27,7 +27,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     FontAwesomeModule,
     HttpClientModule,
     NgxPaginationModule,
-    Ng2SearchPipeModule,,
+    Ng2SearchPipeModule,
     NgMultiSelectDropDownModule
   ],
   providers: [],

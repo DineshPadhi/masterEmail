@@ -30,7 +30,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
   ],
   exports: [
     HttpClientModule,
-    FilterComponent
+    FilterComponent,
+    UpdateUserComponent
   ],
 })
 export class FilterModule {}
