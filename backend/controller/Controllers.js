@@ -15,9 +15,10 @@ module.exports = class SegmentController {
       if (validation.passes() && !validation.fails()) {
         console.log("it passes");
         let result = await EmailService.postEmail(data);
+        
         //  console.log('hey');
-        //  console.log('data', data);
-        //  console.log('result', result);
+         console.log('data=======', data);
+         console.log('result', result);
         return Response.success(res, data);
         //  console.log('success');
       } else {
@@ -29,8 +30,10 @@ module.exports = class SegmentController {
   };
 
   async showAllDatas(req, res) {
+    console.log('hiii');
     try {
       const result = await EmailService.showDatas();
+      console.log('res.....',result)
       return Response.success(res, result);
     } catch (error) {
       return Response.error(res, error);

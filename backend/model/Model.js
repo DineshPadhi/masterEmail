@@ -1,9 +1,19 @@
-const knex = require("../connections/Conn.js");
-
+const  knex  = require("../connections/Conn.js");
+// const User = require('../connections/Conn.js')
+// const mongoose = require('mongoose');
+// const { User } = require('../connections/Conn')
 const displayForm = (data) => {
   // console.log("no");
   return knex("TemplateData").insert(data);
 };
+// const displayForm = (data) => {
+//   // console.log("no");
+//   let member = User(data);
+//    return result =  member.save();
+//   //  console.log('result',result);
+// };
+
+
 const ShowData = () => {
   return knex("TemplateData").select("*");
 };
