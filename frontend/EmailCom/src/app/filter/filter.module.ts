@@ -9,6 +9,7 @@ import { HomeModule } from '../home/home.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormServiceService } from '../home/form-service.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [FilterComponent, UpdateUserComponent],
@@ -20,6 +21,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NgxPaginationModule,
     HomeModule,
     HttpClientModule,
+    NgMultiSelectDropDownModule,
   ],
   providers: [FilterComponent, UpdateUserComponent],
   exports: [HttpClientModule, FilterComponent, UpdateUserComponent],

@@ -14,7 +14,7 @@ module.exports = class SegmentController {
       let validation = new Validator(data, rules);
       if (validation.passes() && !validation.fails()) {
         console.log("it passes");
-        let result = await EmailService.postEmail(data);
+        await EmailService.postEmail(data);
         return Response.success(res, data);
       } else {
         return Response.error(res, "Validation failed");
@@ -36,6 +36,8 @@ module.exports = class SegmentController {
     try {
       const id = req.params.id;
       const result = await EmailService.showByID(id);
+
+      result[0].user = result[0].user.split(",");
       return Response.success(res, result);
     } catch (error) {
       return Response.error(res, error);
@@ -53,7 +55,6 @@ module.exports = class SegmentController {
   }
 
   async updateData(req, res) {
-    console.log("hiiii");
     try {
       const id = req.params.id;
       const data = formatter.data(req);

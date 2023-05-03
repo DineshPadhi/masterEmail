@@ -22,9 +22,8 @@ export class FormComponent implements OnInit {
   preview: any = [];
   dropdownList = [];
   dropdownSettings: IDropdownSettings = {};
-  url: string = 'https://www.abplive.com/';
   urlSafe: SafeResourceUrl;
-  htmlContent: string = '<p>hello</p>';
+  htmlContent: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -46,9 +45,10 @@ export class FormComponent implements OnInit {
       textField: 'item_text',
     };
   }
+
   safehtmlinput($event: any) {
     this.htmlContent = $event.target.value;
-    this.urlSafe = this.sanitizer.bypassSecurityTrustHtml(this.htmlContent);
+    // this.urlSafe = this.sanitizer.bypassSecurityTrustHtml(this.htmlContent);
     const iframe = document.getElementById('preview_iframe_5');
     iframe['contentWindow'].document.open();
     iframe['contentDocument'].write(this.htmlContent);
