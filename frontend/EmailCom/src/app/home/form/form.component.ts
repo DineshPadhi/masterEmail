@@ -19,7 +19,6 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class FormComponent implements OnInit {
   @ViewChild('iframe') preview_iframe: ElementRef;
 
-  @ViewChild('iframe') preview_iframe: ElementRef
 
 
   data: any = [];
@@ -34,15 +33,13 @@ export class FormComponent implements OnInit {
   dropdownUser:IDropdownSettings={};
   userArry:any = []
   getData:any=''
-  urlSafe:SafeResourceUrl
-  htmlContent:string
+
 
   constructor(
     private fb: FormBuilder,
     private formService: FormServiceService,
     private router: Router,
-    public sanitizer: DomSanitizer,
-    private sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer
   ) {
     this.createForm();
   }
@@ -90,14 +87,7 @@ export class FormComponent implements OnInit {
   }
 
 
-  safehtmlInput($event:any){
-    this.htmlContent = $event.target.value
-    this.urlSafe = this.sanitizer.bypassSecurityTrustHtml(this.htmlContent)
-    let iframe = document.getElementById('preview_iframe_5');
-    iframe['contentWindow'].document.open()
-    iframe['contentDocument'].write(this.htmlContent)
-    iframe['contentWindow'].document.close()
-  }
+ 
 
 
   // select(value:any){
