@@ -1,3 +1,10 @@
+<nav aria-label="breadcrumb" class="m-4">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/createEmailTemplate">Home</a></li>
+    <li class="breadcrumb-item active">Library</li>
+  </ol>
+</nav>
+
 <form #filterForm='ngForm'   class="m-4">
     <div class="row">
         <div class="col">
@@ -15,7 +22,7 @@
     </div>
     <div class="btnn"  >
       <button class="btn btn-primary btnn" (click)="filterSearch(filterForm.value)">Search</button>
-      <button class="btn btn-primary btnn" (click)="filterForm.resetForm();filterSearch(filterForm.value) ">Reset</button>
+      <button class="btn btn-primary btnn" (click)="filterForm.resetForm();filterSearch(filterForm.value)">Reset</button>
     </div>   
   </form>
 
@@ -34,7 +41,7 @@
         <th scope="col">Action</th>
       </tr>
     </thead>
-    <tbody *ngFor="let data of templateData |paginate:{
+    <tbody *ngFor="let data of templateData | paginate:{
       itemsPerPage:itemsPerPage ,
       currentPage : currentPage,
       totalItems : totalItems,

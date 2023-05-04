@@ -11,6 +11,7 @@ module.exports = class EmailService {
 
   showDatas() {
     const result = templateModel.ShowData();
+    console.log('result===', result);
     return result;
   }
   showByID(id) {
