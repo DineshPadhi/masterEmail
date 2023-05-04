@@ -8,6 +8,7 @@ module.exports = class SegmentController {
     //
   }
   templateForm = async (req, res) => {
+    // console.log('hiiiiiiii');
     try {
       const data = formatter.data(req);
       let rules = formValidator.formValidator();

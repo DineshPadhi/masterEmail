@@ -115,12 +115,10 @@
           <option class="dropdown-item" value="User 3">User 3</option>
         </select> -->
 
-        <div style="width: 100%">
-          <ng-multiselect-dropdown
-            formControlName="user"
-            [settings]="dropdownSettings"
-            [data]="dropdownList"
-          >
+        <div style="width:100%">
+          <ng-multiselect-dropdown formControlName="user" 
+              [settings]="dropdownUser"
+              [data]="dropdownUserList">
           </ng-multiselect-dropdown>
         </div>
 
@@ -277,36 +275,61 @@
       </div>
     </div>
 
-    <!-- <div style="width:50%">
-      <ng-multiselect-dropdown
-          [settings]="dropdownSettings"
-          [data]="dropdownList">
-      </ng-multiselect-dropdown>
-  </div> -->
+    
 
     <br />
 
-    <!-- <div class="row" style="width: 50%;">
-      <div class="col">
-      <select class="underlineHover" formControlName="lang">
-        <option value="" selected disabled>---Select Languaage---</option>
-        <option value="English" selected>English</option>
-      </select>
-    </div>
 
+<!-- <div class="row" style="width: 50%;">
     <div class="col">
-      <select class="underlineHover" formControlName="lang">
-        <option value="Marathi" selected>Marathi</option>
-      </select>
+      <button class="underlineHover" value="English">English</button>
     </div>
-
     <div class="col">
-      <select class="underlineHover" formControlName="lang">
-        <option value="Hindi" selected>Hindi</option>
-      </select>
+      <button class="underlineHover" value="Hindi">Hindi</button>
     </div>
+    <div class="col">
+      <button class="underlineHover" value="Marathi">Marathi</button>
+    </div>
+  </div> -->
 
+
+
+<div class="row" style="width: 50%;">
+  <div class="col">
+    <label for="">Select Languages</label>
+
+    <!-- <select
+      class="dropdown dropdown-toggle form-control"
+      data-bs-toggle="#dropdown"
+      formControlName="user"
+      #user
+      (change)="onSelect(user.value)"
+    >
+      <option class="dropdown-item" value="User 1">User 1</option>
+      <option class="dropdown-item" value="User 2">User 2</option>
+      <option class="dropdown-item" value="User 3">User 3</option>
+    </select> -->
+
+    <div style="width:100%">
+      <ng-multiselect-dropdown formControlName="lang" 
+          [settings]="dropdownSettings"
+          [data]="dropdownList">
+      </ng-multiselect-dropdown>
+  </div>
+
+    <!-- <div
+      *ngIf="
+        myForm!.controls['user'].invalid &&
+        (myForm!.controls['user'].dirty || myForm!.controls['user'].touched)
+      "
+      class="alert"
+    >
+      <div *ngIf="myForm!.controls['user'].errors!.required">
+        <span style="color: red">Please Select User</span>
+      </div>
     </div> -->
+  </div>
+</div>
 
     <br />
 
@@ -367,7 +390,7 @@
         <iframe
           width="100%"
           id="preview_iframe_5"
-          style="border: 1px solid black; height: 300px"
+          style="border: 1px solid lightgray; height: 300px; border-radius: 5px"
         ></iframe>
       </div>
     </div>

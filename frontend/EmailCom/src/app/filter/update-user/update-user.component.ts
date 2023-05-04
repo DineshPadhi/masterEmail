@@ -1,18 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FilterService } from '../filter.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormComponent } from 'src/app/home/form/form.component';
 import { FormServiceService } from 'src/app/home/form-service.service';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { SafeResourceUrl } from '@angular/platform-browser';
+import { FilterComponent } from '../searchFilter/filter.component';
+import { IDropdownSettings, } from 'ng-multiselect-dropdown';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
+
 
 @Component({
   selector: 'app-update-user',
   templateUrl: './update-user.component.html',
   styleUrls: ['./update-user.component.css'],
 })
-export class UpdateUserComponent {
+export class UpdateUserComponent implements OnInit {
+
+  @ViewChild('iframe') preview_iframe: ElementRef;
+
   myForm: FormGroup;
   id: any;
   dropdownList = [];
@@ -23,20 +29,15 @@ export class UpdateUserComponent {
 
   // patch: FilterComponent
 
-  constructor(
-    private active: ActivatedRoute,
-    private fb: FormBuilder,
-    private FilterService: FilterService,
-    private router: Router,
-    private form: FormComponent
-  ) {
-    // this.active.paramMap.subscribe((params)=>{
-    //   this.id = params.get('id')
+constructor(private active: ActivatedRoute, private fb: FormBuilder, private FilterService: FilterService, private router: Router, private form:FormComponent, private sanitizer:DomSanitizer) {
 
-    //   if(this.id){
-    //     this.myForm.patchValue({
-    //       templateName: this.filter.preData.templateName,
-    //       status: 'Active'
+  // this.active.paramMap.subscribe((params)=>{
+  //   this.id = params.get('id')
+    
+  //   if(this.id){
+  //     this.myForm.patchValue({
+  //       templateName: this.filter.preData.templateName,
+  //       status: 'Active'
 
     //      })
     //     //  this.createForm()
@@ -75,16 +76,26 @@ export class UpdateUserComponent {
 
     // console.log(this.form.myForm.value)
     // this.form.previewData()
-    this.dropdownList = [
-      { item_id: 1, item_text: 'User 1' },
-      { item_id: 2, item_text: 'User 2' },
-      { item_id: 3, item_text: 'User 3' },
-    ];
+    // this.dropdownList = [
+    //   { item_id: 1, item_text: 'User 1' },
+    //   { item_id: 2, item_text: 'User 2' },
+    //   { item_id: 3, item_text: 'User 3' },
+    // ];
 
-    this.dropdownSettings = {
-      idField: 'item_id',
-      textField: 'item_text',
-    };
+
+ 
+
+
+  this.dropdownList = [
+    { item_id: 1, item_text: 'User 1' },
+    { item_id: 2, item_text: 'User 2' },
+    { item_id: 3, item_text: 'User 3' }
+  ];
+  this.dropdownSettings = {
+    idField: 'item_id',
+    textField: 'item_text',
+  };
+
 
     this.active.paramMap.subscribe((params) => {
       this.id = params.get('id');
@@ -115,6 +126,12 @@ export class UpdateUserComponent {
       });
     });
   }
+
+
+
+
+
+
 
   createForm() {
     this.myForm = this.fb.group({

@@ -12,6 +12,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 import { FormServiceService } from './home/form-service.service';
 import { FilterService } from './filter/filter.service';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
+
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +28,7 @@ import { FilterService } from './filter/filter.service';
     HttpClientModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
+    NgMultiSelectDropDownModule
   ],
   providers: [],
   bootstrap: [AppComponent],

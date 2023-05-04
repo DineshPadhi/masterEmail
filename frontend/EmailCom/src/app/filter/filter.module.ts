@@ -21,9 +21,17 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     NgxPaginationModule,
     HomeModule,
     HttpClientModule,
-    NgMultiSelectDropDownModule,
+    NgMultiSelectDropDownModule
+    
   ],
-  providers: [FilterComponent, UpdateUserComponent],
-  exports: [HttpClientModule, FilterComponent, UpdateUserComponent],
+  providers: [
+    FilterComponent,
+    UpdateUserComponent
+  ],
+  exports: [
+    HttpClientModule,
+    FilterComponent,
+    UpdateUserComponent
+  ],
 })
 export class FilterModule {}

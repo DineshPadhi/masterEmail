@@ -2,8 +2,10 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormServiceService } from '../form-service.service';
 import { Router } from '@angular/router';
+import { FilterService } from 'src/app/filter/filter.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-form',
@@ -16,6 +18,9 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class FormComponent implements OnInit {
   @ViewChild('iframe') preview_iframe: ElementRef;
+
+
+
   data: any = [];
   formData: any = [];
   myForm: FormGroup;
@@ -24,6 +29,11 @@ export class FormComponent implements OnInit {
   dropdownSettings: IDropdownSettings = {};
   urlSafe: SafeResourceUrl;
   htmlContent: string = '';
+  dropdownUserList = [];
+  dropdownUser:IDropdownSettings={};
+  userArry:any = []
+  getData:any=''
+
 
   constructor(
     private fb: FormBuilder,
@@ -35,15 +45,34 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dropdownList = [
+    this.dropdownUserList = [
       { item_id: 1, item_text: 'User 1' },
       { item_id: 2, item_text: 'User 2' },
       { item_id: 3, item_text: 'User 3' },
     ];
-    this.dropdownSettings = {
+    this.dropdownUser = {
       idField: 'item_id',
       textField: 'item_text',
     };
+
+
+    this.dropdownList = [
+      { item_id: 1, item_text: 'English' },
+      { item_id: 2, item_text: 'Hindi' },
+      { item_id: 3, item_text: 'Marathi' }
+    ];
+
+    this.dropdownSettings = {
+      idField: 'item_id',
+      textField: 'item_text',
+    }
+
+    // console.log(this.dropdownList[0].item_text);
+
+    // this.dropdownList.map((result:any)=>{
+    //   this.getData = result.item_text
+    //   console.log('getData====',this.getData)
+    // })
   }
 
   safehtmlinput($event: any) {
@@ -56,6 +85,28 @@ export class FormComponent implements OnInit {
 
     return this.urlSafe;
   }
+
+
+ 
+
+
+  // select(value:any){
+  //   value.map((result:any)=>{
+  //     if(result.item_id){
+  //     this.userArry.push(result.item_text)
+  //     console.log('userArry====',this.userArry)
+  //     }
+  //   })
+  //   // this.userArry.push(value)
+  //   // console.log('getData====',this.userArry)
+  //   // this.userArry = value
+  //   // console.log('getData====',this.userArry)
+
+  // }
+
+
+
+  
 
   createForm() {
     this.myForm = this.fb.group({
@@ -71,6 +122,7 @@ export class FormComponent implements OnInit {
       targetAudience: ['', Validators.required],
       subject: ['', Validators.required],
       body: ['', Validators.required],
+      lang: ['']
     });
   }
 
