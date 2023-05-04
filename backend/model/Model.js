@@ -1,9 +1,11 @@
-const  knex  = require("../connections/Conn.js");
+const  {knex}  = require("../connections/Conn.js");
 // const User = require('../connections/Conn.js')
-// const mongoose = require('mongoose');
-// const { User } = require('../connections/Conn')
+const mongoose = require('mongoose');
+const { User } = require('../connections/Conn')
+
 const displayForm = (data) => {
-  return knex("TemplateData").insert(data);
+  console.log("data gone from sql");
+  return  knex("TemplateData").insert(data);
 };
 // const displayForm = (data) => {
 //   // console.log("no");
@@ -42,6 +44,7 @@ const updateUser = (id, data) => {
 
 module.exports = {
   displayForm,
+  CreateForm,
   ShowData,
   ShowByID,
   filterData,

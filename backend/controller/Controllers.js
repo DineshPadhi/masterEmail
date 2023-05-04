@@ -12,9 +12,13 @@ module.exports = class SegmentController {
       const data = formatter.data(req);
       let rules = formValidator.formValidator();
       let validation = new Validator(data, rules);
+      if (validation.fails()) {
+        console.log('it failed');
+      }
       if (validation.passes() && !validation.fails()) {
         console.log("it passes");
         await EmailService.postEmail(data);
+        // await EmailService.postForm(data);
         return Response.success(res, data);
       } else {
         return Response.error(res, "Validation failed");
@@ -24,12 +28,30 @@ module.exports = class SegmentController {
     }
   };
 
+  // mongoForm = async (req, res) => {
+  //   try {
+  //     const data = formatter.data(req);
+  //     let rules = formValidator.formValidator();
+  //     let validation = new Validator(data, rules);
+  //     if (validation.passes() && !validation.fails()) {
+  //       console.log("it passes");
+  //       // await EmailService.postEmail(data);
+  //       await EmailService.postForm(data);
+  //       return Response.success(res, data);
+  //     } else {
+  //       return Response.error(res, "Validation failed");
+  //     }
+  //   } catch (error) {
+  //     return Response.error(res, error);
+  //   }
+  // };
+
   async showAllDatas(req, res) {
     console.log("hiii");
     try {
       const result = await EmailService.showDatas();
       console.log("res.....", result);
-      return Response.success(res, result);
+      return Response.success(res, {result});
     } catch (error) {
       return Response.error(res, error);
     }

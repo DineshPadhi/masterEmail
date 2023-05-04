@@ -38,7 +38,7 @@ export class FilterComponent implements OnInit {
 
   allData() {
     this.FilterService.getAllData().subscribe((res: any) => {
-      this.templateData = res.data;
+      this.templateData = res.data.result;
     });
   }
 
