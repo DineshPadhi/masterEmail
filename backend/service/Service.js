@@ -15,15 +15,9 @@ module.exports = class EmailService {
     return { resultMongo, status: true };
   }
 
-  async showDatas() {
-    const result = await templateModel.ShowData();
-    return { result, status: true };
-  }
-  async showByID(id) {
-    console.log("yam");
-    const result = await templateModel.ShowByID(id);
-    console.log("in service", result);
-    // return { result, status: true };
+  showDatas() {
+    const result = templateModel.ShowData();
+    console.log("result===", result);
     return result;
   }
   async filterDatas(searchCriteria) {
