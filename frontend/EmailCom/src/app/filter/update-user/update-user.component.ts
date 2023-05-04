@@ -5,10 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormComponent } from 'src/app/home/form/form.component';
 import { FormServiceService } from 'src/app/home/form-service.service';
 import { FilterComponent } from '../searchFilter/filter.component';
-import { IDropdownSettings, } from 'ng-multiselect-dropdown';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-
-
 
 @Component({
   selector: 'app-update-user',
@@ -16,7 +14,6 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrls: ['./update-user.component.css'],
 })
 export class UpdateUserComponent implements OnInit {
-
   @ViewChild('iframe') preview_iframe: ElementRef;
 
   myForm: FormGroup;
@@ -26,18 +23,26 @@ export class UpdateUserComponent implements OnInit {
   data: any;
   urlSafe: SafeResourceUrl;
   htmlContent: string = '';
+  dropdownUserList = [];
+  dropdownUser: IDropdownSettings = {};
 
   // patch: FilterComponent
 
-constructor(private active: ActivatedRoute, private fb: FormBuilder, private FilterService: FilterService, private router: Router, private form:FormComponent, private sanitizer:DomSanitizer) {
+  constructor(
+    private active: ActivatedRoute,
+    private fb: FormBuilder,
+    private FilterService: FilterService,
+    private router: Router,
+    private form: FormComponent,
+    private sanitizer: DomSanitizer
+  ) {
+    // this.active.paramMap.subscribe((params)=>{
+    //   this.id = params.get('id')
 
-  // this.active.paramMap.subscribe((params)=>{
-  //   this.id = params.get('id')
-    
-  //   if(this.id){
-  //     this.myForm.patchValue({
-  //       templateName: this.filter.preData.templateName,
-  //       status: 'Active'
+    //   if(this.id){
+    //     this.myForm.patchValue({
+    //       templateName: this.filter.preData.templateName,
+    //       status: 'Active'
 
     //      })
     //     //  this.createForm()
@@ -82,20 +87,26 @@ constructor(private active: ActivatedRoute, private fb: FormBuilder, private Fil
     //   { item_id: 3, item_text: 'User 3' },
     // ];
 
+    this.dropdownUserList = [
+      { item_id: 1, item_text: 'User 1' },
+      { item_id: 2, item_text: 'User 2' },
+      { item_id: 3, item_text: 'User 3' },
+    ];
+    this.dropdownUser = {
+      idField: 'item_id',
+      textField: 'item_text',
+    };
 
- 
+    this.dropdownList = [
+      { item_id: 1, item_text: 'English' },
+      { item_id: 2, item_text: 'Hindi' },
+      { item_id: 3, item_text: 'Marathi' },
+    ];
 
-
-  this.dropdownList = [
-    { item_id: 1, item_text: 'User 1' },
-    { item_id: 2, item_text: 'User 2' },
-    { item_id: 3, item_text: 'User 3' }
-  ];
-  this.dropdownSettings = {
-    idField: 'item_id',
-    textField: 'item_text',
-  };
-
+    this.dropdownSettings = {
+      idField: 'item_id',
+      textField: 'item_text',
+    };
 
     this.active.paramMap.subscribe((params) => {
       this.id = params.get('id');
@@ -121,17 +132,12 @@ constructor(private active: ActivatedRoute, private fb: FormBuilder, private Fil
             targetAudience: result.data[0].targetAudience,
             subject: result.data[0].subject,
             body: result.data[0].body,
+            lang: result.data[0].lang,
           });
         }
       });
     });
   }
-
-
-
-
-
-
 
   createForm() {
     this.myForm = this.fb.group({
@@ -147,6 +153,7 @@ constructor(private active: ActivatedRoute, private fb: FormBuilder, private Fil
       targetAudience: ['', Validators.required],
       subject: ['', Validators.required],
       body: ['', Validators.required],
+      lang: ['', Validators.required],
     });
   }
 

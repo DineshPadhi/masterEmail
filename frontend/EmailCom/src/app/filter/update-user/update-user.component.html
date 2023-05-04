@@ -118,8 +118,8 @@
         <div style="width: 100%">
           <ng-multiselect-dropdown
             formControlName="user"
-            [settings]="dropdownSettings"
-            [data]="dropdownList"
+            [settings]="dropdownUser"
+            [data]="dropdownUserList"
           >
           </ng-multiselect-dropdown>
         </div>
@@ -279,8 +279,42 @@
 
     <br />
 
-    <div>
-      <span class="underlineHover">English</span>
+    <div class="row" style="width: 50%">
+      <div class="col">
+        <label for="">Languages</label>
+
+        <!-- <select
+          class="dropdown dropdown-toggle form-control"
+          data-bs-toggle="#dropdown"
+          formControlName="user"
+          #user
+          (change)="onSelect(user.value)"
+        >
+          <option class="dropdown-item" value="User 1">User 1</option>
+          <option class="dropdown-item" value="User 2">User 2</option>
+          <option class="dropdown-item" value="User 3">User 3</option>
+        </select> -->
+        <div style="width: 100%">
+          <ng-multiselect-dropdown
+            formControlName="lang"
+            [settings]="dropdownSettings"
+            [data]="dropdownList"
+          >
+          </ng-multiselect-dropdown>
+        </div>
+
+        <div
+          *ngIf="
+            myForm!.controls['lang'].invalid &&
+            (myForm!.controls['lang'].dirty || myForm!.controls['lang'].touched)
+          "
+          class="alert"
+        >
+          <div *ngIf="myForm!.controls['lang'].errors!.required">
+            <span style="color: red">Please Select Languages</span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <br />

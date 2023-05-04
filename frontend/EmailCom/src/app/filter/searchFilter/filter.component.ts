@@ -26,9 +26,9 @@ export class FilterComponent implements OnInit {
   id: any;
   myForm: FormGroup;
   itemsPerPage: number = 5;
-  currentPage: number = 1;
+  currentPage: number;
   totalItems: number = 0;
-  page: number = 1
+  page: number = 1;
 
   // constructor(private FilterService:FilterService, private http: HttpClient,private fb:FormBuilder) {}
 
@@ -45,13 +45,12 @@ export class FilterComponent implements OnInit {
   filterSearch(data: any) {
     this.FilterService.getFilterData(data).subscribe((resu: any) => {
       this.templateData = resu.data;
-      console.log('data in is',this.templateData);
-      
-      // if(!resu){
-      //   this.router.navigate(['/allTemplateData'])
-      // }
-    })
-    ;
+      console.log('data in is', this.templateData);
+
+      if (this.templateData) {
+        this.currentPage = 1;
+      }
+    });
   }
 
   // updateUser(id:any, data:any){
