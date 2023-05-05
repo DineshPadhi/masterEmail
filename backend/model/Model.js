@@ -1,28 +1,27 @@
-const  {knex}  = require("../connections/Conn.js");
-// const User = require('../connections/Conn.js')
-const mongoose = require('mongoose');
-const { User } = require('../connections/Conn')
+const { knex } = require("../connections/Conn.js");
+const { User } = require("../connections/Conn");
 
-const displayForm = (data) => {
-  console.log("data gone from sql");
-  return  knex("TemplateData").insert(data);
+const createSqlForm = async (data) => {
+  let result = await knex("TemplateData").insert(data);
+  return result[0];
 };
-// const displayForm = (data) => {
-//   // console.log("no");
-//   let member = User(data);
-//    return result =  member.save();
-//   //  console.log('result',result);
-// };
+const createMongForm = async (data) => {
+  let member = await User(data).save();
+  console.log("member", member);
+  return member;
+};
 
-
-const ShowData = () => {
-  return knex("TemplateData").select("*");
+const ShowData = async () => {
+  let result = await knex("TemplateData").select("*");
+  return result;
 };
-const ShowByID = (id) => {
-  return knex("TemplateData").select("*").where("id", id);
+const ShowByID = async (id) => {
+  let result = await knex("TemplateData").select("*").where("id", id);
+  console.log("yoyoyyo", result);
+  return result;
 };
-const filterData = (searchCriteria) => {
-  return knex("TemplateData")
+const filterData = async (searchCriteria) => {
+  let result = await knex("TemplateData")
     .select("*")
     .where((qb) => {
       if (searchCriteria.tname) {
@@ -36,17 +35,28 @@ const filterData = (searchCriteria) => {
       if (searchCriteria.status) {
         qb.andWhere("status", "=", searchCriteria.status);
       }
+      return result;
     });
 };
-const updateUser = (id, data) => {
-  return knex("TemplateData").update(data).where("id", id);
+const updateUserSql = async (id, data) => {
+  let result = await knex("TemplateData").update(data).where("id", id);
+  return result;
+};
+const updateUserMongo = async (id, data) => {
+  console.log("data in model is", data);
+
+  const result = await User.updateMany({ sqlId: id }, data, {
+    new: true,
+  });
+  return result;
 };
 
 module.exports = {
-  displayForm,
-  CreateForm,
+  createSqlForm,
   ShowData,
   ShowByID,
   filterData,
-  updateUser,
+  updateUserSql,
+  createMongForm,
+  updateUserMongo,
 };

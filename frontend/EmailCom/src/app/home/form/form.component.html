@@ -1,3 +1,14 @@
+<!-- <br /> -->
+
+<nav aria-label="breadcrumb" class="m-4">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active">Home</li>
+    <li class="breadcrumb-item"><a routerLink="/allTemplateData">Library</a></li>
+  </ol>
+</nav>
+
+
+
 <form [formGroup]="myForm" *ngIf="this.myForm">
   <div class="m-4" (keyup)="seePreview($event)">
     <div class="row">
