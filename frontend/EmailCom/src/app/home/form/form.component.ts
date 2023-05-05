@@ -2,7 +2,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormServiceService } from '../form-service.service';
 import { Router } from '@angular/router';
-import { FilterService } from 'src/app/filter/filter.service';
 import { ToastrService } from 'ngx-toastr';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -63,18 +62,10 @@ export class FormComponent implements OnInit {
       idField: 'item_id',
       textField: 'item_text',
     };
-
-    // console.log(this.dropdownList[0].item_text);
-
-    // this.dropdownList.map((result:any)=>{
-    //   this.getData = result.item_text
-    //   console.log('getData====',this.getData)
-    // })
   }
 
   safehtmlinput($event: any) {
     this.htmlContent = $event.target.value;
-    // this.urlSafe = this.sanitizer.bypassSecurityTrustHtml(this.htmlContent);
     const iframe = document.getElementById('preview_iframe_5');
     iframe['contentWindow'].document.open();
     iframe['contentDocument'].write(this.htmlContent);
@@ -82,20 +73,6 @@ export class FormComponent implements OnInit {
 
     return this.urlSafe;
   }
-
-  // select(value:any){
-  //   value.map((result:any)=>{
-  //     if(result.item_id){
-  //     this.userArry.push(result.item_text)
-  //     console.log('userArry====',this.userArry)
-  //     }
-  //   })
-  //   // this.userArry.push(value)
-  //   // console.log('getData====',this.userArry)
-  //   // this.userArry = value
-  //   // console.log('getData====',this.userArry)
-
-  // }
 
   createForm() {
     this.myForm = this.fb.group({
@@ -117,23 +94,12 @@ export class FormComponent implements OnInit {
 
   submit(data: any) {
     this.formService.submitForm(data).subscribe((result: any) => {
-      console.log('result========>>>>>>>>', result.data);
-      // localStorage.setItem('submit', JSON.stringify(result))
       if (result) {
         this.router.navigate(['/allTemplateData']);
-        this.toastr.success<any>('Your Data Submited successfully!!');
-        console.log('result====', result);
         this.toastr.success<any>('Your Data Submited successfully!!');
       }
     });
   }
-
-  // previewData(){
-  //   this.myForm.patchValue({
-  //     templateName : this.myForm.get('templateName').value
-
-  //   })
-  // }
 
   reset() {
     this.myForm.reset();
@@ -141,21 +107,11 @@ export class FormComponent implements OnInit {
 
   seePreview(event: any) {
     this.preview = event.target.value;
-
-    // console.log(this.preview);
   }
-
-  // getDropdown(){
-  //   document.getElementById('TaDrop2').ariaValueText = document.getElementById('TaDrop').ariaValueText
-  // }
 
   selectedValue: any = '';
-  // error:any
 
   onSelect(value: any) {
-    // this.selectedValue = document.getElementById('inp');
     this.selectedValue = value;
   }
-
-  // title: 'hello world';
 }

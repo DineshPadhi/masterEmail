@@ -27,14 +27,12 @@ export class UpdateUserComponent implements OnInit {
   dropdownUserList = [];
   dropdownUser: IDropdownSettings = {};
 
-  // patch: FilterComponent
-
   constructor(
     private active: ActivatedRoute,
     private fb: FormBuilder,
     private FilterService: FilterService,
     private router: Router,
-    private toastr:ToastrService, 
+    private toastr: ToastrService,
     private form: FormComponent,
     private sanitizer: DomSanitizer
   ) {
@@ -72,7 +70,7 @@ export class UpdateUserComponent implements OnInit {
         iframe['contentWindow'].document.open();
         iframe['contentDocument'].write(this.htmlContent);
         iframe['contentWindow'].document.close();
-        //
+
         if (this.id) {
           this.myForm.patchValue({
             templateName: result.data[0].templateName,
@@ -116,8 +114,6 @@ export class UpdateUserComponent implements OnInit {
 
   seePreview(event: any) {
     this.preview = event.target.value;
-
-    // console.log(this.preview);
   }
 
   reset() {
@@ -125,30 +121,20 @@ export class UpdateUserComponent implements OnInit {
   }
 
   selectedValue: any = '';
-  // error:any
 
   onSelect(value: any) {
-    // this.selectedValue = document.getElementById('inp');
     this.selectedValue = value;
   }
 
   updateUser(data: any) {
-    // console.log('updatedata===', data);
-
     this.active.paramMap.subscribe((params) => {
       this.id = params.get('id');
 
       if (this.id) {
-        // this.myForm.patchValue({
-        //   templateName: this.form.myForm.value
-
-        //  })
-
         this.FilterService.update(this.id, data).subscribe((result: any) => {
           if (result) {
             this.router.navigate(['/allTemplateData']);
-            console.log('result......', result);
-            this.toastr.success<any>('Your Data Updated successfully!!')
+            this.toastr.success<any>('Your Data Updated successfully!!');
           }
         });
       }
@@ -156,7 +142,6 @@ export class UpdateUserComponent implements OnInit {
   }
   safehtmlinput($event: any) {
     this.htmlContent = $event.target.value;
-    // this.urlSafe = this.sanitizer.bypassSecurityTrustHtml(this.htmlContent);
     const iframe = document.getElementById('preview_iframe_5');
     iframe['contentWindow'].document.open();
     iframe['contentDocument'].write(this.htmlContent);

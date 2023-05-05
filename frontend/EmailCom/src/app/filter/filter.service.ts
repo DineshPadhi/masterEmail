@@ -6,8 +6,6 @@ import { environment } from './../../../environment/environment';
   providedIn: 'root',
 })
 export class FilterService implements OnInit {
-  // FormData : any;
-
   url = environment.BS_BASE_URL;
 
   constructor(private httpClient: HttpClient) {}
@@ -21,9 +19,7 @@ export class FilterService implements OnInit {
   }
 
   getFilterData(data: any) {
-    // console.log('search', data);
     let result = this.httpClient.post(`${this.url}/search`, data);
-    // console.log("data issssss ",data);
     return result;
   }
 

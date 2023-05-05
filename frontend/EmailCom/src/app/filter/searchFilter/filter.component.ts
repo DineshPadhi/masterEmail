@@ -26,7 +26,7 @@ export class FilterComponent implements OnInit {
   searchText: any;
   id: any;
   myForm: FormGroup;
-  itemsPerPage: number = 10;
+  itemsPerPage: number = 5;
   currentPage: number;
   totalItems: number = 0;
   page: number = 1;
@@ -49,7 +49,6 @@ export class FilterComponent implements OnInit {
       } else {
         this.toastr.success('Data Found Successfully');
       }
-      console.log('data in is', this.templateData);
       if (this.templateData) {
         this.currentPage = 1;
       }
