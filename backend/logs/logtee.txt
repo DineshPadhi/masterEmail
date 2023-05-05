@@ -212,3 +212,8 @@ connection succefull
 Server listening on port 3000
 Mysql Database Connected
 connection succefull
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+Server listening on port 3000
+Mysql Database Connected
+connection succefull
