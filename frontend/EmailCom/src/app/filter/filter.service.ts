@@ -6,7 +6,10 @@ import { environment } from './../../../environment/environment';
   providedIn: 'root',
 })
 export class FilterService implements OnInit {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4d36ce3ae3e1b46d081cb6479f99acf98f7040cf
   url = environment.BS_BASE_URL;
 
   constructor(private httpClient: HttpClient) {}
@@ -22,9 +25,7 @@ export class FilterService implements OnInit {
   }
 
   getFilterData(data: any) {
-    // console.log('search', data);
     let result = this.httpClient.post(`${this.url}/search`, data);
-    // console.log("data issssss ",data);
     return result;
   }
 

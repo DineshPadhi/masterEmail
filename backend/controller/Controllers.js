@@ -5,26 +5,26 @@ const EmailService = new (require("../service/Service.js"))();
 const Response = new (require("../responses/Responses.js"))();
 
 module.exports = class SegmentController {
-
-  constuctor() {
-  }
-
-  async templateForm(req, res){
+  constuctor() {}
+  // controller to validate and store data
+  async templateForm(req, res) {
     try {
+      // format data to store in sql
       const sqlData = sqlformatter(req);
       let rules = formValidator.formValidator();
+      // check the formatted data
       let validation = new Validator(sqlData, rules);
       if (validation.passes() && !validation.fails()) {
-        // console.log("it passes");
+        // store data in sql
         let result = await EmailService.postEmailSql(sqlData);
-        // console.log("result in controller of sql is", result);
         req.body.sqlId = result.resultSql;
         const userArray = req.body.user;
         userArray.forEach((element) => {
           req.body.user = element;
+          // format data to store in mongodb
           const mongoData = mongoformatter(req);
+          // store data in sql
           EmailService.postEmailMongo(mongoData);
-          // console.log("after formatting", mongoData);
         });
         return Response.success(res, sqlData);
       } else {
@@ -33,15 +33,14 @@ module.exports = class SegmentController {
     } catch (error) {
       return Response.error(res, error);
     }
-  };
+  }
 
   async showAllDatas(req, res) {
-    // console.log("hiii");
     try {
+      // show data in the tabular format in frontend
       const result = await EmailService.showDatas();
-      // console.log("rseult is", result);
-      if (result) {
-        return Response.success(res, result);
+      if (result.status) {
+        return Response.success(res, result.result);
       }
     } catch (error) {
       return Response.error(res, error);
@@ -52,9 +51,10 @@ module.exports = class SegmentController {
     try {
       const id = req.params.id;
       const result = await EmailService.showByIds(id);
-      result[0].user = result[0].user.split(",");
-      result[0].lang = result[0].lang.split(",");
-      return Response.success(res, result);
+
+      result.result[0].user = result.result[0].user.split(",");
+      result.result[0].lang = result.result[0].lang.split(",");
+      return Response.success(res, result.result);
     } catch (error) {
       return Response.error(res, error);
     }
@@ -80,33 +80,23 @@ module.exports = class SegmentController {
       let rules = formValidator.formValidator();
       let validation = new Validator(sqlData, rules);
       if (validation.passes() && !validation.fails()) {
-        // console.log("it passes");
         let sqlResult = await EmailService.updateSql(id, sqlData);
-        // console.log("result in update is", sqlResult);
         if (sqlResult) {
-          // console.log("parameter is", req.params.id);
           req.body.sqlId = req.params.id;
           let data = mongoformatter(req);
-          // console.log(
-          //   "mongofromattter is//////////////////////////////////////",
-          //   data
-          // );
           let mongoResult = await EmailService.updateMongo(
             req.body.sqlId,
             data
           );
-          // console.log("updated data in mongo is", mongoResult);
           return Response.success(res, data);
         } else {
           return Response.error(res, "not updated");
         }
       } else {
-        console.log("it failed");
         return Response.error(res, "Validation failed");
       }
     } catch (error) {
       return Response.error(res, error);
     }
   }
-
 };

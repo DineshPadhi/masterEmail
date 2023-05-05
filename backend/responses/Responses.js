@@ -1,6 +1,10 @@
 module.exports = class Responses {
 
     constuctor() {
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 4d36ce3ae3e1b46d081cb6479f99acf98f7040cf
     }
 
      success(res,result) {

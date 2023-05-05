@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { configureDetails } = require("../config/Config");
 const url = configureDetails.mongodb;
-// console.log("client is", configureDetails.client);
+
 const knex = require("knex")({
   client: configureDetails.client,
   connection: {
@@ -30,7 +30,7 @@ const UserSchema = new mongoose.Schema(
   {
     name: { type: String },
     sqlId: { type: Number },
-    message: { type: Object }
+    message: { type: Object },
   },
   { timestamps: true }
 );
