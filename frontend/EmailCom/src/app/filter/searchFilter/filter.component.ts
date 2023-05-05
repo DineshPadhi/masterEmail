@@ -55,7 +55,6 @@ export class FilterComponent implements OnInit {
       }
     });
   }
-
   onPageChange($event) {
     this.currentPage = $event;
   }

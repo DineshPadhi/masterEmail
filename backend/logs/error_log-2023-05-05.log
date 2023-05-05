@@ -146,3 +146,7 @@
 {"level":"info","message":"Response Sent","responseTime":2,"status":304,"timestamp":"2023-05-05T11:26:10.211Z"}
 {"level":"info","message":"Request received","method":"GET","timestamp":"2023-05-05T11:26:17.687Z","url":"/get"}
 {"level":"info","message":"Response Sent","responseTime":1,"status":304,"timestamp":"2023-05-05T11:26:17.689Z"}
+{"level":"info","message":"Request received","method":"GET","timestamp":"2023-05-05T11:27:57.996Z","url":"/get"}
+{"level":"info","message":"Response Sent","responseTime":13,"status":304,"timestamp":"2023-05-05T11:27:58.009Z"}
+{"level":"info","message":"Request received","method":"GET","timestamp":"2023-05-05T11:28:39.105Z","url":"/get"}
+{"level":"info","message":"Response Sent","responseTime":3,"status":304,"timestamp":"2023-05-05T11:28:39.110Z"}

@@ -1,3 +1,4 @@
+// format data to store in mysql
 const sqlformatter = (req) => {
   let userArr = [];
   let userData = "";
@@ -68,6 +69,7 @@ const sqlformatter = (req) => {
   };
   return user;
 };
+// format data to store in mongodb
 const mongoformatter = (req) => {
   let langObject;
   let someArr = [];
@@ -120,6 +122,7 @@ const mongoformatter = (req) => {
     targetAudience: req.body.targetAudience,
     lang: langObject,
   };
+
   if (req.body.user.item_text) {
     return {
       name: req.body.user.item_text,
@@ -133,4 +136,5 @@ const mongoformatter = (req) => {
     };
   }
 };
+
 module.exports = { sqlformatter, mongoformatter };
