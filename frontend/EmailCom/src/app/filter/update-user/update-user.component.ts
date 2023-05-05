@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormComponent } from 'src/app/home/form/form.component';
 import { FormServiceService } from 'src/app/home/form-service.service';
 import { FilterComponent } from '../searchFilter/filter.component';
+import { ToastrService } from 'ngx-toastr';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
@@ -33,6 +34,7 @@ export class UpdateUserComponent implements OnInit {
     private fb: FormBuilder,
     private FilterService: FilterService,
     private router: Router,
+    private toastr:ToastrService, 
     private form: FormComponent,
     private sanitizer: DomSanitizer
   ) {
@@ -193,6 +195,7 @@ export class UpdateUserComponent implements OnInit {
           if (result) {
             this.router.navigate(['/allTemplateData']);
             console.log('result......', result);
+            this.toastr.success<any>('Your Data Updated successfully!!')
           }
         });
       }

@@ -49,7 +49,6 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
 
 
-    this.toastr.success<any>('Your Data Submited successfully!!')
 
     this.dropdownUserList = [
       { item_id: 1, item_text: 'User 1' },
@@ -140,6 +139,8 @@ export class FormComponent implements OnInit {
       if (result) {
         this.router.navigate(['/allTemplateData']);
         console.log('result====', result);
+            this.toastr.success<any>('Your Data Submited successfully!!')
+
         
       }
     });
