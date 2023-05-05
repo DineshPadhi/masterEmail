@@ -15,7 +15,6 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrls: ['./update-user.component.css'],
 })
 export class UpdateUserComponent implements OnInit {
-
   @ViewChild('iframe') preview_iframe: ElementRef;
 
   myForm: FormGroup;
@@ -33,7 +32,6 @@ export class UpdateUserComponent implements OnInit {
     private fb: FormBuilder,
     private FilterService: FilterService,
     private router: Router,
-    private toastr: ToastrService,
     private form: FormComponent,
     private sanitizer: DomSanitizer,
   ) {
@@ -61,7 +59,6 @@ export class UpdateUserComponent implements OnInit {
       idField: 'item_id',
       textField: 'item_text',
     };
-
 
     this.active.paramMap.subscribe((params) => {
       this.id = params.get('id');
@@ -91,7 +88,6 @@ export class UpdateUserComponent implements OnInit {
         }
       });
     });
-
   }
 
   createForm() {

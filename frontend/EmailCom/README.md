@@ -68,6 +68,9 @@ Team Leader: Varun Mishra
    xi) subject: it is of varchar type and 255 characters can be inserted
    xii) body: it is of text type and and maximum of 65,535 characters can be inserted
 4. MongoDB Architecture
+   i) name: it is the name of the user which is mentioned in the template form
+   ii) sqlId: it is the id which is stored in sql and gets stored in the mongodb
+   iii) message: it contains all the fields of the emailTemplate except user as it is stored as the name of the document and subject and body is based on the language
 
 5. Backend:
 

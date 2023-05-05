@@ -135,7 +135,6 @@ const mongoformatter = (req) => {
       message: mongoUser,
     };
   }
-
 };
 
 module.exports = { sqlformatter, mongoformatter };

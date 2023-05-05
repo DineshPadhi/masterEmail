@@ -15,7 +15,7 @@ export class FilterService implements OnInit {
   getAllData() {
     return this.httpClient.get(`${this.url}/get`);
   }
-  
+
   getDataById(id: any) {
     return this.httpClient.get(`${this.url}/getById/${id}`);
   }

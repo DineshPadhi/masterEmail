@@ -26,7 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgxPaginationModule,
     Ng2SearchPipeModule,
     NgMultiSelectDropDownModule,
-    ToastrModule.forRoot({timeOut: 10000, positionClass: 'toast-bottom-right', preventDuplicates: true}),
+    ToastrModule.forRoot({timeOut: 1000, positionClass: 'toast-top-center', preventDuplicates: true}),
     BrowserAnimationsModule,
   ],
   providers: [],

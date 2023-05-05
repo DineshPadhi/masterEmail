@@ -27,7 +27,7 @@ module.exports = class EmailService {
   async filterDatas(searchCriteria) {
     let result = await templateModel.filterData(searchCriteria);
     return { result, status: true };
-  } 
+  }
 
   async updateSql(id, data) {
     const result = await templateModel.updateUserSql(id, data);
@@ -38,5 +38,4 @@ module.exports = class EmailService {
     const result = await templateModel.updateUserMongo(id, data);
     return { result, status: true };
   }
-
 };

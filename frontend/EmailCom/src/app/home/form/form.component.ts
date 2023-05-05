@@ -92,7 +92,6 @@ export class FormComponent implements OnInit {
     });
   }
 
-
   submit(data: any) {
     this.formService.submitForm(data).subscribe((result: any) => {
       if (result) {
