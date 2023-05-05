@@ -34,6 +34,7 @@ export class UpdateUserComponent implements OnInit {
     private router: Router,
     private form: FormComponent,
     private sanitizer: DomSanitizer,
+    private toastr: ToastrService
   ) {
     this.createForm();
   }
