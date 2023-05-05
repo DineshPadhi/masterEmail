@@ -17,7 +17,6 @@ const ShowData = async () => {
 };
 const ShowByID = async (id) => {
   let result = await knex("TemplateData").select("*").where("id", id);
-  console.log("yoyoyyo", result);
   return result;
 };
 const filterData = async (searchCriteria) => {
@@ -39,7 +38,9 @@ const filterData = async (searchCriteria) => {
     });
 };
 const updateUserSql = async (id, data) => {
+  console.log("llll");
   let result = await knex("TemplateData").update(data).where("id", id);
+  console.log("result for id is", result);
   return result;
 };
 const updateUserMongo = async (id, data) => {

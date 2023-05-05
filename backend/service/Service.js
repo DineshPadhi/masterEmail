@@ -5,6 +5,7 @@ module.exports = class EmailService {
     //
   }
   async postEmailSql(data) {
+    console.log("inserver");
     let resultSql = await templateModel.createSqlForm(data);
     // resultSql = await templateModel.ShowByID(resultSql);
     // console.log("sql data is", resultSql);
@@ -15,11 +16,18 @@ module.exports = class EmailService {
     return { resultMongo, status: true };
   }
 
-  showDatas() {
-    const result = templateModel.ShowData();
+  async showDatas() {
+    const result = await templateModel.ShowData();
     console.log("result===", result);
     return result;
   }
+  async showByIds(id) {
+    console.log("nana");
+    const result = await templateModel.ShowByID(id);
+    console.log("sult is", result);
+    return result;
+  }
+
   async filterDatas(searchCriteria) {
     const result = await templateModel.filterData(searchCriteria);
     return { result, status: true };

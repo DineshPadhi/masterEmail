@@ -16,7 +16,7 @@ module.exports = class SegmentController {
         console.log("it passes");
         let result = await EmailService.postEmailSql(sqlData);
         console.log("result in controller of sql is", result);
-        req.body.sqlId = result;
+        req.body.sqlId = result.resultSql;
         const userArray = req.body.user;
         userArray.forEach((element) => {
           req.body.user = element;
@@ -24,7 +24,6 @@ module.exports = class SegmentController {
           EmailService.postEmailMongo(mongoData);
           console.log("after formatting", mongoData);
         });
-
         return Response.success(res, sqlData);
       } else {
         return Response.error(res, "Validation failed");
@@ -34,12 +33,32 @@ module.exports = class SegmentController {
     }
   };
 
+  // mongoForm = async (req, res) => {
+  //   try {
+  //     const data = formatter.data(req);
+  //     let rules = formValidator.formValidator();
+  //     let validation = new Validator(data, rules);
+  //     if (validation.passes() && !validation.fails()) {
+  //       console.log("it passes");
+  //       // await EmailService.postEmail(data);
+  //       await EmailService.postForm(data);
+  //       return Response.success(res, data);
+  //     } else {
+  //       return Response.error(res, "Validation failed");
+  //     }
+  //   } catch (error) {
+  //     return Response.error(res, error);
+  //   }
+  // };
+
   async showAllDatas(req, res) {
     console.log("hiii");
     try {
       const result = await EmailService.showDatas();
-      console.log("res.....", result);
-      return Response.success(res, result);
+      console.log("rseult is", result);
+      if (result) {
+        return Response.success(res, result);
+      }
     } catch (error) {
       return Response.error(res, error);
     }
@@ -47,11 +66,13 @@ module.exports = class SegmentController {
   async showById(req, res) {
     try {
       const id = req.params.id;
-      const result = await EmailService.showByID(id);
+      const result = await EmailService.showByIds(id);
 
       result[0].user = result[0].user.split(",");
       result[0].lang = result[0].lang.split(",");
+      // after updatte=======================================
 
+      // -------------------------------------------------------------
       return Response.success(res, result);
     } catch (error) {
       return Response.error(res, error);
