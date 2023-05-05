@@ -76,3 +76,5 @@
 {"level":"info","message":"Response Sent","responseTime":7,"status":200,"timestamp":"2023-05-05T09:59:06.754Z"}
 {"level":"info","message":"Request received","method":"POST","timestamp":"2023-05-05T09:59:07.777Z","url":"/search"}
 {"level":"info","message":"Response Sent","responseTime":9,"status":200,"timestamp":"2023-05-05T09:59:07.787Z"}
+{"level":"info","message":"Request received","method":"GET","timestamp":"2023-05-05T10:07:46.072Z","url":"/get"}
+{"level":"info","message":"Response Sent","responseTime":3,"status":304,"timestamp":"2023-05-05T10:07:46.075Z"}

@@ -13,6 +13,7 @@ module.exports = class EmailService {
   }
 
   async showDatas() {
+    // service to get all the data
     const result = await templateModel.ShowData();
     return { result, status: true };
   }

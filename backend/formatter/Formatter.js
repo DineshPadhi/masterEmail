@@ -1,3 +1,4 @@
+// format data to store in mysql
 const sqlformatter = (req) => {
   let userArr = [];
   let userData = "";
@@ -68,6 +69,7 @@ const sqlformatter = (req) => {
   };
   return user;
 };
+// format data to store in mongodb
 const mongoformatter = (req) => {
   let langObject;
   let someArr = [];
