@@ -38,9 +38,8 @@ module.exports = class SegmentController {
     console.log("hiii");
     try {
       const result = await EmailService.showDatas();
-      if (result.status == true) {
-        return Response.success(res, result.result);
-      }
+      console.log("res.....", result);
+      return Response.success(res, result);
     } catch (error) {
       return Response.error(res, error);
     }
