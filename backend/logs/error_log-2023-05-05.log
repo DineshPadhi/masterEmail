@@ -142,3 +142,7 @@
 {"level":"info","message":"Response Sent","responseTime":2,"status":304,"timestamp":"2023-05-05T10:16:23.092Z"}
 {"level":"info","message":"Request received","method":"POST","timestamp":"2023-05-05T10:16:24.397Z","url":"/search"}
 {"level":"info","message":"Response Sent","responseTime":2,"status":200,"timestamp":"2023-05-05T10:16:24.399Z"}
+{"level":"info","message":"Request received","method":"GET","timestamp":"2023-05-05T11:26:10.209Z","url":"/get"}
+{"level":"info","message":"Response Sent","responseTime":2,"status":304,"timestamp":"2023-05-05T11:26:10.211Z"}
+{"level":"info","message":"Request received","method":"GET","timestamp":"2023-05-05T11:26:17.687Z","url":"/get"}
+{"level":"info","message":"Response Sent","responseTime":1,"status":304,"timestamp":"2023-05-05T11:26:17.689Z"}
