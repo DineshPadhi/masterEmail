@@ -32,7 +32,6 @@ module.exports = class SegmentController {
   async showAllDatas(req, res) {
     try {
       const result = await EmailService.showDatas();
-      console.log("rseult is", result);
       if (result.status) {
         return Response.success(res, result.result);
       }
@@ -47,7 +46,6 @@ module.exports = class SegmentController {
 
       result.result[0].user = result.result[0].user.split(",");
       result.result[0].lang = result.result[0].lang.split(",");
-      console.log("result in show by id s", result.result);
       return Response.success(res, result.result);
     } catch (error) {
       return Response.error(res, error);
