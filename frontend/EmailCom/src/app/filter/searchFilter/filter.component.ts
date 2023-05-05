@@ -46,10 +46,10 @@ export class FilterComponent implements OnInit {
       this.templateData = resu.data;
       if (this.templateData.length == 0) {
         this.toastr.info('No Data Available');
-      } else if (this.templateData.reset()){
-        this.toastr.success('reset Data Found Successfully');
+      } else if (this.templateData){
+        this.toastr.success(' Data Found Successfully');
       }
-      
+
       if (this.templateData) {
         this.currentPage = 1;
       }
