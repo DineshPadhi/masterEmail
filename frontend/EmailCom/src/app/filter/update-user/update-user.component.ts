@@ -3,11 +3,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FilterService } from '../filter.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormComponent } from 'src/app/home/form/form.component';
+<<<<<<< HEAD
+=======
 import { FormServiceService } from 'src/app/home/form-service.service';
 import { FilterComponent } from '../searchFilter/filter.component';
 import { ToastrService } from 'ngx-toastr';
+>>>>>>> 4d36ce3ae3e1b46d081cb6479f99acf98f7040cf
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-user',
@@ -15,6 +19,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrls: ['./update-user.component.css'],
 })
 export class UpdateUserComponent implements OnInit {
+
   @ViewChild('iframe') preview_iframe: ElementRef;
 
   myForm: FormGroup;
@@ -34,12 +39,21 @@ export class UpdateUserComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private form: FormComponent,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private toastr:ToastrService,
   ) {
+<<<<<<< HEAD
+
+=======
+>>>>>>> 4d36ce3ae3e1b46d081cb6479f99acf98f7040cf
     this.createForm();
   }
 
   ngOnInit(): void {
+<<<<<<< HEAD
+
+=======
+>>>>>>> 4d36ce3ae3e1b46d081cb6479f99acf98f7040cf
     this.dropdownUserList = [
       { item_id: 1, item_text: 'User 1' },
       { item_id: 2, item_text: 'User 2' },
@@ -61,6 +75,7 @@ export class UpdateUserComponent implements OnInit {
       textField: 'item_text',
     };
 
+
     this.active.paramMap.subscribe((params) => {
       this.id = params.get('id');
 
@@ -70,7 +85,11 @@ export class UpdateUserComponent implements OnInit {
         iframe['contentWindow'].document.open();
         iframe['contentDocument'].write(this.htmlContent);
         iframe['contentWindow'].document.close();
+<<<<<<< HEAD
+ 
+=======
 
+>>>>>>> 4d36ce3ae3e1b46d081cb6479f99acf98f7040cf
         if (this.id) {
           this.myForm.patchValue({
             templateName: result.data[0].templateName,
@@ -90,6 +109,7 @@ export class UpdateUserComponent implements OnInit {
         }
       });
     });
+
   }
 
   createForm() {
@@ -114,6 +134,10 @@ export class UpdateUserComponent implements OnInit {
 
   seePreview(event: any) {
     this.preview = event.target.value;
+<<<<<<< HEAD
+    // console.log(this.preview);
+=======
+>>>>>>> 4d36ce3ae3e1b46d081cb6479f99acf98f7040cf
   }
 
   reset() {
@@ -134,12 +158,18 @@ export class UpdateUserComponent implements OnInit {
         this.FilterService.update(this.id, data).subscribe((result: any) => {
           if (result) {
             this.router.navigate(['/allTemplateData']);
+<<<<<<< HEAD
+            // console.log('result......', result);
+            this.toastr.success<any>('Your Data updated successfully!!')
+=======
             this.toastr.success<any>('Your Data Updated successfully!!');
+>>>>>>> 4d36ce3ae3e1b46d081cb6479f99acf98f7040cf
           }
         });
       }
     });
   }
+
   safehtmlinput($event: any) {
     this.htmlContent = $event.target.value;
     const iframe = document.getElementById('preview_iframe_5');
@@ -153,4 +183,8 @@ export class UpdateUserComponent implements OnInit {
       templateName: this.form.myForm.value,
     });
   }
+<<<<<<< HEAD
+
+=======
+>>>>>>> 4d36ce3ae3e1b46d081cb6479f99acf98f7040cf
 }

@@ -42,6 +42,10 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+<<<<<<< HEAD
+
+=======
+>>>>>>> 4d36ce3ae3e1b46d081cb6479f99acf98f7040cf
     this.dropdownUserList = [
       { item_id: 1, item_text: 'User 1' },
       { item_id: 2, item_text: 'User 2' },
@@ -61,7 +65,11 @@ export class FormComponent implements OnInit {
     this.dropdownSettings = {
       idField: 'item_id',
       textField: 'item_text',
+<<<<<<< HEAD
+    }
+=======
     };
+>>>>>>> 4d36ce3ae3e1b46d081cb6479f99acf98f7040cf
   }
 
   safehtmlinput($event: any) {
@@ -74,6 +82,10 @@ export class FormComponent implements OnInit {
     return this.urlSafe;
   }
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 4d36ce3ae3e1b46d081cb6479f99acf98f7040cf
   createForm() {
     this.myForm = this.fb.group({
       templateName: ['', Validators.required],
@@ -92,11 +104,20 @@ export class FormComponent implements OnInit {
     });
   }
 
+
   submit(data: any) {
     this.formService.submitForm(data).subscribe((result: any) => {
+<<<<<<< HEAD
+      // console.log('result========>>>>>>>>', result.data);
+      if (result) {
+        this.router.navigate(['/allTemplateData']);
+        // console.log('result====', result);
+        this.toastr.success<any>('Your Data Submited successfully!!')
+=======
       if (result) {
         this.router.navigate(['/allTemplateData']);
         this.toastr.success<any>('Your Data Submited successfully!!');
+>>>>>>> 4d36ce3ae3e1b46d081cb6479f99acf98f7040cf
       }
     });
   }
@@ -107,6 +128,10 @@ export class FormComponent implements OnInit {
 
   seePreview(event: any) {
     this.preview = event.target.value;
+<<<<<<< HEAD
+    // console.log(this.preview);
+=======
+>>>>>>> 4d36ce3ae3e1b46d081cb6479f99acf98f7040cf
   }
 
   selectedValue: any = '';
@@ -114,4 +139,8 @@ export class FormComponent implements OnInit {
   onSelect(value: any) {
     this.selectedValue = value;
   }
+<<<<<<< HEAD
+
+=======
+>>>>>>> 4d36ce3ae3e1b46d081cb6479f99acf98f7040cf
 }

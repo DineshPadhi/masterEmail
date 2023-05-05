@@ -46,6 +46,7 @@ module.exports = class SegmentController {
       return Response.error(res, error);
     }
   }
+
   async showById(req, res) {
     try {
       const id = req.params.id;
@@ -62,6 +63,7 @@ module.exports = class SegmentController {
   async searchAllDatas(req, res) {
     try {
       let searchCriteria = req.body;
+      // console.log('searchCriteria',searchCriteria);
       const result = await EmailService.filterDatas(searchCriteria);
       if (result.status == true) {
         return Response.success(res, result.result);

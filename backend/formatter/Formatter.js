@@ -69,10 +69,19 @@ const sqlformatter = (req) => {
   };
   return user;
 };
+<<<<<<< HEAD
+
+const mongoformatter = (req) => {
+  // console.log("body is", req.body);
+  let langObject;
+  let someArr = [];
+  // console.log("inside mongoformatter", typeof req.body.lang[0]);
+=======
 // format data to store in mongodb
 const mongoformatter = (req) => {
   let langObject;
   let someArr = [];
+>>>>>>> 4d36ce3ae3e1b46d081cb6479f99acf98f7040cf
   if (typeof req.body.lang[0] === "string") {
     req.body.lang.forEach((element) => {
       someArr.push(element);
@@ -89,9 +98,20 @@ const mongoformatter = (req) => {
       for (let i = 0; i < someArr.length; i++) {
         rv[someArr[i]] = deepobj;
       }
+<<<<<<< HEAD
+      // console.log(
+      //   "rv is===================================>>>>>>>>>>>>>>>>",
+      //   rv
+      // );
       return rv;
     };
     langObject = toObject(req.body.lang);
+    // console.log("someArr is", someArr);
+=======
+      return rv;
+    };
+    langObject = toObject(req.body.lang);
+>>>>>>> 4d36ce3ae3e1b46d081cb6479f99acf98f7040cf
   } else {
     const toObject = (arr) => {
       someArr = [];
@@ -122,6 +142,7 @@ const mongoformatter = (req) => {
     targetAudience: req.body.targetAudience,
     lang: langObject,
   };
+
   if (req.body.user.item_text) {
     return {
       name: req.body.user.item_text,
@@ -134,5 +155,7 @@ const mongoformatter = (req) => {
       message: mongoUser,
     };
   }
+
 };
+
 module.exports = { sqlformatter, mongoformatter };
