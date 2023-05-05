@@ -30,7 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgxPaginationModule,
     Ng2SearchPipeModule,
     NgMultiSelectDropDownModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({timeOut: 10000, positionClass: 'toast-bottom-right', preventDuplicates: true}),
     BrowserAnimationsModule,
   ],
   providers: [],
