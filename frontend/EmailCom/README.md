@@ -26,8 +26,6 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-<!-- ------------------------------------------------------------------------------------------------------------------------------- -->
-
 Title: MasterEmail
 Group: Group 5
 Project: Project 4
@@ -69,8 +67,9 @@ Team Leader: Varun Mishra
    x) targetAudience: it is of varchar type and 255 characters can be inserted
    xi) subject: it is of varchar type and 255 characters can be inserted
    xii) body: it is of text type and and maximum of 65,535 characters can be inserted
+4. MongoDB Architecture
 
-4. Backend:
+5. Backend:
 
    to start the backend:
    in the current directive:
@@ -78,39 +77,10 @@ Team Leader: Varun Mishra
    ii) npm i
    iii) npm run dev
 
-5. Frontend:
+6. Frontend:
 
    to start the frontend:
    in the current directive:
    i) cd frontend/EmailCom
    ii) npm i
    iii) npm start
-
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>EmailCom</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-</head>
-<body>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-<script src="https://kit.fontawesome.com/dd8dd82b30.js" crossorigin="anonymous"></script>
-<button type="button" class="btn btn-primary">Primary</button>
-<button type="button" class="btn btn-secondary">Secondary</button>
-<button type="button" class="btn btn-success">Success</button>
-<button type="button" class="btn btn-danger">Danger</button>
-<button type="button" class="btn btn-warning">Warning</button>
-<button type="button" class="btn btn-info">Info</button>
-<button type="button" class="btn btn-light">Light</button>
-<button type="button" class="btn btn-dark">Dark</button>
-
-<button type="button" class="btn btn-link">Link</button>
-
-</body>
-</html>
