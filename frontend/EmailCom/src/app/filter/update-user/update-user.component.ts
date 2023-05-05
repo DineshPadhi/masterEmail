@@ -3,10 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FilterService } from '../filter.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormComponent } from 'src/app/home/form/form.component';
-import { FormServiceService } from 'src/app/home/form-service.service';
-import { FilterComponent } from '../searchFilter/filter.component';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-user',
@@ -14,6 +13,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrls: ['./update-user.component.css'],
 })
 export class UpdateUserComponent implements OnInit {
+
   @ViewChild('iframe') preview_iframe: ElementRef;
 
   myForm: FormGroup;
@@ -26,44 +26,15 @@ export class UpdateUserComponent implements OnInit {
   dropdownUserList = [];
   dropdownUser: IDropdownSettings = {};
 
-  // patch: FilterComponent
-
   constructor(
     private active: ActivatedRoute,
     private fb: FormBuilder,
     private FilterService: FilterService,
     private router: Router,
     private form: FormComponent,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private toastr:ToastrService,
   ) {
-    // this.active.paramMap.subscribe((params)=>{
-    //   this.id = params.get('id')
-
-    //   if(this.id){
-    //     this.myForm.patchValue({
-    //       templateName: this.filter.preData.templateName,
-    //       status: 'Active'
-
-    //      })
-    //     //  this.createForm()
-    //   }
-    // })
-
-    // this.active.paramMap.subscribe((params:any)=>{
-    //   this.id = params.get('id')
-    //   if(this.id){
-    //     this.FilterService.getDataById(this.id).subscribe((result:any)=>{
-    //       console.log('result.......======',result.data[0].templateName);
-    //       if(result){
-    //         this.myForm.patchValue({
-    //           templateName: result.data[0].templateName
-    //         })
-    //         this.createForm()
-    //       }
-
-    //     })
-    //   }
-    // })
 
     this.createForm();
 
@@ -71,21 +42,6 @@ export class UpdateUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log('patch======', this.patch.myForm.value.templateName)
-
-    //     let user:any = localStorage.getItem('submit')
-    // console.log('user====.......', user)
-    //   this.data = JSON.parse(user)
-    //   this.data = this.data.data
-    //   console.log('data====.......', this.data)
-
-    // console.log(this.form.myForm.value)
-    // this.form.previewData()
-    // this.dropdownList = [
-    //   { item_id: 1, item_text: 'User 1' },
-    //   { item_id: 2, item_text: 'User 2' },
-    //   { item_id: 3, item_text: 'User 3' },
-    // ];
 
     this.dropdownUserList = [
       { item_id: 1, item_text: 'User 1' },
@@ -108,6 +64,7 @@ export class UpdateUserComponent implements OnInit {
       textField: 'item_text',
     };
 
+
     this.active.paramMap.subscribe((params) => {
       this.id = params.get('id');
 
@@ -117,7 +74,7 @@ export class UpdateUserComponent implements OnInit {
         iframe['contentWindow'].document.open();
         iframe['contentDocument'].write(this.htmlContent);
         iframe['contentWindow'].document.close();
-        //
+ 
         if (this.id) {
           this.myForm.patchValue({
             templateName: result.data[0].templateName,
@@ -137,6 +94,7 @@ export class UpdateUserComponent implements OnInit {
         }
       });
     });
+
   }
 
   createForm() {
@@ -161,7 +119,6 @@ export class UpdateUserComponent implements OnInit {
 
   seePreview(event: any) {
     this.preview = event.target.value;
-
     // console.log(this.preview);
   }
 
@@ -170,10 +127,8 @@ export class UpdateUserComponent implements OnInit {
   }
 
   selectedValue: any = '';
-  // error:any
 
   onSelect(value: any) {
-    // this.selectedValue = document.getElementById('inp');
     this.selectedValue = value;
   }
 
@@ -184,23 +139,19 @@ export class UpdateUserComponent implements OnInit {
       this.id = params.get('id');
 
       if (this.id) {
-        // this.myForm.patchValue({
-        //   templateName: this.form.myForm.value
-
-        //  })
-
         this.FilterService.update(this.id, data).subscribe((result: any) => {
           if (result) {
             this.router.navigate(['/allTemplateData']);
-            console.log('result......', result);
+            // console.log('result......', result);
+            this.toastr.success<any>('Your Data updated successfully!!')
           }
         });
       }
     });
   }
+
   safehtmlinput($event: any) {
     this.htmlContent = $event.target.value;
-    // this.urlSafe = this.sanitizer.bypassSecurityTrustHtml(this.htmlContent);
     const iframe = document.getElementById('preview_iframe_5');
     iframe['contentWindow'].document.open();
     iframe['contentDocument'].write(this.htmlContent);
@@ -213,19 +164,4 @@ export class UpdateUserComponent implements OnInit {
     });
   }
 
-  // preData:any
-
-  // getById(){
-
-  //   this.active.paramMap.subscribe((params:any)=>{
-  //     this.id = params.get('id')
-  //     if(this.id){
-  //       this.FilterService.getDataById(this.id).subscribe((result:any)=>{
-  //         console.log('result.......======',result);
-  //         this.preData = result
-  //       })
-  //     }
-  //   })
-
-  // }
 }
