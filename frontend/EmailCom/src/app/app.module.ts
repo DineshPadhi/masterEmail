@@ -9,10 +9,11 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateUserComponent } from './filter/update-user/update-user.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-
+import { ToastrModule } from 'ngx-toastr';
 import { FormServiceService } from './home/form-service.service';
 import { FilterService } from './filter/filter.service';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -28,7 +29,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     HttpClientModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
-    NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

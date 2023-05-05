@@ -8,6 +8,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormServiceService } from './form-service.service';
 import { FilterService } from '../filter/filter.service';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserModule } from '@angular/platform-browser';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 
 @NgModule({
@@ -23,7 +26,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     NgMultiSelectDropDownModule
   ],
   providers: [
-    FormComponent
+    FormComponent,
+    ToastrService
   ],
   exports: [
     FormsModule,

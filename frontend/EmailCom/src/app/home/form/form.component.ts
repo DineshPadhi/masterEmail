@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormServiceService } from '../form-service.service';
 import { Router } from '@angular/router';
 import { FilterService } from 'src/app/filter/filter.service';
+import { ToastrService } from 'ngx-toastr';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
@@ -39,12 +40,17 @@ export class FormComponent implements OnInit {
     private fb: FormBuilder,
     private formService: FormServiceService,
     private router: Router,
+    private toastr:ToastrService,
     public sanitizer: DomSanitizer
   ) {
     this.createForm();
   }
 
   ngOnInit(): void {
+
+
+    this.toastr.success<any>('Your Data Submited successfully!!')
+
     this.dropdownUserList = [
       { item_id: 1, item_text: 'User 1' },
       { item_id: 2, item_text: 'User 2' },
@@ -130,9 +136,11 @@ export class FormComponent implements OnInit {
     this.formService.submitForm(data).subscribe((result: any) => {
       console.log('result========>>>>>>>>', result.data);
       // localStorage.setItem('submit', JSON.stringify(result))
+      // this.toastr.success<any>('Your Data Submited successfully!!')
       if (result) {
         this.router.navigate(['/allTemplateData']);
         console.log('result====', result);
+        
       }
     });
   }
