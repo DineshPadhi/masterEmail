@@ -7,7 +7,7 @@ module.exports = class SegmentController {
   constuctor() {
     //
   }
-  templateForm = async (req, res) => {
+  async templateForm(req, res){
     try {
       const sqlData = sqlformatter(req);
       let rules = formValidator.formValidator();
