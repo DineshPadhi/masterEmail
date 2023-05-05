@@ -18,6 +18,7 @@ knex.raw("use MasterEmail").then(() => console.log("Mysql Database Connected"));
 mongoose
   .connect(`${url}`, {
     useUnifiedTopology: true,
+    useNewUrlParser: true 
   })
   .then(() => {
     console.log("connection succefull");
