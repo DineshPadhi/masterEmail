@@ -16,7 +16,7 @@ module.exports = class SegmentController {
         console.log("it passes");
         let result = await EmailService.postEmailSql(sqlData);
         console.log("result in controller of sql is", result);
-        req.body.sqlId = result;
+        req.body.sqlId = result.resultSql;
         const userArray = req.body.user;
         userArray.forEach((element) => {
           req.body.user = element;
@@ -24,7 +24,6 @@ module.exports = class SegmentController {
           EmailService.postEmailMongo(mongoData);
           console.log("after formatting", mongoData);
         });
-
         return Response.success(res, sqlData);
       } else {
         return Response.error(res, "Validation failed");
@@ -38,8 +37,9 @@ module.exports = class SegmentController {
     console.log("hiii");
     try {
       const result = await EmailService.showDatas();
-      if (result.status == true) {
-        return Response.success(res, result.result);
+      console.log("rseult is", result);
+      if (result) {
+        return Response.success(res, result);
       }
     } catch (error) {
       return Response.error(res, error);
@@ -48,11 +48,13 @@ module.exports = class SegmentController {
   async showById(req, res) {
     try {
       const id = req.params.id;
-      const result = await EmailService.showByID(id);
+      const result = await EmailService.showByIds(id);
 
       result[0].user = result[0].user.split(",");
       result[0].lang = result[0].lang.split(",");
+      // after updatte=======================================
 
+      // -------------------------------------------------------------
       return Response.success(res, result);
     } catch (error) {
       return Response.error(res, error);

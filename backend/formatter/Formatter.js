@@ -78,6 +78,25 @@ const mongoformatter = (req) => {
     req.body.lang.forEach((element) => {
       someArr.push(element);
     });
+    const toObject = (arr) => {
+      someArr = [];
+      arr.forEach((element) => {
+        someArr.push(element);
+      });
+      let rv = {};
+      let deepobj = {};
+      deepobj.body = req.body.body;
+      deepobj.subject = req.body.subject;
+      for (let i = 0; i < someArr.length; i++) {
+        rv[someArr[i]] = deepobj;
+      }
+      console.log(
+        "rv is===================================>>>>>>>>>>>>>>>>",
+        rv
+      );
+      return rv;
+    };
+    langObject = toObject(req.body.lang);
     console.log("someArr is", someArr);
   } else {
     const toObject = (arr) => {
@@ -92,10 +111,6 @@ const mongoformatter = (req) => {
       for (let i = 0; i < someArr.length; i++) {
         rv[someArr[i]] = deepobj;
       }
-      console.log(
-        "rv is===================================>>>>>>>>>>>>>>>>",
-        rv
-      );
       return rv;
     };
     langObject = toObject(req.body.lang);
