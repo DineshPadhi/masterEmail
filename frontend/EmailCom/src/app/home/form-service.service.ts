@@ -6,15 +6,12 @@ import { environment } from './../../../environment/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class FormServiceService implements OnInit{
+export class FormServiceService implements OnInit {
   url = environment.BS_BASE_URL;
 
   constructor(private http: HttpClient) {}
 
-  
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
   submitForm(data: any) {
     console.log({ service: data });
@@ -29,6 +26,7 @@ export class FormServiceService implements OnInit{
       activity,
       status,
       targetAudience,
+      lang,
       subject,
       body,
     } = data;
@@ -44,6 +42,7 @@ export class FormServiceService implements OnInit{
       activity,
       status,
       targetAudience,
+      lang,
       subject,
       body,
     });
