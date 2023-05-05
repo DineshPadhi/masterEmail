@@ -14,11 +14,11 @@ module.exports = class EmailService {
 
   async showDatas() {
     const result = await templateModel.ShowData();
-    return { result };
+    return { result, status: true };
   }
   async showByIds(id) {
     const result = await templateModel.ShowByID(id);
-    return result;
+    return { result, status: true };
   }
 
   async filterDatas(searchCriteria) {

@@ -217,3 +217,119 @@ connection succefull
 Server listening on port 3000
 Mysql Database Connected
 connection succefull
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+Server listening on port 3000
+Mysql Database Connected
+connection succefull
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+Server listening on port 3000
+Mysql Database Connected
+connection succefull
+rseult is {
+  result: [
+    {
+      id: 1,
+      templateName: 'Surabh',
+      templateCode: 'sucode',
+      scenario: 'Scenario 2',
+      providers: 'Provider 1',
+      user: 'User 1,User 3',
+      tier: 'Silver',
+      emailType: 'Transactional',
+      activity: 'Activity 1',
+      status: 'Active',
+      targetAudience: 'Action',
+      lang: 'English,Hindi,Marathi',
+      subject: 'SUBI',
+      body: 'bodie'
+    },
+    {
+      id: 2,
+      templateName: 'Mukesh',
+      templateCode: 'coder',
+      scenario: 'Scenario 1',
+      providers: 'Provider 1',
+      user: 'User 1,User 3',
+      tier: 'Silver',
+      emailType: 'Transactional',
+      activity: 'Activity 1',
+      status: 'InActive',
+      targetAudience: 'Something else here',
+      lang: 'English,Hindi',
+      subject: 'subssss',
+      body: 'bodssss'
+    },
+    {
+      id: 3,
+      templateName: 'nome',
+      templateCode: 'codeeeee',
+      scenario: 'Scenario 1',
+      providers: 'Provider 1',
+      user: 'User 1,User 3',
+      tier: 'Silver',
+      emailType: 'Transactional',
+      activity: 'Activity 1',
+      status: 'Active',
+      targetAudience: 'Action',
+      lang: 'English',
+      subject: 'subsss',
+      body: 'buds'
+    },
+    {
+      id: 4,
+      templateName: 'pranay',
+      templateCode: 'codee',
+      scenario: 'Scenario 2',
+      providers: 'Provider 1',
+      user: 'User 1,User 3',
+      tier: 'Gold',
+      emailType: 'Pramotional',
+      activity: 'Activity 2',
+      status: 'Active',
+      targetAudience: 'Another action',
+      lang: 'Hindi,English',
+      subject: 'subiiiii',
+      body: 'asdf'
+    },
+    {
+      id: 5,
+      templateName: 'ajay',
+      templateCode: 'asdfghjk',
+      scenario: 'Scenario 1',
+      providers: 'Provider 1',
+      user: 'User 1,User 2,User 3',
+      tier: 'Silver',
+      emailType: 'Transactional',
+      activity: 'Activity 1',
+      status: 'Active',
+      targetAudience: 'Action',
+      lang: 'English,Marathi',
+      subject: 'subs',
+      body: 'body'
+    }
+  ],
+  status: true
+}

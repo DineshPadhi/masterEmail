@@ -4,3 +4,5 @@
 {"level":"info","message":"Response Sent","responseTime":60,"status":304,"timestamp":"2023-05-05T09:24:12.986Z"}
 {"level":"info","message":"Request received","method":"GET","timestamp":"2023-05-05T09:30:51.010Z","url":"/get"}
 {"level":"info","message":"Response Sent","responseTime":35,"status":304,"timestamp":"2023-05-05T09:30:51.047Z"}
+{"level":"info","message":"Request received","method":"GET","timestamp":"2023-05-05T09:40:41.768Z","url":"/get"}
+{"level":"info","message":"Response Sent","responseTime":120,"status":304,"timestamp":"2023-05-05T09:40:41.891Z"}
