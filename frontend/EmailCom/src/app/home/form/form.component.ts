@@ -7,7 +7,6 @@ import { ToastrService } from 'ngx-toastr';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
-
 @Component({
   selector: 'app-form',
   host: {
@@ -20,8 +19,6 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class FormComponent implements OnInit {
   @ViewChild('iframe') preview_iframe: ElementRef;
 
-
-
   data: any = [];
   formData: any = [];
   myForm: FormGroup;
@@ -31,26 +28,21 @@ export class FormComponent implements OnInit {
   urlSafe: SafeResourceUrl;
   htmlContent: string = '';
   dropdownUserList = [];
-  dropdownUser:IDropdownSettings={};
-  userArry:any = []
-  getData:any=''
- 
+  dropdownUser: IDropdownSettings = {};
+  userArry: any = [];
+  getData: any = '';
 
   constructor(
     private fb: FormBuilder,
     private formService: FormServiceService,
     private router: Router,
-    private toastr:ToastrService,
+    private toastr: ToastrService,
     public sanitizer: DomSanitizer
   ) {
     this.createForm();
   }
 
   ngOnInit(): void {
-
-
-    this.toastr.success<any>('Your Data Submited successfully!!')
-
     this.dropdownUserList = [
       { item_id: 1, item_text: 'User 1' },
       { item_id: 2, item_text: 'User 2' },
@@ -61,17 +53,16 @@ export class FormComponent implements OnInit {
       textField: 'item_text',
     };
 
-
     this.dropdownList = [
       { item_id: 1, item_text: 'English' },
       { item_id: 2, item_text: 'Hindi' },
-      { item_id: 3, item_text: 'Marathi' }
+      { item_id: 3, item_text: 'Marathi' },
     ];
 
     this.dropdownSettings = {
       idField: 'item_id',
       textField: 'item_text',
-    }
+    };
 
     // console.log(this.dropdownList[0].item_text);
 
@@ -92,10 +83,6 @@ export class FormComponent implements OnInit {
     return this.urlSafe;
   }
 
-
- 
-
-
   // select(value:any){
   //   value.map((result:any)=>{
   //     if(result.item_id){
@@ -109,10 +96,6 @@ export class FormComponent implements OnInit {
   //   // console.log('getData====',this.userArry)
 
   // }
-
-
-
-  
 
   createForm() {
     this.myForm = this.fb.group({
@@ -128,7 +111,7 @@ export class FormComponent implements OnInit {
       targetAudience: ['', Validators.required],
       subject: ['', Validators.required],
       body: ['', Validators.required],
-      lang: ['']
+      lang: [''],
     });
   }
 
@@ -136,11 +119,10 @@ export class FormComponent implements OnInit {
     this.formService.submitForm(data).subscribe((result: any) => {
       console.log('result========>>>>>>>>', result.data);
       // localStorage.setItem('submit', JSON.stringify(result))
-      // this.toastr.success<any>('Your Data Submited successfully!!')
       if (result) {
         this.router.navigate(['/allTemplateData']);
+        this.toastr.success<any>('Your Data Submited successfully!!');
         console.log('result====', result);
-        
       }
     });
   }
@@ -175,6 +157,4 @@ export class FormComponent implements OnInit {
   }
 
   // title: 'hello world';
-
-
 }

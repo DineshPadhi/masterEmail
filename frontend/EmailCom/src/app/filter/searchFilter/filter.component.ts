@@ -26,11 +26,9 @@ export class FilterComponent implements OnInit {
   id: any;
   myForm: FormGroup;
   itemsPerPage: number = 5;
-  currentPage: number ;
+  currentPage: number;
   totalItems: number = 0;
   page: number = 1;
-
-  // constructor(private FilterService:FilterService, private http: HttpClient,private fb:FormBuilder) {}
 
   ngOnInit(): void {
     this.allData();
@@ -38,47 +36,19 @@ export class FilterComponent implements OnInit {
 
   allData() {
     this.FilterService.getAllData().subscribe((res: any) => {
-      this.templateData = res.data.result;
+      this.templateData = res.data;
     });
   }
 
   filterSearch(data: any) {
     this.FilterService.getFilterData(data).subscribe((resu: any) => {
       this.templateData = resu.data;
-      console.log('data in is', this.templateData);
       if (this.templateData) {
         this.currentPage = 1;
       }
-      // if(!resu){
-      //   this.router.navigate(['/allTemplateData'])
-      // }
     });
   }
 
-  // updateUser(id:any, data:any){
-  //   this.FilterService.update(id, data).subscribe((result:any)=>{
-  //     if(result){
-  //       this.router.navigate(['/allTemplateData'])
-  //     }
-  //   })
-  // }
-
-  // preData:any
-
-  // getById(id:any){
-
-  //   // this.active.paramMap.subscribe((params:any)=>{
-  //   //   this.id = params.get('id')
-  //   //   if(this.id){
-  //       this.FilterService.getDataById(id).subscribe((result:any)=>{
-  //         console.log('result.......======',result.data[0].templateName);
-  //         this.preData = result.data[0]
-  //         console.log('predata=====',this.preData.templateName)
-  //     //   })
-  //     // }
-  //   })
-
-  // }
   onPageChange($event) {
     this.currentPage = $event;
   }

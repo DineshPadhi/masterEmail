@@ -7,12 +7,11 @@ const createSqlForm = async (data) => {
 };
 const createMongForm = async (data) => {
   let member = await User(data).save();
-  console.log("member", member);
   return member;
 };
 
 const ShowData = async () => {
-  let result = await knex("TemplateData").select("*");
+  const result = await knex("TemplateData").select("*");
   return result;
 };
 const ShowByID = async (id) => {
@@ -34,18 +33,14 @@ const filterData = async (searchCriteria) => {
       if (searchCriteria.status) {
         qb.andWhere("status", "=", searchCriteria.status);
       }
-      return result;
     });
+  return result;
 };
 const updateUserSql = async (id, data) => {
-  console.log("llll");
   let result = await knex("TemplateData").update(data).where("id", id);
-  console.log("result for id is", result);
   return result;
 };
 const updateUserMongo = async (id, data) => {
-  console.log("data in model is", data);
-
   const result = await User.updateMany({ sqlId: id }, data, {
     new: true,
   });

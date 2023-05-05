@@ -70,10 +70,8 @@ const sqlformatter = (req) => {
   return user;
 };
 const mongoformatter = (req) => {
-  console.log("body is", req.body);
   let langObject;
   let someArr = [];
-  console.log("inside mongoformatter", typeof req.body.lang[0]);
   if (typeof req.body.lang[0] === "string") {
     req.body.lang.forEach((element) => {
       someArr.push(element);
@@ -90,14 +88,9 @@ const mongoformatter = (req) => {
       for (let i = 0; i < someArr.length; i++) {
         rv[someArr[i]] = deepobj;
       }
-      console.log(
-        "rv is===================================>>>>>>>>>>>>>>>>",
-        rv
-      );
       return rv;
     };
     langObject = toObject(req.body.lang);
-    console.log("someArr is", someArr);
   } else {
     const toObject = (arr) => {
       someArr = [];

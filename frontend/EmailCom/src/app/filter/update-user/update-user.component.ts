@@ -36,57 +36,10 @@ export class UpdateUserComponent implements OnInit {
     private form: FormComponent,
     private sanitizer: DomSanitizer
   ) {
-    // this.active.paramMap.subscribe((params)=>{
-    //   this.id = params.get('id')
-
-    //   if(this.id){
-    //     this.myForm.patchValue({
-    //       templateName: this.filter.preData.templateName,
-    //       status: 'Active'
-
-    //      })
-    //     //  this.createForm()
-    //   }
-    // })
-
-    // this.active.paramMap.subscribe((params:any)=>{
-    //   this.id = params.get('id')
-    //   if(this.id){
-    //     this.FilterService.getDataById(this.id).subscribe((result:any)=>{
-    //       console.log('result.......======',result.data[0].templateName);
-    //       if(result){
-    //         this.myForm.patchValue({
-    //           templateName: result.data[0].templateName
-    //         })
-    //         this.createForm()
-    //       }
-
-    //     })
-    //   }
-    // })
-
     this.createForm();
-
-    // console.log('id====',this.myForm.value)
   }
 
   ngOnInit(): void {
-    // console.log('patch======', this.patch.myForm.value.templateName)
-
-    //     let user:any = localStorage.getItem('submit')
-    // console.log('user====.......', user)
-    //   this.data = JSON.parse(user)
-    //   this.data = this.data.data
-    //   console.log('data====.......', this.data)
-
-    // console.log(this.form.myForm.value)
-    // this.form.previewData()
-    // this.dropdownList = [
-    //   { item_id: 1, item_text: 'User 1' },
-    //   { item_id: 2, item_text: 'User 2' },
-    //   { item_id: 3, item_text: 'User 3' },
-    // ];
-
     this.dropdownUserList = [
       { item_id: 1, item_text: 'User 1' },
       { item_id: 2, item_text: 'User 2' },
@@ -212,20 +165,4 @@ export class UpdateUserComponent implements OnInit {
       templateName: this.form.myForm.value,
     });
   }
-
-  // preData:any
-
-  // getById(){
-
-  //   this.active.paramMap.subscribe((params:any)=>{
-  //     this.id = params.get('id')
-  //     if(this.id){
-  //       this.FilterService.getDataById(this.id).subscribe((result:any)=>{
-  //         console.log('result.......======',result);
-  //         this.preData = result
-  //       })
-  //     }
-  //   })
-
-  // }
 }

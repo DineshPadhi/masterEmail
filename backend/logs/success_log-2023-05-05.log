@@ -1,0 +1,6 @@
+{"level":"info","message":"Request received","method":"GET","timestamp":"2023-05-05T09:22:41.408Z","url":"/get"}
+{"level":"info","message":"Response Sent","responseTime":35,"status":304,"timestamp":"2023-05-05T09:22:41.449Z"}
+{"level":"info","message":"Request received","method":"GET","timestamp":"2023-05-05T09:24:12.915Z","url":"/get"}
+{"level":"info","message":"Response Sent","responseTime":60,"status":304,"timestamp":"2023-05-05T09:24:12.986Z"}
+{"level":"info","message":"Request received","method":"GET","timestamp":"2023-05-05T09:30:51.001Z","url":"/get"}
+{"level":"info","message":"Response Sent","responseTime":35,"status":304,"timestamp":"2023-05-05T09:30:51.046Z"}
