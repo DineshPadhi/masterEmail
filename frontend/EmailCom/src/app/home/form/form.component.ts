@@ -123,6 +123,7 @@ export class FormComponent implements OnInit {
         this.router.navigate(['/allTemplateData']);
         this.toastr.success<any>('Your Data Submited successfully!!');
         console.log('result====', result);
+        this.toastr.success<any>('Your Data Submited successfully!!');
       }
     });
   }

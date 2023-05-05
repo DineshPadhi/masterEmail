@@ -1,9 +1,8 @@
 const templateModel = require("../model/Model.js");
 
 module.exports = class EmailService {
-  constuctor() {
-    //
-  }
+  constuctor() {}
+
   async postEmailSql(data) {
     let resultSql = await templateModel.createSqlForm(data);
     return { resultSql, status: true };
@@ -28,7 +27,7 @@ module.exports = class EmailService {
   }
   async updateSql(id, data) {
     const result = await templateModel.updateUserSql(id, data);
-    return result;
+    return { result, status: true };
   }
   async updateMongo(id, data) {
     const result = await templateModel.updateUserMongo(id, data);

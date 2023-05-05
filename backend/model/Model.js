@@ -5,6 +5,7 @@ const createSqlForm = async (data) => {
   let result = await knex("TemplateData").insert(data);
   return result[0];
 };
+
 const createMongForm = async (data) => {
   let member = await User(data).save();
   return member;
@@ -14,10 +15,12 @@ const ShowData = async () => {
   const result = await knex("TemplateData").select("*");
   return result;
 };
+
 const ShowByID = async (id) => {
   let result = await knex("TemplateData").select("*").where("id", id);
   return result;
 };
+
 const filterData = async (searchCriteria) => {
   let result = await knex("TemplateData")
     .select("*")
@@ -36,10 +39,12 @@ const filterData = async (searchCriteria) => {
     });
   return result;
 };
+
 const updateUserSql = async (id, data) => {
   let result = await knex("TemplateData").update(data).where("id", id);
   return result;
 };
+
 const updateUserMongo = async (id, data) => {
   const result = await User.updateMany({ sqlId: id }, data, {
     new: true,

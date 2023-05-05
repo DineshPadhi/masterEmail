@@ -3,11 +3,10 @@ const { sqlformatter, mongoformatter } = require("../formatter/Formatter.js");
 const formValidator = require("../validator/Validator.js");
 const EmailService = new (require("../service/Service.js"))();
 const Response = new (require("../responses/Responses.js"))();
+
 module.exports = class SegmentController {
-  constuctor() {
-    //
-  }
-  async templateForm(req, res){
+  constuctor() {}
+  async templateForm(req, res) {
     try {
       const sqlData = sqlformatter(req);
       let rules = formValidator.formValidator();
@@ -28,12 +27,13 @@ module.exports = class SegmentController {
     } catch (error) {
       return Response.error(res, error);
     }
-  };
+  }
 
   async showAllDatas(req, res) {
     try {
       const result = await EmailService.showDatas();
-      if (result) {
+      console.log("rseult is", result);
+      if (result.status) {
         return Response.success(res, result.result);
       }
     } catch (error) {
@@ -45,9 +45,10 @@ module.exports = class SegmentController {
       const id = req.params.id;
       const result = await EmailService.showByIds(id);
 
-      result[0].user = result[0].user.split(",");
-      result[0].lang = result[0].lang.split(",");
-      return Response.success(res, result);
+      result.result[0].user = result.result[0].user.split(",");
+      result.result[0].lang = result.result[0].lang.split(",");
+      console.log("result in show by id s", result.result);
+      return Response.success(res, result.result);
     } catch (error) {
       return Response.error(res, error);
     }

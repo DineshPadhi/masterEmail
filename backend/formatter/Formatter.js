@@ -50,7 +50,6 @@ const sqlformatter = (req) => {
     });
     langData = langArr.join(",");
   }
-  // }
 
   user = {
     templateName: req.body.templateName,
