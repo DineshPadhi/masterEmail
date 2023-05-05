@@ -5,16 +5,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormServiceService } from 'src/app/home/form-service.service';
 
-
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.css'],
 })
 export class FilterComponent implements OnInit {
-  templateData:any = [];
-
-  
+  templateData: any;
 
   constructor(
     private FilterService: FilterService,
@@ -29,7 +26,7 @@ export class FilterComponent implements OnInit {
   id: any;
   myForm: FormGroup;
   itemsPerPage: number = 5;
-  currentPage: number;
+  currentPage: number ;
   totalItems: number = 0;
   page: number = 1
 
@@ -41,7 +38,7 @@ export class FilterComponent implements OnInit {
 
   allData() {
     this.FilterService.getAllData().subscribe((res: any) => {
-      this.templateData = res.data;
+      this.templateData = res.data.result;
     });
   }
 
@@ -49,12 +46,10 @@ export class FilterComponent implements OnInit {
     this.FilterService.getFilterData(data).subscribe((resu: any) => {
       this.templateData = resu.data;
       console.log('data in is',this.templateData);
+      
       if(this.templateData){
         this.currentPage = 1
       }
-      // if(!resu){
-      //   this.router.navigate(['/allTemplateData'])
-      // }
     })
     ;
   }

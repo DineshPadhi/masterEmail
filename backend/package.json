@@ -22,6 +22,7 @@
     "mongoose": "^7.1.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.2.4",
+    "node-cron": "^3.0.2",
     "validatorjs": "^3.22.1"
   },
   "description": ""

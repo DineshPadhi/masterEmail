@@ -1,4 +1,4 @@
-const  knex  = require("../connections/Conn.js");
+const  {knex}  = require("../connections/Conn.js");
 // const User = require('../connections/Conn.js')
 // const mongoose = require('mongoose');
 // const { User } = require('../connections/Conn')

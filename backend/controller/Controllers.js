@@ -7,7 +7,7 @@ module.exports = class SegmentController {
   constuctor() {
     //
   }
-  templateForm = async (req, res) => {
+  async templateForm(req, res) {
     // console.log('hiiiiiiii');
     try {
       const data = formatter.data(req);
@@ -30,7 +30,7 @@ module.exports = class SegmentController {
     try {
       const result = await EmailService.showDatas();
       console.log("res.....", result);
-      return Response.success(res, result);
+      return Response.success(res, {result});
     } catch (error) {
       return Response.error(res, error);
     }

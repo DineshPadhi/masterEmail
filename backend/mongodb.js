@@ -1,22 +1,22 @@
-const {MongoClient} = require('mongodb');
-const {configureDetails} = require('./config/Config')
-const url = configureDetails.mongodb
+// const {MongoClient} = require('mongodb');
+// const {configureDetails} = require('./config/Config')
+// const url = configureDetails.mongodb
 
 
-const client = new MongoClient(url)
+// const client = new MongoClient(url)
 
- async function main(){
-     client.connect();
-    console.log("database Connected")
+//  async function main(){
+//      client.connect();
+//     console.log("database Connected")
 
-    const db = client.db('productDB')
-    let collection = db.collection('products')
-    //return  db.collection('products')
-    //  await collection.insertOne({name:"pranay"}).then((res)=>{
-    //     console.log(res)
-    // });
-    let data = await collection.find({}).toArray();
-    console.log(data);
+//     const db = client.db('productDB')
+//     let collection = db.collection('products')
+//     //return  db.collection('products')
+//     //  await collection.insertOne({name:"pranay"}).then((res)=>{
+//     //     console.log(res)
+//     // });
+//     let data = await collection.find({}).toArray();
+//     console.log(data);
   
 
 
@@ -43,7 +43,7 @@ const client = new MongoClient(url)
     // console.log(result4);
 
 
-}
+// }
 // main().then((res)=>{
 //     res.aggregate([{$group:{_id:{age:"$age", gender:"$gender"}}}]).toArray().then((data)=>{
 //         console.log(data)
