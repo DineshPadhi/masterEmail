@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { HomeRoutingModule } from './home-routing.module';
 import { FormComponent } from './form/form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { FormServiceService } from './form-service.service';
-import { FilterService } from '../filter/filter.service';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { ToastrService } from 'ngx-toastr';
 
 
 @NgModule({
@@ -23,7 +21,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     NgMultiSelectDropDownModule
   ],
   providers: [
-    FormComponent
+    FormComponent,
+    ToastrService
   ],
   exports: [
     FormsModule,

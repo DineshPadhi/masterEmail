@@ -20,31 +20,3 @@ select *
 from TemplateData;
 drop table TemplateData;
 truncate table TemplateData;
-INSERT INTO TemplateData (
-        TemplateName,
-        Template_Code,
-        Scenario,
-        Providers,
-        User,
-        Tier,
-        Email_Type,
-        Activity,
-        Status,
-        Target_Audience,
-        Subject,
-        Body
-    )
-VALUES (
-        'sushant',
-        '72100618990',
-        'sushant',
-        '0989',
-        'user',
-        '1',
-        'flat',
-        'true',
-        '0',
-        'xyz',
-        'sda',
-        'dd'
-    );

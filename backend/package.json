@@ -19,10 +19,13 @@
     "dotenv": "^16.0.3",
     "knex": "^2.4.2",
     "mongodb": "^5.3.0",
-    "mongoose": "^7.1.0",
+    "mongoose": "^5.1.2",
     "mysql": "^2.18.1",
     "mysql2": "^3.2.4",
-    "validatorjs": "^3.22.1"
+    "node-cron": "^3.0.2",
+    "validatorjs": "^3.22.1",
+    "winston": "^3.8.2",
+    "winston-daily-rotate-file": "^4.7.1"
   },
   "description": ""
 }

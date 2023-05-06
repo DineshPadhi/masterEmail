@@ -1,3 +1,4 @@
+// format data to store in mysql
 const sqlformatter = (req) => {
   let userArr = [];
   let userData = "";
@@ -50,7 +51,6 @@ const sqlformatter = (req) => {
     });
     langData = langArr.join(",");
   }
-  // }
 
   user = {
     templateName: req.body.templateName,
@@ -69,11 +69,10 @@ const sqlformatter = (req) => {
   };
   return user;
 };
+// format data to store in mongodb
 const mongoformatter = (req) => {
-  console.log("body is", req.body);
   let langObject;
   let someArr = [];
-  console.log("inside mongoformatter", typeof req.body.lang[0]);
   if (typeof req.body.lang[0] === "string") {
     req.body.lang.forEach((element) => {
       someArr.push(element);
@@ -90,14 +89,9 @@ const mongoformatter = (req) => {
       for (let i = 0; i < someArr.length; i++) {
         rv[someArr[i]] = deepobj;
       }
-      console.log(
-        "rv is===================================>>>>>>>>>>>>>>>>",
-        rv
-      );
       return rv;
     };
     langObject = toObject(req.body.lang);
-    console.log("someArr is", someArr);
   } else {
     const toObject = (arr) => {
       someArr = [];
@@ -128,6 +122,7 @@ const mongoformatter = (req) => {
     targetAudience: req.body.targetAudience,
     lang: langObject,
   };
+
   if (req.body.user.item_text) {
     return {
       name: req.body.user.item_text,
@@ -141,4 +136,5 @@ const mongoformatter = (req) => {
     };
   }
 };
+
 module.exports = { sqlformatter, mongoformatter };

@@ -1,18 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from '../app/app-routing.module';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UpdateUserComponent } from './filter/update-user/update-user.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-
-import { FormServiceService } from './home/form-service.service';
-import { FilterService } from './filter/filter.service';
+import { ToastrModule } from 'ngx-toastr';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -28,7 +25,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     HttpClientModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
-    NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule,
+    ToastrModule.forRoot({timeOut: 1000, positionClass: 'toast-top-center', preventDuplicates: true}),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

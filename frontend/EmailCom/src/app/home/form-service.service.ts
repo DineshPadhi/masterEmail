@@ -14,7 +14,6 @@ export class FormServiceService implements OnInit {
   ngOnInit(): void {}
 
   submitForm(data: any) {
-    console.log({ service: data });
     let {
       templateName,
       templateCode,
