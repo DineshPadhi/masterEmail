@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "emailCom": {
+    "EmailCom": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -25,9 +25,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -60,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "emailCom:build:production"
+              "browserTarget": "EmailCom:build:production"
             },
             "development": {
-              "browserTarget": "emailCom:build:development"
+              "browserTarget": "EmailCom:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +74,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "emailCom:build"
+            "browserTarget": "EmailCom:build"
           }
         },
         "test": {
@@ -94,5 +97,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "b3b877c4-9324-4a03-9b10-9a1955130ad4"
   }
 }
