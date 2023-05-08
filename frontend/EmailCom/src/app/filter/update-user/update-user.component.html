@@ -1,11 +1,8 @@
 <nav aria-label="breadcrumb" class="m-4">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item active">Home</li>
-    <li class="breadcrumb-item"><a routerLink="/allTemplateData">EditTemplate</a></li>
+    <li class="breadcrumb-item"><a routerLink="/allTemplateData">Back</a></li>
   </ol>
 </nav>
-
-
 <form [formGroup]="myForm" *ngIf="this.myForm">
   <div class="m-4" (keyup)="seePreview($event)">
     <div class="row">
@@ -68,6 +65,7 @@
           formControlName="scenario"
           #scen
           (change)="onSelect(scen.value)"
+          id="inp"
         >
           <option class="dropdown-item" value="Scenario 1">Scenario 1</option>
           <option class="dropdown-item" value="Scenario 2">Scenario 2</option>
@@ -111,10 +109,12 @@
       <div class="col">
         <label for="">User<span style="color: red">*</span></label>
 
-        <div style="width:100%">
-          <ng-multiselect-dropdown formControlName="user" 
-              [settings]="dropdownUser"
-              [data]="dropdownUserList">
+        <div style="width: 100%">
+          <ng-multiselect-dropdown
+            formControlName="user"
+            [settings]="dropdownUser"
+            [data]="dropdownUserList"
+          >
           </ng-multiselect-dropdown>
         </div>
 
@@ -273,19 +273,32 @@
 
     <br />
 
-<div class="row" style="width: 50%;">
-  <div class="col">
-    <label for="">Select Languages</label>
+    <div class="row" style="width: 50%">
+      <div class="col">
+        <label for="">Languages</label>
 
-    <div style="width:100%">
-      <ng-multiselect-dropdown formControlName="lang" 
-          [settings]="dropdownSettings"
-          [data]="dropdownList">
-      </ng-multiselect-dropdown>
-  </div>
+        <div style="width: 100%">
+          <ng-multiselect-dropdown
+            formControlName="lang"
+            [settings]="dropdownSettings"
+            [data]="dropdownList"
+          >
+          </ng-multiselect-dropdown>
+        </div>
 
-  </div>
-</div>
+        <div
+          *ngIf="
+            myForm!.controls['lang'].invalid &&
+            (myForm!.controls['lang'].dirty || myForm!.controls['lang'].touched)
+          "
+          class="alert"
+        >
+          <div *ngIf="myForm!.controls['lang'].errors!.required">
+            <span style="color: red">Please Select Languages</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <br />
 
@@ -346,7 +359,7 @@
         <iframe
           width="100%"
           id="preview_iframe_5"
-          style="border: 1px solid lightgray; height: 300px; border-radius: 5px"
+          style="border: 1px solid black; height: 300px"
         ></iframe>
       </div>
     </div>
@@ -358,7 +371,7 @@
         class="btn btn-primary"
         type="submit"
         [disabled]="!myForm.valid"
-        (click)="submit(myForm.value)"
+        (click)="updateUser(myForm.value)"
       >
         Submit
       </button>

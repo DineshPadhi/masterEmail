@@ -1,14 +1,63 @@
-const knex = require("../connections/Conn.js");
+const { knex } = require("../connections/Conn.js");
+const { User } = require("../connections/Conn");
 
-const displayForm = (data) => {
-  return knex("TemplateData").insert(data);
+const createSqlForm = async (data) => {
+  let result = await knex("TemplateData").insert(data);
+  return result[0];
 };
-const ShowData = () => {
-  // console.log("data is", data);
-  return knex("TemplateData").select("*");
+
+const createMongForm = async (data) => {
+  let member = await User(data).save();
+  return member;
+};
+
+const ShowData = async () => {
+  const result = await knex("TemplateData").select("*");
+  return result;
+};
+
+const ShowByID = async (id) => {
+  let result = await knex("TemplateData").select("*").where("id", id);
+  return result;
+};
+
+const filterData = async (searchCriteria) => {
+  let result = await knex("TemplateData")
+    .select("*")
+    .where((qb) => {
+      if (searchCriteria.tname) {
+        qb.where("templateName", searchCriteria.tname);
+      }
+
+      if (searchCriteria.tcode) {
+        qb.andWhere("templateCode", "=", searchCriteria.tcode);
+      }
+
+      if (searchCriteria.status) {
+        qb.andWhere("status", "=", searchCriteria.status);
+      }
+    });
+  return result;
+};
+
+const updateUserSql = async (id, data) => {
+  let result = await knex("TemplateData").update(data).where("id", id);
+  return result;
+};
+
+const updateUserMongo = async (id, data) => {
+  const result = await User.updateMany({ sqlId: id }, data, {
+    new: true,
+  });
+  return result;
 };
 
 module.exports = {
-  displayForm,
+  createSqlForm,
   ShowData,
+  ShowByID,
+  filterData,
+  updateUserSql,
+  createMongForm,
+  updateUserMongo,
 };
