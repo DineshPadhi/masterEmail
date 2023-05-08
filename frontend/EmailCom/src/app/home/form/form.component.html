@@ -63,12 +63,13 @@
         <label for="">Select Scenario</label>
 
         <select
-          class="dropdown dropdown-toggle form-control"
+        class="form-select" aria-label="Default select example"
           data-bs-toggle="#dropdown"
           formControlName="scenario"
           #scen
           (change)="onSelect(scen.value)"
         >
+        <!-- <option value="" style="color: gray;" selected disabled>Select Scenario</option> -->
           <option class="dropdown-item" value="Scenario 1">Scenario 1</option>
           <option class="dropdown-item" value="Scenario 2">Scenario 2</option>
           <option class="dropdown-item" value="Scenario 3">Scenario 3</option>
@@ -80,12 +81,13 @@
           <label for="">Providers<span style="color: red">*</span></label>
 
           <select
-            class="dropdown dropdown-toggle form-control"
+          class="form-select" aria-label="Default select example"
             data-bs-toggle="#dropdown"
             formControlName="providers"
             #pro
             (change)="onSelect(pro.value)"
           >
+          <!-- <option value="" style="color: gray;" selected disabled>Select Provider</option> -->
             <option class="dropdown-item" value="Provider 1">Provider 1</option>
             <option class="dropdown-item" value="Provider 2">Provider 2</option>
             <option class="dropdown-item" value="Provider 3">Provider 3</option>
@@ -132,15 +134,16 @@
       </div>
 
       <div class="col">
-        <label for="">Tier<span style="color: red">*</span></label>
+        <label for="">Select Tier<span style="color: red">*</span></label>
 
         <select
-          class="dropdown dropdown-toggle form-control"
+        class="form-select" aria-label="Default select example"
           data-bs-toggle="#dropdown"
           formControlName="tier"
           #tier
           (change)="onSelect(tier.value)"
         >
+        <!-- <option selected disabled>Select Tier</option> -->
           <option class="dropdown-item" value="Silver">Silver</option>
           <option class="dropdown-item" value="Gold">Gold</option>
           <option class="dropdown-item" value="Platinum">Platinum</option>
@@ -165,12 +168,13 @@
         <label for="">Email Type<span style="color: red">*</span></label>
 
         <select
-          class="dropdown dropdown-toggle form-control"
+        class="form-select" aria-label="Default select example"
           data-bs-toggle="#dropdown"
           #eType
           (change)="onSelect(eType.value)"
           formControlName="emailType"
         >
+        <!-- <option value="" style="color: gray;" selected disabled>Select Email Type</option> -->
           <option class="dropdown-item" value="Transactional">
             Transactional
           </option>
@@ -195,12 +199,13 @@
         <label for="">Activity</label>
 
         <select
-          class="dropdown dropdown-toggle form-control"
+        class="form-select" aria-label="Default select example"
           data-bs-toggle="#dropdown"
           formControlName="activity"
           #activ
           (change)="onSelect(activ.value)"
         >
+        <!-- <option value="" style="color: gray;" selected disabled>Select Activity</option> -->
           <option class="dropdown-item" value="Activity 1">Activity 1</option>
           <option class="dropdown-item" value="Activity 2">Activity 2</option>
           <option class="dropdown-item" value="Activity 3">Activity 3</option>
@@ -213,12 +218,13 @@
         <label for="">Status<span style="color: red">*</span></label>
 
         <select
-          class="dropdown dropdown-toggle form-control"
+        class="form-select" aria-label="Default select example"
           data-bs-toggle="#dropdown"
           formControlName="status"
           #status
           (change)="onSelect(status.value)"
         >
+        <!-- <option value="" style="color: gray;" selected disabled>Select Status</option> -->
           <option class="dropdown-item" value="Active" selected>Active</option>
           <option class="dropdown-item" value="InActive">InActive</option>
         </select>
@@ -241,12 +247,13 @@
         <label for="">Target Audience<span style="color: red">*</span></label>
 
         <select
-          class="dropdown dropdown-toggle form-control"
+        class="form-select" aria-label="Default select example"
           data-bs-toggle="#dropdown"
           formControlName="targetAudience"
           #audi
           (change)="onSelect(audi.value)"
         >
+        <!-- <option value="" style="color: gray;" selected disabled>Select Target Audience</option> -->
           <option class="dropdown-item" value="Action" selected>Action</option>
           <option class="dropdown-item" value="Another action">
             Another action
@@ -265,7 +272,7 @@
           class="alert"
         >
           <div *ngIf="myForm!.controls['targetAudience'].errors!.required">
-            <span style="color: red">Please Select Status</span>
+            <span style="color: red">Please Select Target Audience</span>
           </div>
         </div>
       </div>
