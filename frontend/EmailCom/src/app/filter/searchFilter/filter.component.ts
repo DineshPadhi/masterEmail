@@ -58,4 +58,10 @@ export class FilterComponent implements OnInit {
   onPageChange($event) {
     this.currentPage = $event;
   }
+
+  // selectedValue: any = '';
+
+  // onSelect(value: any) {
+  //   this.selectedValue = value;
+  // }
 }
