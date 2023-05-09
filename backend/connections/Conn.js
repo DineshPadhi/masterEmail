@@ -21,7 +21,7 @@ mongoose
     useNewUrlParser: true 
   })
   .then(() => {
-    console.log("connection succefull");
+    console.log("Mongodb Database Connected");
   })
   .catch((e) => {
     console.log(e);
