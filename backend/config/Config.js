@@ -9,5 +9,7 @@ const configureDetails = {
   db_port: process.env.DB_PORT,
   database: process.env.DB_DATABASE,
   mongodb: process.env.MONGODB_URI,
+  email: process.env.EMAILID,
+  pass: process.env.EPASS
 };
 module.exports = { configureDetails };

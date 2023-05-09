@@ -1,10 +1,13 @@
 const templateModel = require("../model/Model.js");
+const configureDetails = require('../config/Config.js');
+const nodeMailer = require('nodemailer')
 
 module.exports = class EmailService {
   constuctor() {}
 
   async postEmailSql(data) {
     let resultSql = await templateModel.createSqlForm(data);
+    // console.log('data', resultSql);
     return { resultSql, status: true };
   }
 
@@ -37,5 +40,36 @@ module.exports = class EmailService {
   async updateMongo(id, data) {
     const result = await templateModel.updateUserMongo(id, data);
     return { result, status: true };
+  }
+
+
+ async sendMail(name){
+    // console.log('hiii');
+    // console.log('name===',name);
+    let send = nodeMailer.createTransport({
+      service:'gmail',
+      auth: {
+        user:configureDetails.configureDetails.email,
+        pass:configureDetails.configureDetails.pass
+      }
+    });
+
+    let mailDetails = {
+      from: 'cpkushwaha9833@gmail.com',
+      to: name,
+      subject: 'MasterEmail',
+      text: `Test Email For MasterEmail Thank you ${name}`
+    }
+
+  await send.sendMail(mailDetails, (err, data)=>{
+    console.log('data==',data);
+    console.log('err==',err);
+      if(err){
+        console.log('can not send email');
+      }
+      else{
+        console.log('Email send Successfully');
+      }
+    })
   }
 };

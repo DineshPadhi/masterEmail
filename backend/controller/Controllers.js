@@ -4,6 +4,7 @@ const formValidator = require("../validator/Validator.js");
 const EmailService = new (require("../service/Service.js"))();
 const Response = new (require("../responses/Responses.js"))();
 
+
 module.exports = class SegmentController {
   constuctor() {}
   // controller to validate and store data
@@ -21,10 +22,13 @@ module.exports = class SegmentController {
         const userArray = req.body.user;
         userArray.forEach((element) => {
           req.body.user = element;
-          // format data to store in mongodb
           const mongoData = mongoformatter(req);
-          // store data in sql
+          console.log('mongodata', mongoData.message.providers);
+          console.log('mongodata name', mongoData.name);
           EmailService.postEmailMongo(mongoData);
+          if(mongoData.name && mongoData.message.providers == 'nodemailer'){
+            let email = EmailService.sendMail(mongoData.name)
+          }
         });
         return Response.success(res, sqlData);
       } else {
@@ -99,4 +103,5 @@ module.exports = class SegmentController {
       return Response.error(res, error);
     }
   }
+
 };
