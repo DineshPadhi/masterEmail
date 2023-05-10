@@ -142,6 +142,8 @@ export class FormInpComponent {
     } else {
       this.formService.submitForm(data).subscribe((result: any) => {
         if (result) {
+          console.log(result.data.templateCode);
+
           this.router.navigate(['/allTemplateData']);
           this.toastr.success<any>('Your Data Submited successfully!!');
         }
