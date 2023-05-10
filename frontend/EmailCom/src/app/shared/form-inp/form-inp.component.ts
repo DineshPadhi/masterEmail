@@ -30,6 +30,11 @@ export class FormInpComponent implements OnInit {
   getData: any = '';
   id: any;
   formType:boolean
+  getlang:any
+  checkedValue:any
+  langObj:any={}
+  langArr:any=[]
+  prevLangArr:any=["English","Hindi","Marathi"]
 
   constructor(
     private fb: FormBuilder,
@@ -76,12 +81,17 @@ export class FormInpComponent implements OnInit {
         iframe['contentDocument'].write(this.htmlContent);
         iframe['contentWindow'].document.close();
         if (this.id) {
+          result.data[0].lang.forEach((element:any) => {
+            this.langObj={}
+            this.langObj.item_id=this.prevLangArr.indexOf(element)+1
+            this.langObj.item_text=element
+            this.langArr.push(this.langObj)
+          });
           this.myForm.patchValue({
             templateName: result.data[0].templateName,
             templateCode: result.data[0].templateCode,
             scenario: result.data[0].scenario,
             providers: result.data[0].providers,
-            // user: result.data[0].user,
             tier: result.data[0].tier,
             emailType: result.data[0].emailType,
             activity: result.data[0].activity,
@@ -89,7 +99,8 @@ export class FormInpComponent implements OnInit {
             targetAudience: result.data[0].targetAudience,
             // subject: result.data[0].subject,
             // body: result.data[0].body,
-            lang: result.data[0].lang,
+            // lang: [{item_text:"English"}],
+            lang: this.langArr,
           });
         }
       });

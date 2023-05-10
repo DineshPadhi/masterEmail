@@ -137,7 +137,8 @@
           <label for="">Select Languages</label>
       
           <div style="width:100%">
-            <ng-multiselect-dropdown formControlName="lang" 
+            <ng-multiselect-dropdown formControlName="lang"
+            [(ngModel)]="langArr"
                 [settings]="dropdownSettings"
                 [data]="dropdownList">
             </ng-multiselect-dropdown>
