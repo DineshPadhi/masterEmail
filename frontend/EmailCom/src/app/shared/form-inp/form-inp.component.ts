@@ -81,14 +81,14 @@ export class FormInpComponent implements OnInit {
             templateCode: result.data[0].templateCode,
             scenario: result.data[0].scenario,
             providers: result.data[0].providers,
-            user: result.data[0].user,
+            // user: result.data[0].user,
             tier: result.data[0].tier,
             emailType: result.data[0].emailType,
             activity: result.data[0].activity,
             status: result.data[0].status,
             targetAudience: result.data[0].targetAudience,
-            subject: result.data[0].subject,
-            body: result.data[0].body,
+            // subject: result.data[0].subject,
+            // body: result.data[0].body,
             lang: result.data[0].lang,
           });
         }

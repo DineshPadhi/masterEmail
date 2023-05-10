@@ -57,15 +57,15 @@ const sqlformatter = (req) => {
     templateCode: req.body.templateCode,
     scenario: req.body.scenario,
     providers: req.body.providers,
-    user: userData,
+    // user: userData,
     tier: req.body.tier,
     emailType: req.body.emailType,
     activity: req.body.activity,
     status: req.body.status,
     targetAudience: req.body.targetAudience,
     lang: langData,
-    subject: req.body.subject,
-    body: req.body.body,
+    // subject: req.body.subject,
+    // body: req.body.body,
   };
   return user;
 };

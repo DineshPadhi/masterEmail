@@ -18,6 +18,7 @@ const ShowData = async () => {
 
 const ShowByID = async (id) => {
   let result = await knex("TemplateData").select("*").where("id", id);
+  console.log({result:result});
   return result;
 };
 
