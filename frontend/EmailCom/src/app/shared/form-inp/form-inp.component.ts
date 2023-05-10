@@ -1,17 +1,18 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { FormServiceService } from 'src/app/home/form-service.service';
+import { FilterService } from '../../filter/filter.service';
 
 @Component({
   selector: 'app-form-inp',
   templateUrl: './form-inp.component.html',
   styleUrls: ['./form-inp.component.css']
 })
-export class FormInpComponent {
+export class FormInpComponent implements OnInit {
 
   @ViewChild('iframe') preview_iframe: ElementRef;
 
@@ -27,13 +28,17 @@ export class FormInpComponent {
   dropdownUser: IDropdownSettings = {};
   userArry: any = [];
   getData: any = '';
+  id: any;
+  formType:boolean
 
   constructor(
     private fb: FormBuilder,
     private formService: FormServiceService,
     private router: Router,
     private toastr: ToastrService,
-    public sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private active: ActivatedRoute,
+    private FilterService: FilterService
   ) {
     this.createForm();
   }
@@ -59,6 +64,41 @@ export class FormInpComponent {
       idField: 'item_id',
       textField: 'item_text',
     };
+
+    this.active.paramMap.subscribe((params) => {
+      if(params.get('id')){
+      this.id = params.get('id');
+
+      this.FilterService.getDataById(this.id).subscribe((result: any) => {
+        this.htmlContent = result.data[0].body;
+        const iframe = document.getElementById('preview_iframe_5');
+        iframe['contentWindow'].document.open();
+        iframe['contentDocument'].write(this.htmlContent);
+        iframe['contentWindow'].document.close();
+        if (this.id) {
+          this.myForm.patchValue({
+            templateName: result.data[0].templateName,
+            templateCode: result.data[0].templateCode,
+            scenario: result.data[0].scenario,
+            providers: result.data[0].providers,
+            user: result.data[0].user,
+            tier: result.data[0].tier,
+            emailType: result.data[0].emailType,
+            activity: result.data[0].activity,
+            status: result.data[0].status,
+            targetAudience: result.data[0].targetAudience,
+            subject: result.data[0].subject,
+            body: result.data[0].body,
+            lang: result.data[0].lang,
+          });
+        }
+      });
+    }
+    });
+
+
+    if(this.router.url === '/createEmailTemplate')
+    this.formType = true
   }
 
   safehtmlinput($event: any) {
@@ -92,7 +132,7 @@ export class FormInpComponent {
   submit(data: any) {
     this.formService.submitForm(data).subscribe((result: any) => {
       if (result) {
-        // this.router.navigate(['/allTemplateData']);
+        this.router.navigate(['/allTemplateData']);
         this.toastr.success<any>('Your Data Submited successfully!!');
       }
     });
@@ -111,5 +151,27 @@ export class FormInpComponent {
   onSelect(value: any) {
     this.selectedValue = value;
   }
+
+
+  updateUser(data: any) {
+    this.active.paramMap.subscribe((params) => {
+      this.id = params.get('id');
+
+      if (this.id) {
+        this.FilterService.update(this.id, data).subscribe((result: any) => {
+          if (result) {
+            this.router.navigate(['/allTemplateData']);
+            this.toastr.success<any>('Your Data Updated successfully!!');
+          }
+        });
+      }
+    });
+  }
+
+  // edit() {
+  //   this.myForm.patchValue({
+  //     templateName: this.form.myForm.value,
+  //   });
+  // }
 
 }

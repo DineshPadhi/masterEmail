@@ -110,7 +110,7 @@
       </div>
   
       <div class="row my-3">
-        <div class="col">
+        <!-- <div class="col">
           <label for="">User<span style="color: red">*</span></label>
   
           <div style="width:100%">
@@ -131,6 +131,18 @@
               <span style="color: red">Please Select User</span>
             </div>
           </div>
+        </div> -->
+
+        <div class="col">
+          <label for="">Select Languages</label>
+      
+          <div style="width:100%">
+            <ng-multiselect-dropdown formControlName="lang" 
+                [settings]="dropdownSettings"
+                [data]="dropdownList">
+            </ng-multiselect-dropdown>
+        </div>
+      
         </div>
   
         <div class="col">
@@ -280,7 +292,7 @@
   
       <br />
   
-  <div class="row" style="width: 50%;">
+  <!-- <div class="row" style="width: 50%;">
     <div class="col">
       <label for="">Select Languages</label>
   
@@ -292,7 +304,7 @@
     </div>
   
     </div>
-  </div>
+  </div> -->
   
       <br />
   
@@ -360,7 +372,7 @@
   
       <br /><br />
   
-      <div class="button">
+      <div class="button" *ngIf="formType">
         <button
           class="btn btn-primary"
           type="submit"
@@ -372,6 +384,20 @@
         &nbsp;&nbsp;
         <button class="btn btn-primary" (click)="reset()">Reset</button>
       </div>
+
+      <div class="button" *ngIf="!formType">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!myForm.valid"
+          (click)="updateUser(myForm.value)"
+        >
+          Submit
+        </button>
+        &nbsp;&nbsp;
+        <button class="btn btn-primary" (click)="reset()">Reset</button>
+      </div>
+
     </div>
   </form>
   
