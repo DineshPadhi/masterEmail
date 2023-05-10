@@ -1,0 +1,73 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<br>
+<br>
+<div class="container bootdey">
+<div class="email-app">
+    <!-- <nav>
+        <a href="#" class="btn btn-danger btn-block">New Email</a>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fa fa-inbox"></i> Inbox <span class="badge badge-danger">4</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fa fa-star"></i> Stared</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fa fa-rocket"></i> Sent</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fa fa-trash-o"></i> Trash</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fa fa-bookmark"></i> Important</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fa fa-inbox"></i> Inbox <span class="badge badge-danger">4</span></a>
+            </li>
+        </ul>
+    </nav> -->
+    <main>
+        <p class="text-center">New Message</p>
+        <form #filterForm='ngForm'>
+            <div class="form-row mb-3" >
+                <label for="to" class="col-2 col-sm-1 col-form-label">To:</label>
+                <div class="col-10 col-sm-11" >
+                   
+                    <div class="input-group" id="container" *ngFor="let row of add">
+                    <input type="email" ngModel name="tname" class="form-control" id="to" placeholder="Enter Email">
+                    
+                    <div class="input-group-append" id="drop">
+                        <select
+                        class="form-select mx-1" aria-label="Default select example"
+                          data-bs-toggle="#dropdown"
+                          #scen
+                          (change)="onSelect(scen.value)"
+                          
+                        >
+                        <option value="" style="color: gray;" selected disabled>Select Language</option>
+                          <option class="dropdown-item" value="Scenario 1">English</option>
+                          <option class="dropdown-item" value="Scenario 2">Hindi</option>
+                          <option class="dropdown-item" value="Scenario 3">Marathi</option>
+                        </select>
+                        
+                    </div>
+                   
+                   </div>
+                   <br />
+                   <button (click)="addInp()">Add User</button>
+                </div>
+                
+            </div>
+            <div class="form-row mb-3">
+                <label for="cc" class="col-5 col-sm-4 col-form-label">Template Code</label>
+                <div class="col-10 col-sm-11">
+                    <input type="email" class="form-control" id="cc" placeholder="Type Template Code">
+                </div>
+            </div>
+
+            <a href="#" class="btn btn-danger btn-block style=color">Send Email</a>
+        </form>
+
+    </main>
+</div>
+</div>
