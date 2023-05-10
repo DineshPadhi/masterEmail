@@ -20,25 +20,24 @@ export class FormComponent implements OnInit {
 
   // data: any = [];
   // formData: any = [];
-  myForm: FormGroup;
-  preview: any = [];
-  dropdownList = [];
-  dropdownSettings: IDropdownSettings = {};
-  urlSafe: SafeResourceUrl;
-  htmlContent: string = '';
-  dropdownUserList = [];
-  dropdownUser: IDropdownSettings = {};
-  userArry: any = [];
-  getData: any = '';
-  langArr: any = [];
+  // myForm: FormGroup;
+  // preview: any = [];
+  // dropdownList = [];
+  // dropdownSettings: IDropdownSettings = {};
+  // urlSafe: SafeResourceUrl;
+  // htmlContent: string = '';
+  // dropdownUserList = [];
+  // dropdownUser: IDropdownSettings = {};
+  // userArry: any = [];
+  // getData: any = '';
+  // langArr: any = [];
 
-  constructor(
-    private fb: FormBuilder // private formService: FormServiceService, // private router: Router,
-  ) // private toastr: ToastrService,
-  // public sanitizer: DomSanitizer
-  {
-    // this.createForm();
-  }
+  // constructor(
+  //   private fb: FormBuilder // private formService: FormServiceService, // private router: Router, // private toastr: ToastrService,
+  // ) // public sanitizer: DomSanitizer
+  // {
+  //   // this.createForm();
+  // }
 
   ngOnInit(): void {}
   //   this.dropdownUserList = [
@@ -104,9 +103,9 @@ export class FormComponent implements OnInit {
   //   this.myForm.reset();
   // }
 
-  seePreview(event: any) {
-    this.preview = event.target.value;
-  }
+  // seePreview(event: any) {
+  //   this.preview = event.target.value;
+  // }
 
   // selectedValue: any = '';
 
