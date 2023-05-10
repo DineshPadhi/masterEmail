@@ -23,11 +23,12 @@ module.exports = class SegmentController {
         userArray.forEach((element) => {
           req.body.user = element;
           const mongoData = mongoformatter(req);
-          console.log('mongodata', mongoData.message.providers);
-          console.log('mongodata name', mongoData.name);
+          // console.log('mongodata', req.body.body);
+          // console.log('mongodata', req.body.subject);
+          // console.log('mongodata name', mongoData.name);
           EmailService.postEmailMongo(mongoData);
           if(mongoData.name && mongoData.message.providers == 'nodemailer'){
-            let email = EmailService.sendMail(mongoData.name)
+            let email = EmailService.sendMail(mongoData.name, req.body.body, req.body.subject)
           }
         });
         return Response.success(res, sqlData);

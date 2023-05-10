@@ -2,7 +2,8 @@ import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FilterService } from '../filter.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormComponent } from 'src/app/home/form/form.component';
+// import { FormComponent } from 'src/app/home/form/form.component';
+import { FormInpComponent } from 'src/app/shared/form-inp/form-inp.component';
 import { FormServiceService } from 'src/app/home/form-service.service';
 import { FilterComponent } from '../searchFilter/filter.component';
 import { ToastrService } from 'ngx-toastr';
@@ -32,7 +33,8 @@ export class UpdateUserComponent implements OnInit {
     private fb: FormBuilder,
     private FilterService: FilterService,
     private router: Router,
-    private form: FormComponent,
+    // private form: FormComponent,
+    private form: FormInpComponent,
     private sanitizer: DomSanitizer,
     private toastr: ToastrService
   ) {
