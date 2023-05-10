@@ -4,7 +4,6 @@ const formValidator = require("../validator/Validator.js");
 const EmailService = new (require("../service/Service.js"))();
 const Response = new (require("../responses/Responses.js"))();
 
-
 module.exports = class SegmentController {
   constuctor() {}
   // controller to validate and store data
@@ -27,8 +26,12 @@ module.exports = class SegmentController {
           // console.log('mongodata', req.body.subject);
           // console.log('mongodata name', mongoData.name);
           EmailService.postEmailMongo(mongoData);
-          if(mongoData.name && mongoData.message.providers == 'nodemailer'){
-            let email = EmailService.sendMail(mongoData.name, req.body.body, req.body.subject)
+          if (mongoData.name && mongoData.message.providers == "nodemailer") {
+            let email = EmailService.sendMail(
+              mongoData.name,
+              req.body.body,
+              req.body.subject
+            );
           }
         });
         return Response.success(res, sqlData);
@@ -103,5 +106,5 @@ module.exports = class SegmentController {
       return Response.error(res, error);
     }
   }
-
+  async sendMail() {}
 };
