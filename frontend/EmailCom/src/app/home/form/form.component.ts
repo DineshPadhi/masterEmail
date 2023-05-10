@@ -30,6 +30,7 @@ export class FormComponent implements OnInit {
   dropdownUser: IDropdownSettings = {};
   userArry: any = [];
   getData: any = '';
+  langArr: any = [];
 
   constructor(
     private fb: FormBuilder,
@@ -113,5 +114,24 @@ export class FormComponent implements OnInit {
 
   onSelect(value: any) {
     this.selectedValue = value;
+  }
+  onItemSelect(items: any) {
+    console.log('hiiiiii', items);
+    this.langArr.push(items.item_text);
+    console.log('langArr', this.langArr);
+  }
+  removeItem(items: any) {
+    console.log('hello', items);
+    let index = this.langArr.indexOf(items);
+    this.langArr.splice(index, 1);
+
+    console.log('langArr to remove', this.langArr);
+  }
+  onSelectAll(items: any) {
+    this.langArr = [];
+    items.forEach((element: any) => {
+      this.langArr.push(element.item_text);
+    });
+    console.log('langarr after select all is', this.langArr);
   }
 }
