@@ -21,23 +21,24 @@ export class FormComponent implements OnInit {
   // data: any = [];
   // formData: any = [];
   myForm: FormGroup;
-  // preview: any = [];
-  // dropdownList = [];
-  // dropdownSettings: IDropdownSettings = {};
-  // urlSafe: SafeResourceUrl;
-  // htmlContent: string = '';
-  // dropdownUserList = [];
-  // dropdownUser: IDropdownSettings = {};
-  // userArry: any = [];
-  // getData: any = '';
+  preview: any = [];
+  dropdownList = [];
+  dropdownSettings: IDropdownSettings = {};
+  urlSafe: SafeResourceUrl;
+  htmlContent: string = '';
+  dropdownUserList = [];
+  dropdownUser: IDropdownSettings = {};
+  userArry: any = [];
+  getData: any = '';
+  langArr: any = [];
 
   constructor(
-    private fb: FormBuilder,
-    // private formService: FormServiceService,
-    // private router: Router,
-    // private toastr: ToastrService,
-    // public sanitizer: DomSanitizer
-  ) {
+    private fb: FormBuilder
+  ) // private formService: FormServiceService,
+  // private router: Router,
+  // private toastr: ToastrService,
+  // public sanitizer: DomSanitizer
+  {
     // this.createForm();
   }
 
@@ -111,7 +112,26 @@ export class FormComponent implements OnInit {
 
   // selectedValue: any = '';
 
-  // onSelect(value: any) {
-  //   this.selectedValue = value;
-  // }
+  onSelect(value: any) {
+    this.selectedValue = value;
+  }
+  onItemSelect(items: any) {
+    console.log('hiiiiii', items);
+    this.langArr.push(items.item_text);
+    console.log('langArr', this.langArr);
+  }
+  removeItem(items: any) {
+    console.log('hello', items);
+    let index = this.langArr.indexOf(items);
+    this.langArr.splice(index, 1);
+
+    console.log('langArr to remove', this.langArr);
+  }
+  onSelectAll(items: any) {
+    this.langArr = [];
+    items.forEach((element: any) => {
+      this.langArr.push(element.item_text);
+    });
+    console.log('langarr after select all is', this.langArr);
+  }
 }
