@@ -92,7 +92,7 @@ export class FormInpComponent {
   submit(data: any) {
     this.formService.submitForm(data).subscribe((result: any) => {
       if (result) {
-        // this.router.navigate(['/allTemplateData']);
+        this.router.navigate(['/sendMail']);
         this.toastr.success<any>('Your Data Submited successfully!!');
       }
     });
