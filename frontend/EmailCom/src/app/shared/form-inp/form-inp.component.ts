@@ -117,7 +117,6 @@ export class FormInpComponent implements OnInit {
       templateCode: ['', Validators.required],
       scenario: [''],
       providers: ['', Validators.required],
-      user: ['', Validators.required],
       tier: ['', Validators.required],
       emailType: ['', Validators.required],
       activity: [''],
