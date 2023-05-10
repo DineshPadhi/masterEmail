@@ -91,10 +91,13 @@ export class FormInpComponent {
               body: result.data[0].body,
               lang: result.data[0].lang,
             });
+            
           }
         });
       }
     });
+
+
   }
 
   safehtmlinput($event: any, item: any) {
@@ -113,7 +116,6 @@ export class FormInpComponent {
       templateCode: ['', Validators.required],
       scenario: [''],
       providers: ['', Validators.required],
-      user: ['', Validators.required],
       tier: ['', Validators.required],
       emailType: ['', Validators.required],
       activity: [''],
