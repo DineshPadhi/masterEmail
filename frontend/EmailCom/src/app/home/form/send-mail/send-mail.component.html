@@ -29,25 +29,39 @@
     <main>
         <p class="text-center">New Message</p>
         <form #filterForm='ngForm'>
-            <div class="form-row mb-3">
+            <div class="form-row mb-3" >
                 <label for="to" class="col-2 col-sm-1 col-form-label">To:</label>
-                <div class="col-10 col-sm-11">
-                    <input type="email" ngModel name="msend" class="form-control" id="to" placeholder="Enter Email">
+                <div class="col-10 col-sm-11" >
+                   
+                    <div class="input-group" id="container" *ngFor="let row of add">
+                    <input type="email" ngModel name="tname" class="form-control" id="to" placeholder="Enter Email">
+                    
+                    <div class="input-group-append" id="drop">
+                        <select
+                        class="form-select mx-1" aria-label="Default select example"
+                          data-bs-toggle="#dropdown"
+                          #scen
+                          (change)="onSelect(scen.value)"
+                          
+                        >
+                        <option value="" style="color: gray;" selected disabled>Select Language</option>
+                          <option class="dropdown-item" value="Scenario 1">English</option>
+                          <option class="dropdown-item" value="Scenario 2">Hindi</option>
+                          <option class="dropdown-item" value="Scenario 3">Marathi</option>
+                        </select>
+                        
+                    </div>
+                   
+                   </div>
+                   <br />
+                   <button (click)="addInp()">Add User</button>
                 </div>
+                
             </div>
             <div class="form-row mb-3">
-                <div class="input-append btn-group">
-                    <input class="span2" id="appendedInputButton" size="16" type="text">
-                    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" >
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><i class="icon-pencil"></i> Edit</li>
-                        <li><i class="icon-trash"></i> Delete</li>
-                        <li><i class="icon-ban-circle"></i> Ban</li>
-                        <li class="divider"></li>
-                        <li><i class="i"></i> Make admin</li>
-                    </ul>
+                <label for="cc" class="col-5 col-sm-4 col-form-label">Template Code</label>
+                <div class="col-10 col-sm-11">
+                    <input type="email" class="form-control" id="cc" placeholder="Type Template Code">
                 </div>
             </div>
 
