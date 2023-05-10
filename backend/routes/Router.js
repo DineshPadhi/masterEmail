@@ -9,5 +9,6 @@ router.get("/get", loggerMiddleware, segmentController.showAllDatas);
 router.get("/getById/:id", loggerMiddleware, segmentController.showById);
 router.post("/search", loggerMiddleware, segmentController.searchAllDatas);
 router.post("/update/:id", loggerMiddleware, segmentController.updateData);
+router.post("/sendMail", loggerMiddleware, segmentController.updateData);
 
 module.exports = router;
