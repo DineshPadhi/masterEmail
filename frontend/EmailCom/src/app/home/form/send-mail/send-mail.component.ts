@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-send-mail',
@@ -9,6 +10,7 @@ export class SendMailComponent {
 
   selectedValue: any = '';
   add:any=[1]
+  currentPage= 1
   constructor() {
 
   }
@@ -36,5 +38,17 @@ addInp(){
   console.log(this.add)
 }
 
+removeInp(i:any){
+  {
+    this.add.pop(1);
+  }
+  
+}
+  // if(res > -1){
+  //   this.add.splice(res,1)
+  //   console.log(this.add);
+    
+
+  // console.log(this.add)
 
 }

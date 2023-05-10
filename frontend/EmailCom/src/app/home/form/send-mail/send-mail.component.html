@@ -33,7 +33,7 @@
                 <label for="to" class="col-2 col-sm-1 col-form-label">To:</label>
                 <div class="col-10 col-sm-11" >
                    
-                    <div class="input-group" id="container" *ngFor="let row of add">
+                    <div class="input-group" id="container" *ngFor="let row of add; let i = index">
                     <input type="email" ngModel name="tname" class="form-control" id="to" placeholder="Enter Email">
                     
                     <div class="input-group-append" id="drop">
@@ -52,9 +52,10 @@
                         
                     </div>
                    
+                    <button class="btn btn-dark btn-block" (click)="removeInp(i)">Remove User</button>
                    </div>
                    <br />
-                   <button (click)="addInp()">Add User</button>
+                   <button class="btn btn-primary btn-block mx-2" (click)="addInp()">Add User</button>
                 </div>
                 
             </div>
@@ -65,7 +66,7 @@
                 </div>
             </div>
 
-            <a href="#" class="btn btn-danger btn-block style=color">Send Email</a>
+            <a href="/allData" class="btn btn-danger btn-block style=color">Send Email</a>
         </form>
 
     </main>
