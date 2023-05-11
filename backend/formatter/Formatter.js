@@ -1,30 +1,30 @@
 // format data to store in mysql
 const sqlformatter = (req) => {
-  let userArr = [];
-  let userData = "";
-  if (req.params.id) {
-    if (typeof req.body.user[0] === "string") {
-      req.body.user.forEach((element) => {
-        if (!userArr.includes(element)) {
-          userArr.push(element);
-        }
-        userData = userArr.join(",");
-      });
-    } else {
-      const defaultArr = req.body.user;
-      defaultArr.forEach((element) => {
-        userArr.push(element.item_text);
-      });
+  // let userArr = [];
+  // let userData = "";
+  // if (req.params.id) {
+  //   if (typeof req.body.user[0] === "string") {
+  //     req.body.user.forEach((element) => {
+  //       if (!userArr.includes(element)) {
+  //         userArr.push(element);
+  //       }
+  //       userData = userArr.join(",");
+  //     });
+  //   } else {
+  //     const defaultArr = req.body.user;
+  //     defaultArr.forEach((element) => {
+  //       userArr.push(element.item_text);
+  //     });
 
-      userData = userArr.join(",");
-    }
-  } else {
-    const defaultArr = req.body.user;
-    defaultArr.forEach((element) => {
-      userArr.push(element.item_text);
-    });
-    userData = userArr.join(",");
-  }
+  //     userData = userArr.join(",");
+  //   }
+  // } else {
+  //   const defaultArr = req.body.user;
+  //   defaultArr.forEach((element) => {
+  //     userArr.push(element.item_text);
+  //   });
+  //   userData = userArr.join(",");
+  // }
 
   let langArr = [];
   let langData = "";
@@ -68,7 +68,59 @@ const sqlformatter = (req) => {
     // body: req.body.body,
   };
   return user;
+
+
 };
+
+
+
+// const storeToLangDB = (req) => {
+//   let langArr = [];
+//   let langData = "";
+//   if (req.params.id) {
+//     if (typeof req.body.lang[0] === "string") {
+//       req.body.lang.forEach((element) => {
+//         if (!langArr.includes(element)) {
+//           langArr.push(element);
+//         }
+//         langData = langArr.join(",");
+//       });
+//     } else {
+//       const defaultLangArr = req.body.lang;
+//       defaultLangArr.forEach((element) => {
+//         langArr.push(element.item_text);
+//       });
+
+//       langData = langArr.join(",");
+//     }
+//   } else {
+//     const defaultLangArr = req.body.lang;
+//     defaultLangArr.forEach((element) => {
+//       langArr.push(element.item_text);
+//     });
+//     langData = langArr.join(",");
+//   }
+
+//   lang = {
+//     // templateName: req.body.templateName,
+//     tamplate_id: req.body.tamplate_id,
+//     templateCode: req.body.templateCode,
+//     // scenario: req.body.scenario,
+//     // providers: req.body.providers,
+//     // user: userData,
+//     // tier: req.body.tier,
+//     // emailType: req.body.emailType,
+//     // activity: req.body.activity,
+//     // status: req.body.status,
+//     // targetAudience: req.body.targetAudience,
+//     language: langData,
+//     subject: req.body.subject,
+//     body: req.body.body,
+//   };
+//   return lang;
+
+// }
+
 // format data to store in mongodb
 const mongoformatter = (req) => {
   let langObject;
