@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,12 +7,14 @@ import { ToastrService } from 'ngx-toastr';
 import { FilterService } from 'src/app/filter/filter.service';
 import { FormServiceService } from 'src/app/home/form-service.service';
 
+
 @Component({
   selector: 'app-form-inp',
   templateUrl: './form-inp.component.html',
   styleUrls: ['./form-inp.component.css'],
 })
-export class FormInpComponent {
+export class FormInpComponent implements OnInit {
+
   @ViewChild('iframe') preview_iframe: ElementRef;
 
   data: any = [];
@@ -28,9 +30,13 @@ export class FormInpComponent {
   userArry: any = [];
   getData: any = '';
   id: any;
-  langArr: any = [];
   @Input() formType: any = '';
   valuesInSelect = [];
+  getlang:any
+  checkedValue:any
+  langObj:any={}
+  langArr:any=[]
+  prevLangArr:any=["English","Hindi","Marathi"]
 
   constructor(
     private active: ActivatedRoute,
@@ -38,7 +44,7 @@ export class FormInpComponent {
     private formService: FormServiceService,
     private router: Router,
     private toastr: ToastrService,
-    public sanitizer: DomSanitizer,
+    private sanitizer: DomSanitizer,
     private FilterService: FilterService
   ) {
     this.createForm();
@@ -65,39 +71,80 @@ export class FormInpComponent {
       idField: 'item_id',
       textField: 'item_text',
     };
-    this.active.paramMap.subscribe((params) => {
-      if (params.get('id')) {
-        this.id = params.get('id');
-        this.FilterService.getDataById(this.id).subscribe((result: any) => {
-          this.htmlContent = result.data[0].body;
-          this.langArr = result.data[0].lang;
-          const iframe = document.getElementById('preview_iframe_5');
-          iframe['contentWindow'].document.open();
-          iframe['contentDocument'].write(this.htmlContent);
-          iframe['contentWindow'].document.close();
-          if (this.id) {
-            this.myForm.patchValue({
-              templateName: result.data[0].templateName,
-              templateCode: result.data[0].templateCode,
-              scenario: result.data[0].scenario,
-              providers: result.data[0].providers,
-              user: result.data[0].user,
-              tier: result.data[0].tier,
-              emailType: result.data[0].emailType,
-              activity: result.data[0].activity,
-              status: result.data[0].status,
-              targetAudience: result.data[0].targetAudience,
-              subject: result.data[0].subject,
-              body: result.data[0].body,
-              lang: result.data[0].lang,
-            });
+    // this.active.paramMap.subscribe((params) => {
+    //   if (params.get('id')) {
+    //     this.id = params.get('id');
+    //     this.FilterService.getDataById(this.id).subscribe((result: any) => {
+    //       this.htmlContent = result.data[0].body;
+    //       this.langArr = result.data[0].lang;
+    //       const iframe = document.getElementById('preview_iframe_5');
+    //       iframe['contentWindow'].document.open();
+    //       iframe['contentDocument'].write(this.htmlContent);
+    //       iframe['contentWindow'].document.close();
+    //       if (this.id) {
+    //         this.myForm.patchValue({
+    //           templateName: result.data[0].templateName,
+    //           templateCode: result.data[0].templateCode,
+    //           scenario: result.data[0].scenario,
+    //           providers: result.data[0].providers,
+    //           user: result.data[0].user,
+    //           tier: result.data[0].tier,
+    //           emailType: result.data[0].emailType,
+    //           activity: result.data[0].activity,
+    //           status: result.data[0].status,
+    //           targetAudience: result.data[0].targetAudience,
+    //           subject: result.data[0].subject,
+    //           body: result.data[0].body,
+    //           lang: result.data[0].lang,
+    //         });
             
-          }
-        });
-      }
+    //       }
+    //     });
+    //   }
+    // });
+
+
+
+    this.active.paramMap.subscribe((params) => {
+      if(params.get('id')){
+      this.id = params.get('id');
+
+      this.FilterService.getDataById(this.id).subscribe((result: any) => {
+        this.htmlContent = result.data[0].body;
+        const iframe = document.getElementById('preview_iframe_5');
+        iframe['contentWindow'].document.open();
+        iframe['contentDocument'].write(this.htmlContent);
+        iframe['contentWindow'].document.close();
+        if (this.id) {
+          result.data[0].lang.forEach((element:any) => {
+            this.langObj={}
+            this.langObj.item_id=this.prevLangArr.indexOf(element)+1
+            this.langObj.item_text=element
+            this.langArr.push(this.langObj)
+          });
+          this.myForm.patchValue({
+            templateName: result.data[0].templateName,
+            templateCode: result.data[0].templateCode,
+            scenario: result.data[0].scenario,
+            providers: result.data[0].providers,
+            tier: result.data[0].tier,
+            emailType: result.data[0].emailType,
+            activity: result.data[0].activity,
+            status: result.data[0].status,
+            targetAudience: result.data[0].targetAudience,
+            // subject: result.data[0].subject,
+            // body: result.data[0].body,
+            // lang: [{item_text:"English"}],
+            lang: this.langArr,
+          });
+        }
+      });
+    }
     });
 
 
+  //   if(this.router.url === '/createEmailTemplate')
+  //   this.formType = true
   }
 
   safehtmlinput($event: any, item: any) {
@@ -196,4 +243,26 @@ export class FormInpComponent {
   onDeselect() {
     this.langArr = [];
   }
+
+  // updateUser(data: any) {
+  //   this.active.paramMap.subscribe((params) => {
+  //     this.id = params.get('id');
+
+  //     if (this.id) {
+  //       this.FilterService.update(this.id, data).subscribe((result: any) => {
+  //         if (result) {
+  //           this.router.navigate(['/allTemplateData']);
+  //           this.toastr.success<any>('Your Data Updated successfully!!');
+  //         }
+  //       });
+  //     }
+  //   });
+  // }
+
+  // edit() {
+  //   this.myForm.patchValue({
+  //     templateName: this.form.myForm.value,
+  //   });
+  // }
+
 }

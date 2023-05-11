@@ -1,6 +1,7 @@
 let Validator = require("validatorjs");
 const { sqlformatter, mongoformatter } = require("../formatter/Formatter.js");
 const formValidator = require("../validator/Validator.js");
+// const { knex } = require("../connections/Conn.js");
 const EmailService = new (require("../service/Service.js"))();
 const Response = new (require("../responses/Responses.js"))();
 
@@ -60,7 +61,7 @@ module.exports = class SegmentController {
       const id = req.params.id;
       const result = await EmailService.showByIds(id);
 
-      result.result[0].user = result.result[0].user.split(",");
+      // result.result[0].user = result.result[0].user.split(",");
       result.result[0].lang = result.result[0].lang.split(",");
       return Response.success(res, result.result);
     } catch (error) {
@@ -115,4 +116,30 @@ module.exports = class SegmentController {
       return Response.error(res, error);
     }
   }
+
+//   async storeInLang(req, res){
+
+//     let data = sqlformatter(req)
+
+
+//     let rules = formValidator.formValidator();
+//     // check the formatted data
+//     let validation = new Validator(data, rules);
+//     if (validation.passes() && !validation.fails()) {
+
+//     let result = await knex("TemplateData").insert(data)
+//     if(result){
+//       console.log('result========>',result)
+//       req.body.tamplate_id=result[0]
+//       console.log('body===',req.body);
+      
+
+//       let data2 = storeToLangDB(req)
+      
+//       let result2 = await knex('lang').insert(data2)
+//       console.log('result2========>',result2)
+//     }
+//   }
+// }
+
 };

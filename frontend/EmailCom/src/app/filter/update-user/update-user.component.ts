@@ -15,8 +15,8 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   templateUrl: './update-user.component.html',
   styleUrls: ['./update-user.component.css'],
 })
-export class UpdateUserComponent implements OnInit {
-  @ViewChild('iframe') preview_iframe: ElementRef;
+export class UpdateUserComponent {
+  // @ViewChild('iframe') preview_iframe: ElementRef;
 
   // myForm: FormGroup;
   // id: any;
@@ -28,65 +28,70 @@ export class UpdateUserComponent implements OnInit {
   // dropdownUserList = [];
   // dropdownUser: IDropdownSettings = {};
 
-  constructor() // private active: ActivatedRoute,
-  // private fb: FormBuilder,
-  // private FilterService: FilterService,
-  // private router: Router,
-  // // private form: FormComponent,
-  // private form: FormInpComponent,
-  // private sanitizer: DomSanitizer,
-  // private toastr: ToastrService
-  {
-    // this.createForm();
-  }
+  // constructor(
+  //   private active: ActivatedRoute,
+  //   private fb: FormBuilder,
+  //   private FilterService: FilterService,
+  //   private router: Router,
+  //   // private form: FormComponent,
+  //   private form: FormInpComponent,
+  //   private sanitizer: DomSanitizer,
+  //   private toastr: ToastrService
+  // ) {
+  //   this.createForm();
+  // }
 
-  ngOnInit(): void {
-    // this.dropdownUserList = [
-    //   { item_id: 1, item_text: 'User 1' },
-    //   { item_id: 2, item_text: 'User 2' },
-    //   { item_id: 3, item_text: 'User 3' },
-    // ];
-    // this.dropdownUser = {
-    //   idField: 'item_id',
-    //   textField: 'item_text',
-    // };
-    // this.dropdownList = [
-    //   { item_id: 1, item_text: 'English' },
-    //   { item_id: 2, item_text: 'Hindi' },
-    //   { item_id: 3, item_text: 'Marathi' },
-    // ];
-    // this.dropdownSettings = {
-    //   idField: 'item_id',
-    //   textField: 'item_text',
-    // };
-    // this.active.paramMap.subscribe((params) => {
-    //   this.id = params.get('id');
-    //   this.FilterService.getDataById(this.id).subscribe((result: any) => {
-    //     this.htmlContent = result.data[0].body;
-    //     const iframe = document.getElementById('preview_iframe_5');
-    //     iframe['contentWindow'].document.open();
-    //     iframe['contentDocument'].write(this.htmlContent);
-    //     iframe['contentWindow'].document.close();
-    //     if (this.id) {
-    //       this.myForm.patchValue({
-    //         templateName: result.data[0].templateName,
-    //         templateCode: result.data[0].templateCode,
-    //         scenario: result.data[0].scenario,
-    //         providers: result.data[0].providers,
-    //         user: result.data[0].user,
-    //         tier: result.data[0].tier,
-    //         emailType: result.data[0].emailType,
-    //         activity: result.data[0].activity,
-    //         status: result.data[0].status,
-    //         targetAudience: result.data[0].targetAudience,
-    //         subject: result.data[0].subject,
-    //         body: result.data[0].body,
-    //         lang: result.data[0].lang,
-    //       });
-    //     }
-    //   });
-    // });
-  }
+  // ngOnInit(): void {
+  //   this.dropdownUserList = [
+  //     { item_id: 1, item_text: 'User 1' },
+  //     { item_id: 2, item_text: 'User 2' },
+  //     { item_id: 3, item_text: 'User 3' },
+  //   ];
+  //   this.dropdownUser = {
+  //     idField: 'item_id',
+  //     textField: 'item_text',
+  //   };
+
+  //   this.dropdownList = [
+  //     { item_id: 1, item_text: 'English' },
+  //     { item_id: 2, item_text: 'Hindi' },
+  //     { item_id: 3, item_text: 'Marathi' },
+  //   ];
+
+  //   this.dropdownSettings = {
+  //     idField: 'item_id',
+  //     textField: 'item_text',
+  //   };
+
+  //   this.active.paramMap.subscribe((params) => {
+  //     this.id = params.get('id');
+
+  //     this.FilterService.getDataById(this.id).subscribe((result: any) => {
+  //       this.htmlContent = result.data[0].body;
+  //       const iframe = document.getElementById('preview_iframe_5');
+  //       iframe['contentWindow'].document.open();
+  //       iframe['contentDocument'].write(this.htmlContent);
+  //       iframe['contentWindow'].document.close();
+  //       if (this.id) {
+  //         this.myForm.patchValue({
+  //           templateName: result.data[0].templateName,
+  //           templateCode: result.data[0].templateCode,
+  //           scenario: result.data[0].scenario,
+  //           providers: result.data[0].providers,
+  //           user: result.data[0].user,
+  //           tier: result.data[0].tier,
+  //           emailType: result.data[0].emailType,
+  //           activity: result.data[0].activity,
+  //           status: result.data[0].status,
+  //           targetAudience: result.data[0].targetAudience,
+  //           subject: result.data[0].subject,
+  //           body: result.data[0].body,
+  //           lang: result.data[0].lang,
+  //         });
+  //       }
+  //     });
+  //   });
+  // }
 
   // createForm() {
   //   this.myForm = this.fb.group({

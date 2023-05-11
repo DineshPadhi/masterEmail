@@ -19,14 +19,15 @@ export class FormServiceService implements OnInit {
       templateCode,
       scenario,
       providers,
+      // user,
       tier,
       emailType,
       activity,
       status,
       targetAudience,
       lang,
-      subject,
-      body,
+      // subject,
+      // body,
     } = data;
 
     return this.http.post(this.url, {
@@ -34,14 +35,15 @@ export class FormServiceService implements OnInit {
       templateCode,
       scenario,
       providers,
+      // user,
       tier,
       emailType,
       activity,
       status,
       targetAudience,
       lang,
-      subject,
-      body,
+      // subject,
+      // body,
     });
   }
 }
