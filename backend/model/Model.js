@@ -52,6 +52,22 @@ const updateUserMongo = async (id, data) => {
   return result;
 };
 
+const sendMailSql = async (data)=> {
+  const result = await knex('lang')
+  .select('subject','body')
+    .where((qb) => {
+
+      if (data.templateCode) {
+        qb.Where("templateCode", data.templateCode);
+      }
+      if (data.lang) {
+        qb.andWhere("language", data.lang);
+      }
+    });
+    
+  return result;
+}
+
 module.exports = {
   createSqlForm,
   ShowData,
@@ -60,4 +76,5 @@ module.exports = {
   updateUserSql,
   createMongForm,
   updateUserMongo,
+  sendMailSql
 };
