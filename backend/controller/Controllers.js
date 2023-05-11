@@ -1,48 +1,48 @@
 let Validator = require("validatorjs");
-const { sqlformatter, mongoformatter } = require("../formatter/Formatter.js");
+const { sqlformatter, mongoformatter, storeToLangDB } = require("../formatter/Formatter.js");
 const formValidator = require("../validator/Validator.js");
-// const { knex } = require("../connections/Conn.js");
+const { knex } = require("../connections/Conn.js");
 const EmailService = new (require("../service/Service.js"))();
 const Response = new (require("../responses/Responses.js"))();
 
 module.exports = class SegmentController {
   constuctor() {}
   // controller to validate and store data
-  async templateForm(req, res) {
-    try {
-      // format data to store in sql
-      const sqlData = sqlformatter(req);
-      let rules = formValidator.formValidator();
-      // check the formatted data
-      let validation = new Validator(sqlData, rules);
-      if (validation.passes() && !validation.fails()) {
-        // store data in sql
-        let result = await EmailService.postEmailSql(sqlData);
-        req.body.sqlId = result.resultSql;
-        const userArray = req.body.user;
-        userArray.forEach((element) => {
-          req.body.user = element;
-          const mongoData = mongoformatter(req);
-          // console.log('mongodata', req.body.body);
-          // console.log('mongodata', req.body.subject);
-          // console.log('mongodata name', mongoData.name);
-          EmailService.postEmailMongo(mongoData);
-          if (mongoData.name && mongoData.message.providers == "nodemailer") {
-            let email = EmailService.sendMail(
-              mongoData.name,
-              req.body.body,
-              req.body.subject
-            );
-          }
-        });
-        return Response.success(res, sqlData);
-      } else {
-        return Response.error(res, "Validation failed");
-      }
-    } catch (error) {
-      return Response.error(res, error);
-    }
-  }
+  // async templateForm(req, res) {
+  //   try {
+  //     // format data to store in sql
+  //     const sqlData = sqlformatter(req);
+  //     let rules = formValidator.formValidator();
+  //     // check the formatted data
+  //     let validation = new Validator(sqlData, rules);
+  //     if (validation.passes() && !validation.fails()) {
+  //       // store data in sql
+  //       let result = await EmailService.postEmailSql(sqlData);
+  //       req.body.sqlId = result.resultSql;
+  //       const userArray = req.body.user;
+  //       userArray.forEach((element) => {
+  //         req.body.user = element;
+  //         const mongoData = mongoformatter(req);
+  //         // console.log('mongodata', req.body.body);
+  //         // console.log('mongodata', req.body.subject);
+  //         // console.log('mongodata name', mongoData.name);
+  //         EmailService.postEmailMongo(mongoData);
+  //         if (mongoData.name && mongoData.message.providers == "nodemailer") {
+  //           let email = EmailService.sendMail(
+  //             mongoData.name,
+  //             req.body.body,
+  //             req.body.subject
+  //           );
+  //         }
+  //       });
+  //       return Response.success(res, sqlData);
+  //     } else {
+  //       return Response.error(res, "Validation failed");
+  //     }
+  //   } catch (error) {
+  //     return Response.error(res, error);
+  //   }
+  // }
 
   async showAllDatas(req, res) {
     try {
@@ -117,29 +117,33 @@ module.exports = class SegmentController {
     }
   }
 
-//   async storeInLang(req, res){
+  async storeInLang(req, res){
 
-//     let data = sqlformatter(req)
+    let data = sqlformatter(req)
 
 
-//     let rules = formValidator.formValidator();
-//     // check the formatted data
-//     let validation = new Validator(data, rules);
-//     if (validation.passes() && !validation.fails()) {
+    let rules = formValidator.formValidator();
+    // check the formatted data
+    let validation = new Validator(data, rules);
+    if (validation.passes() && !validation.fails()) {
 
-//     let result = await knex("TemplateData").insert(data)
-//     if(result){
-//       console.log('result========>',result)
-//       req.body.tamplate_id=result[0]
-//       console.log('body===',req.body);
+    let result = await knex("TemplateData").insert(data)
+    if(result){
+      console.log('result========>',result)
+      req.body.template_id=result[0]
+      console.log('body===',req.body);
       
 
-//       let data2 = storeToLangDB(req)
-      
-//       let result2 = await knex('lang').insert(data2)
-//       console.log('result2========>',result2)
-//     }
-//   }
-// }
+      let data2 = storeToLangDB(req)
+      let rules2 = formValidator.langDbValidator();
+      let sqlvalidation = new Validator(data2, rules2);
+
+      if (validation.passes() && !validation.fails()) {
+      let result2 = await knex('lang').insert(data2)
+      console.log('result2========>',result2)
+      }
+    }
+  }
+}
 
 };

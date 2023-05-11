@@ -351,11 +351,11 @@
     <br />
 
     <div *ngIf="langArr.length >= 1; else elseBlock">
-      <div *ngFor="let item of langArr">
+      <div *ngFor="let item of langArr;let i =index">
         <div class="row">
           <div class="col">
             <label for=""
-              >Subject for {{ item }}<span style="color: red">*</span></label
+              >Subject for {{ item }}{{i+1}}<span style="color: red">*</span></label
             >
             <input
               type="text"
@@ -363,7 +363,6 @@
               placeholder="Select Subject"
               aria-label="Select Subject"
               formControlName="subject"
-              value="jnbhvgdtf"
             />
             <div
               *ngIf="
@@ -385,7 +384,7 @@
         <div class="row">
           <div class="col">
             <label for=""
-              >Body for {{ item }}<span style="color: red">*</span></label
+              >Body for {{ item }}{{i}}<span style="color: red">*</span></label
             >
             <textarea
               class="form-control length"
