@@ -21,10 +21,18 @@ module.exports = class SegmentController {
         const userArray = req.body.user;
         userArray.forEach((element) => {
           req.body.user = element;
-          // format data to store in mongodb
           const mongoData = mongoformatter(req);
-          // store data in sql
+          // console.log('mongodata', req.body.body);
+          // console.log('mongodata', req.body.subject);
+          // console.log('mongodata name', mongoData.name);
           EmailService.postEmailMongo(mongoData);
+          if (mongoData.name && mongoData.message.providers == "nodemailer") {
+            let email = EmailService.sendMail(
+              mongoData.name,
+              req.body.body,
+              req.body.subject
+            );
+          }
         });
         return Response.success(res, sqlData);
       } else {
@@ -98,4 +106,5 @@ module.exports = class SegmentController {
       return Response.error(res, error);
     }
   }
+  async sendMail() {}
 };

@@ -34,7 +34,7 @@ Team Leader: Varun Mishra
 
 1. User Template Form
    Inputs:
-   i) Template Name: user need to fill the value manually and it is also required
+   i) Template Name: user need to fill the value manually and it is also required.
    ii) Template Code:user need to fill the value manually and it is also required
    iii) Scenario: user need to select the value and also it is not mandatory
    iv) Providers : user need to select the value and also it is required

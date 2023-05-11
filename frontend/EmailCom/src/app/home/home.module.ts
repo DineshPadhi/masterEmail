@@ -6,11 +6,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
+import { SharedModule } from '../shared/shared.module';
+import { SendMailComponent } from './form/send-mail/send-mail.component';
 
 
 @NgModule({
   declarations: [
-    FormComponent
+    FormComponent,
+    SendMailComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +21,8 @@ import { ToastrService } from 'ngx-toastr';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule,
+    SharedModule
   ],
   providers: [
     FormComponent,
