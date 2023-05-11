@@ -1,8 +1,11 @@
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<br>
-<br>
+<link
+  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  rel="stylesheet"
+/>
+<br />
+<br />
 <div class="container bootdey">
-<div class="email-app">
+  <div class="email-app">
     <!-- <nav>
         <a href="#" class="btn btn-danger btn-block">New Email</a>
         <ul class="nav">
@@ -27,47 +30,66 @@
         </ul>
     </nav> -->
     <main>
-        <p class="text-center">New Message</p>
-        <form #filterForm='ngForm'>
-            <div class="form-row mb-3" >
-                <label for="to" class="col-2 col-sm-1 col-form-label">To:</label>
-                <div class="col-10 col-sm-11" >
-                   
-                    <div class="input-group" id="container" *ngFor="let row of add">
-                    <input type="email" ngModel name="tname" class="form-control" id="to" placeholder="Enter Email">
-                    
-                    <div class="input-group-append" id="drop">
-                        <select
-                        class="form-select mx-1" aria-label="Default select example"
-                          data-bs-toggle="#dropdown"
-                          #scen
-                          (change)="onSelect(scen.value)"
-                          
-                        >
-                        <option value="" style="color: gray;" selected disabled>Select Language</option>
-                          <option class="dropdown-item" value="Scenario 1">English</option>
-                          <option class="dropdown-item" value="Scenario 2">Hindi</option>
-                          <option class="dropdown-item" value="Scenario 3">Marathi</option>
-                        </select>
-                        
-                    </div>
-                   
-                   </div>
-                   <br />
-                   <button (click)="addInp()">Add User</button>
-                </div>
-                
-            </div>
-            <div class="form-row mb-3">
-                <label for="cc" class="col-5 col-sm-4 col-form-label">Template Code</label>
-                <div class="col-10 col-sm-11">
-                    <input type="email" class="form-control" id="cc" placeholder="Type Template Code">
-                </div>
-            </div>
+      <p class="text-center">New Message</p>
+      <form #filterForm="ngForm" [formGroup]="myForm" *ngIf="this.myForm">
+        <div class="form-row mb-3">
+          <label for="to" class="col-2 col-sm-1 col-form-label">To:</label>
+          <div class="col-10 col-sm-11">
+            <div class="input-group" *ngFor="let row of addArr">
+              {{ row }}
+              <input
+                type="email"
+                [formControlName]="'tname' + row"
+                class="form-control"
+                placeholder="Enter Email"
+                [id]="'inp' + row"
+              />
 
-            <a href="#" class="btn btn-danger btn-block style=color">Send Email</a>
-        </form>
+              <div class="input-group-append" id="drop">
+                <select
+                  class="form-select mx-1"
+                  aria-label="Default select example"
+                  data-bs-toggle="#dropdown"
+                  #scen
+                  (change)="onSelect(scen.value)"
+                  formControlName="lang"
+                  (click)="func()"
+                >
+                  <option value="" style="color: gray" selected disabled>
+                    Select Language
+                  </option>
+                  <option class="dropdown-item" value="English">English</option>
+                  <option class="dropdown-item" value="Hindi">Hindi</option>
+                  <option class="dropdown-item" value="Marathi">Marathi</option>
+                </select>
+              </div>
+            </div>
+            <br />
+            <button (click)="addInp()">Add User</button>
+          </div>
+        </div>
+        <div class="form-row mb-3">
+          <label for="cc" class="col-5 col-sm-4 col-form-label"
+            >Template Code</label
+          >
+          <div class="col-10 col-sm-11">
+            <input
+              type="email"
+              class="form-control"
+              formControlName="templateCode"
+              id="cc"
+              placeholder="Type Template Code"
+            />
+          </div>
+        </div>
 
+        <a
+          href="#"
+          class="btn btn-danger btn-block style=color"
+          (click)="send(myForm.value, $event)"
+          >Send Email</a
+        >
+      </form>
     </main>
-</div>
+  </div>
 </div>

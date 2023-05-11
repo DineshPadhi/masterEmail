@@ -106,5 +106,13 @@ module.exports = class SegmentController {
       return Response.error(res, error);
     }
   }
-  async sendMail() {}
+  async sendMail(req, res) {
+    try {
+      console.log("req is", req.body);
+      const sqlData = sqlformatter(req.body);
+      return Response.success(res, sqlData);
+    } catch (error) {
+      return Response.error(res, error);
+    }
+  }
 };
