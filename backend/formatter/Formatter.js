@@ -1,74 +1,110 @@
 // format data to store in mysql
-const sqlformatter = (req) => {
-  let userArr = [];
-  let userData = "";
-  if (req.params.id) {
-    if (typeof req.body.user[0] === "string") {
-      req.body.user.forEach((element) => {
-        if (!userArr.includes(element)) {
-          userArr.push(element);
-        }
-        userData = userArr.join(",");
-      });
-    } else {
-      const defaultArr = req.body.user;
-      defaultArr.forEach((element) => {
-        userArr.push(element.item_text);
-      });
-
-      userData = userArr.join(",");
-    }
+const sqlformatter = (data) => {
+  console.log('data is in formatter',data);
+  if (typeof data.toUsers==='string') {
+    let perMail = {};
+        perMail.to = data.toUsers;
+        perMail.lang = data.lang;
+        perMail.templateCode = data.templateCode;
+        return perMail
+    
   } else {
-    const defaultArr = req.body.user;
-    defaultArr.forEach((element) => {
-      userArr.push(element.item_text);
-    });
-    userData = userArr.join(",");
+    
+    let users = data.toUsers;
+    let arr = []
+    for (let i = 0; i < users.length; i++) {
+      
+      
+      let perMail = {};
+        perMail.to = data.toUsers[i];
+        perMail.lang = data.lang[i];
+        perMail.templateCode = data.templateCode;
+  
+       
+        arr.push(perMail);
+      } 
+      return arr
   }
+}
+  
 
-  let langArr = [];
-  let langData = "";
-  if (req.params.id) {
-    if (typeof req.body.lang[0] === "string") {
-      req.body.lang.forEach((element) => {
-        if (!langArr.includes(element)) {
-          langArr.push(element);
-        }
-        langData = langArr.join(",");
-      });
-    } else {
-      const defaultLangArr = req.body.lang;
-      defaultLangArr.forEach((element) => {
-        langArr.push(element.item_text);
-      });
+  
+  // data.templateCode = "Happy Diwali";
+  // console.log("data in formatter is", data);
+  // const template = data;
+  // return template;
 
-      langData = langArr.join(",");
-    }
-  } else {
-    const defaultLangArr = req.body.lang;
-    defaultLangArr.forEach((element) => {
-      langArr.push(element.item_text);
-    });
-    langData = langArr.join(",");
-  }
+// const sqlformatter = (req) => {
+//   let userArr = [];
 
-  user = {
-    templateName: req.body.templateName,
-    templateCode: req.body.templateCode,
-    scenario: req.body.scenario,
-    providers: req.body.providers,
-    user: userData,
-    tier: req.body.tier,
-    emailType: req.body.emailType,
-    activity: req.body.activity,
-    status: req.body.status,
-    targetAudience: req.body.targetAudience,
-    lang: langData,
-    subject: req.body.subject,
-    body: req.body.body,
-  };
-  return user;
-};
+//   let userData = "";
+//   if (req.params.id) {
+//     if (typeof req.body.user[0] === "string") {
+//       req.body.user.forEach((element) => {
+//         if (!userArr.includes(element)) {
+//           userArr.push(element);
+//         }
+//         userData = userArr.join(",");
+//       });
+//     } else {
+//       const defaultArr = req.body.user;
+//       defaultArr.forEach((element) => {
+//         userArr.push(element.item_text);
+//       });
+
+//       userData = userArr.join(",");
+//     }
+//   } else {
+//     const defaultArr = req.body.user;
+//     defaultArr.forEach((element) => {
+//       userArr.push(element.item_text);
+//     });
+//     userData = userArr.join(",");
+//   }
+
+//   let langArr = [];
+//   let langData = "";
+//   if (req.params.id) {
+//     if (typeof req.body.lang[0] === "string") {
+//       req.body.lang.forEach((element) => {
+//         if (!langArr.includes(element)) {
+//           langArr.push(element);
+//         }
+//         langData = langArr.join(",");
+//       });
+//     } else {
+//       const defaultLangArr = req.body.lang;
+//       defaultLangArr.forEach((element) => {
+//         langArr.push(element.item_text);
+//       });
+
+//       langData = langArr.join(",");
+//     }
+//   } else {
+//     const defaultLangArr = req.body.lang;
+//     defaultLangArr.forEach((element) => {
+//       langArr.push(element.item_text);
+//     });
+//     langData = langArr.join(",");
+//   }
+
+//   user = {
+//     templateName: req.body.templateName,
+//     templateCode: req.body.templateCode,
+//     scenario: req.body.scenario,
+//     providers: req.body.providers,
+//     user: userData,
+//     tier: req.body.tier,
+//     emailType: req.body.emailType,
+//     activity: req.body.activity,
+//     status: req.body.status,
+//     targetAudience: req.body.targetAudience,
+//     lang: langData,
+//     subject: req.body.subject,
+//     body: req.body.body,
+//   };
+//   return user;
+// };
 // format data to store in mongodb
 const mongoformatter = (req) => {
   let langObject;

@@ -4,7 +4,10 @@
     <li class="breadcrumb-item">
       <a routerLink="/allTemplateData">EditTemplate</a>
     </li>
+    <li class="breadcrumb-item">
+      <a routerLink="/createEmailTemplate/sendMail">SendEmail</a>
+    </li>
   </ol>
 </nav>
 
-<app-form-inp></app-form-inp>
+<app-form-inp [formType]="'add'"></app-form-inp>
