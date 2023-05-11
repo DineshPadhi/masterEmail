@@ -118,8 +118,16 @@ module.exports = class SegmentController {
       console.log("data in controller is", sqlData);
       let sqlResult = await EmailService.sendSql(sqlData);
       console.log("from db is", sqlResult);
-      // let email = EmailService.sendMail(sqlData.to)
-      return Response.success(res, sqlData);
+      for (let i = 0; i < sqlData.length; i++) {
+        await EmailService.sendMail(
+          sqlResult[i].to,
+          sqlResult[i].subject,
+          sqlResult[i].body
+        );
+      }
+
+      console.log("email=====", email);
+      return Response.success(res, sqlResult);
     } catch (error) {
       return Response.error(res, error);
     }

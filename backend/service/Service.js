@@ -46,13 +46,15 @@ module.exports = class EmailService {
 
  async sendSql(data){
   const result = await templateModel.sendMailSql(data)
+  console.log('result in service',result);
   return result;
- }
+}
 
- async sendMail(name, body, sub){
+// async sendMail(name,sub,body){
+//    await scheduler.providers(name, sub,body)
+//   console.log('name====',name);
 
-    // await scheduler.providers(name, body, sub)
- }
+//  }
 
   //   // console.log('hiii');
     // console.log('name1===',name);
