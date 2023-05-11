@@ -14,6 +14,6 @@ router.get("/getById/:id", segmentController.showById);
 router.post("/search", segmentController.searchAllDatas);
 // router.post("/update/:id", loggerMiddleware, segmentController.updateData);
 router.post("/update/:id", segmentController.updateData);
-// router.post("/", loggerMiddleware, segmentController.storeInLang);
+router.post("/", loggerMiddleware, segmentController.storeInLang);
 
 module.exports = router;

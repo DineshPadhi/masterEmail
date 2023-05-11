@@ -175,6 +175,8 @@ export class FormInpComponent implements OnInit {
   }
 
   submit(data: any) {
+    console.log('data issssss',data);
+    
     if (this.formType == 'edit') {
       this.active.paramMap.subscribe((params) => {
         this.id = params.get('id');
@@ -189,10 +191,11 @@ export class FormInpComponent implements OnInit {
         }
       });
     } else {
+      console.log('data.....',data)
       this.formService.submitForm(data).subscribe((result: any) => {
         if (result) {
           console.log(result.data.templateCode);
-
+          
           this.router.navigate(['/allTemplateData']);
           this.toastr.success<any>('Your Data Submited successfully!!');
         }

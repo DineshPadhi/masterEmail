@@ -1,7 +1,11 @@
 let Validator = require("validatorjs");
-const { sqlformatter, mongoformatter } = require("../formatter/Formatter.js");
+const {
+  sqlformatter,
+  mongoformatter,
+  storeToLangDB,
+} = require("../formatter/Formatter.js");
 const formValidator = require("../validator/Validator.js");
-// const { knex } = require("../connections/Conn.js");
+const { knex } = require("../connections/Conn.js");
 const EmailService = new (require("../service/Service.js"))();
 const Response = new (require("../responses/Responses.js"))();
 
@@ -111,9 +115,9 @@ module.exports = class SegmentController {
     try {
       console.log("req is", req.body);
       const sqlData = sqlformatter(req.body);
-      console.log('data in controller is',sqlData);
-      let sqlResult =  await EmailService.sendSql(sqlData);
-      console.log('from db is',sqlResult);
+      console.log("data in controller is", sqlData);
+      let sqlResult = await EmailService.sendSql(sqlData);
+      console.log("from db is", sqlResult);
       // let email = EmailService.sendMail(sqlData.to)
       return Response.success(res, sqlData);
     } catch (error) {
@@ -121,29 +125,28 @@ module.exports = class SegmentController {
     }
   }
 
-//   async storeInLang(req, res){
+  async storeInLang(req, res) {
+    let data = sqlformatter(req);
 
-//     let data = sqlformatter(req)
+    let rules = formValidator.formValidator();
+    // check the formatted data
+    let validation = new Validator(data, rules);
+    if (validation.passes() && !validation.fails()) {
+      let result = await knex("TemplateData").insert(data);
+      if (result) {
+        console.log("result========>", result);
+        req.body.template_id = result[0];
+        console.log("body===", req.body);
 
+        let data2 = storeToLangDB(req);
+        let rules2 = formValidator.langDbValidator();
+        let sqlvalidation = new Validator(data2, rules2);
 
-//     let rules = formValidator.formValidator();
-//     // check the formatted data
-//     let validation = new Validator(data, rules);
-//     if (validation.passes() && !validation.fails()) {
-
-//     let result = await knex("TemplateData").insert(data)
-//     if(result){
-//       console.log('result========>',result)
-//       req.body.tamplate_id=result[0]
-//       console.log('body===',req.body);
-      
-
-//       let data2 = storeToLangDB(req)
-      
-//       let result2 = await knex('lang').insert(data2)
-//       console.log('result2========>',result2)
-//     }
-//   }
-// }
-
+        if (validation.passes() && !validation.fails()) {
+          let result2 = await knex("lang").insert(data2);
+          console.log("result2========>", result2);
+        }
+      }
+    }
+  }
 };
