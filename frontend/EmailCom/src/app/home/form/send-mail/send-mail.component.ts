@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-send-mail',
@@ -11,9 +11,14 @@ export class SendMailComponent {
   myForm: FormGroup;
   add: number = 1;
   addArr: any = [1];
-  fields: any = {};
+  formfields: any = {
+    templateCode: [''],
+    tname1: [''],
+    lang1: [''],
+  };
+  emailForm: any;
   constructor(private fb: FormBuilder) {
-    this.createForm();
+    this.createForm(' ');
   }
 
   ngOnInit(): void {}
@@ -21,36 +26,21 @@ export class SendMailComponent {
     this.selectedValue = value;
   }
 
-  // addInp(){
-  //  let container = document.getElementById("container");
-  //  let input = document.createElement("input");
-  //  let dropdown = document.getElementById('drop')
-  //  input.type = "text";
-  //  input.name = "tname" + 1;
-  //  container.appendChild(input);
-  //  dropdown.firstChild
-  // }
+  createForm(value: any) {
+    for (let i = 1; i <= this.addArr.length; i++) {
+      this.formfields[`tname${i}`] = value[`tname${i}`] || [''];
+      this.formfields[`lang${i}`] = value[`lang${i}`] || [''];
+    }
 
-  createForm() {
-    this.fields = {
-      templateCode: [''],
-      tname: [''],
-      lang: [''],
-    };
-    this.myForm = this.fb.group(this.fields);
+    this.myForm = this.fb.group(this.formfields);
   }
-
-  addInp() {
+  addInp(value: any) {
     this.add += 1;
-    let tname = '';
-    this.myForm = this.fb.group(this.fields);
-    this.fields['tname' + this.add] = document.getElementById(
-      'tname' + this.add
-    );
+    console.log('e is', value);
+
     this.addArr.push(this.add);
-    this.fields.tname.value = '';
-    console.log(this.addArr);
-    console.log('filed is ', this.fields);
+
+    this.createForm(value);
   }
 
   value: any;
@@ -59,9 +49,5 @@ export class SendMailComponent {
     e.preventDefault();
     this.value = data;
     console.log(this.value);
-  }
-  func() {}
-  somefunc() {
-    console.log('yeah');
   }
 }
