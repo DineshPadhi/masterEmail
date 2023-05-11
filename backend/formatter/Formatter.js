@@ -1,18 +1,39 @@
 // format data to store in mysql
 const sqlformatter = (data) => {
-  let users = data.toUsers;
-  users.forEach((emails) => {
+  console.log('data is in formatter',data);
+  if (typeof data.toUsers==='string') {
     let perMail = {};
-    perMail.to = emails;
-    perMail.lang = data.lang;
-    perMail.templateCode = data.templateCode;
-    console.log("data sent to user in email are:", perMail);
-  });
-  data.templateCode = "Happy Diwali";
-  console.log("data in formatter is", data);
-  const template = data;
-  return template;
-};
+        perMail.to = data.toUsers;
+        perMail.lang = data.lang;
+        perMail.templateCode = data.templateCode;
+        return perMail
+    
+  } else {
+    
+    let users = data.toUsers;
+    let arr = []
+    for (let i = 0; i < users.length; i++) {
+      
+      
+      let perMail = {};
+        perMail.to = data.toUsers[i];
+        perMail.lang = data.lang[i];
+        perMail.templateCode = data.templateCode;
+  
+       
+        arr.push(perMail);
+      } 
+      return arr
+  }
+}
+  
+
+  
+  // data.templateCode = "Happy Diwali";
+  // console.log("data in formatter is", data);
+  // const template = data;
+  // return template;
+
 // const sqlformatter = (req) => {
 //   let userArr = [];
 
