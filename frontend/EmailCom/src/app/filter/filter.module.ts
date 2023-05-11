@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [FilterComponent, UpdateUserComponent],
@@ -20,7 +21,8 @@ import { ToastrService } from 'ngx-toastr';
     NgxPaginationModule,
     HomeModule,
     HttpClientModule,
-    NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule,
+    SharedModule
     
   ],
   providers: [

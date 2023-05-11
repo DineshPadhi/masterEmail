@@ -10,6 +10,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrModule } from 'ngx-toastr';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgxPaginationModule,
     Ng2SearchPipeModule,
     NgMultiSelectDropDownModule,
+    SharedModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       positionClass: 'toast-top-center',
