@@ -28,11 +28,11 @@ module.exports = class SegmentController {
           // console.log('mongodata name', mongoData.name);
           EmailService.postEmailMongo(mongoData);
           if (mongoData.name && mongoData.message.providers == "nodemailer") {
-            let email = EmailService.sendMail(
-              mongoData.name,
-              req.body.body,
-              req.body.subject
-            );
+            // let email = EmailService.sendMail(
+            //   mongoData.name,
+            //   req.body.body,
+            //   req.body.subject
+            // );
           }
         });
         return Response.success(res, sqlData);
@@ -111,6 +111,10 @@ module.exports = class SegmentController {
     try {
       console.log("req is", req.body);
       const sqlData = sqlformatter(req.body);
+      console.log('data in controller is',sqlData);
+      let sqlResult =  await EmailService.sendSql(sqlData);
+      console.log('from db is',sqlResult);
+      // let email = EmailService.sendMail(sqlData.to)
       return Response.success(res, sqlData);
     } catch (error) {
       return Response.error(res, error);

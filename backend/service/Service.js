@@ -44,9 +44,15 @@ module.exports = class EmailService {
   }
 
 
+ async sendSql(data){
+  const result = await templateModel.sendMailSql(data)
+  return result;
+ }
+
  async sendMail(name, body, sub){
 
- await scheduler.providers(name, body, sub)
+    // await scheduler.providers(name, body, sub)
+ }
 
   //   // console.log('hiii');
     // console.log('name1===',name);
@@ -75,6 +81,6 @@ module.exports = class EmailService {
   //       console.log('Email send Successfully');
   //     }
   //   })
-  }
+  
 
 };
