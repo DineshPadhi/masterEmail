@@ -2,7 +2,7 @@ const cron = require('node-cron')
 const configureDetails = require('../config/Config.js');
 const nodeMailer = require('nodemailer')
 
-async function providers(name, body, sub) {
+async function providers(name, sub,body) {
 
     console.log('Cancelled email cron executed')
     // console.log('hiii');

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
+import { Router } from '@angular/router';
+import { FormServiceService } from '../../form-service.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-send-mail',
@@ -17,7 +21,13 @@ export class SendMailComponent {
     lang1: [''],
   };
   emailForm: any;
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder ,
+    private sendService : FormServiceService,
+    private router : Router,
+    private toastr: ToastrService 
+  )
+  {
     this.createForm(' ');
   }
 
@@ -46,8 +56,19 @@ export class SendMailComponent {
   value: any;
 
   send(data: any, e: any) {
-    e.preventDefault();
-    this.value = data;
-    console.log(this.value);
+    console.log('data before sending',data);
+    
+    this.sendService.sendMail(data).subscribe((result:any)=>{
+      if (result) {
+        console.log('result---->.',result);
+        
+              // this.router.navigate(['/allTemplateData']);
+              // this.toastr.success<any>('Your Data Submited successfully!!');
+            }
+    })
+
+    // e.preventDefault();
+    // this.value = data;
+    // console.log(this.value);
   }
 }

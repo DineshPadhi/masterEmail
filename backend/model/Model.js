@@ -54,19 +54,50 @@ const updateUserMongo = async (id, data) => {
 };
 
 const sendMailSql = async (data)=> {
-  const result = await knex('lang')
-  .select('subject','body')
-    .where((qb) => {
+  let userMultiEmail=[]
+  let multiEmail={}
+  for (let i = 0; i < data.length; i++) {
+    multiEmail={}
+    let result = await knex('lang')
+    .select('*')
+      .where((qb) => {
+        if (data[i].templateCode) {
+          console.log('data...>>>>>', data);
+          
+          qb.where("templateCode", data[i].templateCode)
+        }
+        if (data[i].lang) {
+          qb.andWhere("language", '=', data[i].lang)
+        }
+        
+      });
+      console.log('result is',result);
+      multiEmail.to=data[i].to
+      multiEmail.subject=result[0].subject
+      multiEmail.body=result[0].body
+      console.log('multiEmail is',multiEmail);
 
-      if (data.templateCode) {
-        qb.Where("templateCode", data.templateCode);
-      }
-      if (data.lang) {
-        qb.andWhere("language", data.lang);
-      }
-    });
+      userMultiEmail.push(multiEmail)
+    }
+    console.log('result in model is',userMultiEmail);
+ 
+  // const result = await knex('lang')
+  // .select('*')
+  //   .where((qb) => {
+  //     if (data[0].templateCode) {
+  //       console.log('data...>>>>>', data);
+        
+  //       qb.where("templateCode", data[0].templateCode)
+  //     }
+  //     if (data[0].lang) {
+  //       qb.andWhere("language", '=', data[0].lang)
+  //     }
+      
+  //   });
+
+  //   console.log('result.......>>>',result);
     
-  return result;
+  return userMultiEmail;
 }
 
 module.exports = {

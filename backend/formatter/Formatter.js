@@ -1,11 +1,32 @@
 // format data to store in mysql
 const sqlformatter = (data) => {
-  console.log('data is in formatter',data);
+  let=userArr=[]
+  let=languArr=[]
+  // console.log('data is in formatter',data);
+  Object.keys(data).some(function(prop){
+    if (prop.includes("tname")) {
+      // console.log('user is',prop);
+      // console.log('its data',data[prop]);
+      userArr.push(data[prop])
+    }
+    if (prop.includes("lang")) {
+      // console.log('lang is',prop);
+      languArr.push(data[prop])
+    }
+  })
+  // console.log('useeeeee',userArr);
+  data.toUsers=userArr
+  data.lang=languArr
+  // for (let i = 0; i < array.length; i++) {
+    
+  // }
   if (typeof data.toUsers==='string') {
+    // console.log('yo');
     let perMail = {};
         perMail.to = data.toUsers;
         perMail.lang = data.lang;
         perMail.templateCode = data.templateCode;
+        // console.log('permail is',perMail);
         return perMail
     
   } else {
@@ -23,6 +44,7 @@ const sqlformatter = (data) => {
        
         arr.push(perMail);
       } 
+      // console.log('arrsa is',arr);
       return arr
   }
 }
