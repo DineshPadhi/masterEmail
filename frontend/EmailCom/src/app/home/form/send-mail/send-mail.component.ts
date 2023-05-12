@@ -16,9 +16,9 @@ export class SendMailComponent {
   add: number = 1;
   addArr: any = [1];
   formfields: any = {
-    templateCode: [''],
     tname1: [''],
     lang1: [''],
+    templateCode: [''],
   };
   emailForm: any;
   constructor(
@@ -37,6 +37,9 @@ export class SendMailComponent {
   }
 
   createForm(value: any) {
+    this.formfields={
+      templateCode: value.templateCode,
+    };
     for (let i = 1; i <= this.addArr.length; i++) {
       this.formfields[`tname${i}`] = value[`tname${i}`] || [''];
       this.formfields[`lang${i}`] = value[`lang${i}`] || [''];
@@ -46,14 +49,16 @@ export class SendMailComponent {
   }
   addInp(value: any) {
     this.add += 1;
-    console.log('e is', value);
+  // console.log('addArr in add  is',this.addArr);
+  // console.log('add in add is',this.add);
+    
 
     this.addArr.push(this.add);
 
     this.createForm(value);
   }
 
-  value: any;
+ 
 
   send(data: any, e: any) {
     console.log('data before sending',data);
@@ -62,13 +67,40 @@ export class SendMailComponent {
       if (result) {
         console.log('result---->.',result);
         
-              // this.router.navigate(['/allTemplateData']);
-              // this.toastr.success<any>('Your Data Submited successfully!!');
+              this.router.navigate(['/allTemplateData']);
+              this.toastr.success<any>('Your Data Submited successfully!!');
             }
-    })
+          })
+        }
 
-    // e.preventDefault();
-    // this.value = data;
-    // console.log(this.value);
+
+ remove(value:any){
+  if (this.add>=2) {
+    
+    console.log('value is',value+1);
+  //  const index = this.addArr.indexOf(value+1);
+  //  console.log('index is',index);
+   console.log('addArr is before',this.addArr);
+   
+  //  console.log('add is before',this.add);
+ 
+   console.log('add is after',this.add);
+   console.log('addArr  is after',this.addArr);
+  this.formfields[`tname${value+1}`] = [''];
+      this.formfields[`lang${value+1}`] =  [''];
+  //     console.log('formrmrmrmrrm',this.formfields);
+      
+ 
+ 
+//  if (index > -1) { // only splice array when item is found
+   this.addArr.splice(value, 1); // 2nd parameter means remove one item only
+  this.add -=1;
+//  }
+  //  this.addArr.remove(value)
   }
+}
+  // e.preventDefault();
+  // this.value = data;
+  // console.log(this.value);
+
 }
