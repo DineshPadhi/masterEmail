@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
@@ -7,14 +7,12 @@ import { ToastrService } from 'ngx-toastr';
 import { FilterService } from 'src/app/filter/filter.service';
 import { FormServiceService } from 'src/app/home/form-service.service';
 
-
 @Component({
   selector: 'app-form-inp',
   templateUrl: './form-inp.component.html',
   styleUrls: ['./form-inp.component.css'],
 })
 export class FormInpComponent implements OnInit {
-
   @ViewChild('iframe') preview_iframe: ElementRef;
 
   data: any = [];
@@ -32,11 +30,11 @@ export class FormInpComponent implements OnInit {
   id: any;
   @Input() formType: any = '';
   valuesInSelect = [];
-  getlang:any
-  checkedValue:any
-  langObj:any={}
-  langArr:any=[]
-  prevLangArr:any=["English","Hindi","Marathi"]
+  getlang: any;
+  checkedValue: any;
+  langObj: any = {};
+  langArr: any = [];
+  prevLangArr: any = ['English', 'Hindi', 'Marathi'];
 
   constructor(
     private active: ActivatedRoute,
@@ -97,54 +95,51 @@ export class FormInpComponent implements OnInit {
     //           body: result.data[0].body,
     //           lang: result.data[0].lang,
     //         });
-            
+
     //       }
     //     });
     //   }
     // });
 
-
-
     this.active.paramMap.subscribe((params) => {
-      if(params.get('id')){
-      this.id = params.get('id');
+      if (params.get('id')) {
+        this.id = params.get('id');
 
-      this.FilterService.getDataById(this.id).subscribe((result: any) => {
-        this.htmlContent = result.data[0].body;
-        const iframe = document.getElementById('preview_iframe_5');
-        iframe['contentWindow'].document.open();
-        iframe['contentDocument'].write(this.htmlContent);
-        iframe['contentWindow'].document.close();
-        if (this.id) {
-          result.data[0].lang.forEach((element:any) => {
-            this.langObj={}
-            this.langObj.item_id=this.prevLangArr.indexOf(element)+1
-            this.langObj.item_text=element
-            this.langArr.push(this.langObj)
-          });
-          this.myForm.patchValue({
-            templateName: result.data[0].templateName,
-            templateCode: result.data[0].templateCode,
-            scenario: result.data[0].scenario,
-            providers: result.data[0].providers,
-            tier: result.data[0].tier,
-            emailType: result.data[0].emailType,
-            activity: result.data[0].activity,
-            status: result.data[0].status,
-            targetAudience: result.data[0].targetAudience,
-            // subject: result.data[0].subject,
-            // body: result.data[0].body,
-            // lang: [{item_text:"English"}],
-            lang: this.langArr,
-          });
-        }
-      });
-    }
+        this.FilterService.getDataById(this.id).subscribe((result: any) => {
+          this.htmlContent = result.data[0].body;
+          const iframe = document.getElementById('preview_iframe_5');
+          iframe['contentWindow'].document.open();
+          iframe['contentDocument'].write(this.htmlContent);
+          iframe['contentWindow'].document.close();
+          if (this.id) {
+            result.data[0].lang.forEach((element: any) => {
+              this.langObj = {};
+              this.langObj.item_id = this.prevLangArr.indexOf(element) + 1;
+              this.langObj.item_text = element;
+              this.langArr.push(this.langObj);
+            });
+            this.myForm.patchValue({
+              templateName: result.data[0].templateName,
+              templateCode: result.data[0].templateCode,
+              scenario: result.data[0].scenario,
+              providers: result.data[0].providers,
+              tier: result.data[0].tier,
+              emailType: result.data[0].emailType,
+              activity: result.data[0].activity,
+              status: result.data[0].status,
+              targetAudience: result.data[0].targetAudience,
+              lang: this.langArr,
+              // subject: result.data[0].subject,
+              // body: result.data[0].body,
+              // lang: [{item_text:"English"}],
+            });
+          }
+        });
+      }
     });
 
-
-  //   if(this.router.url === '/createEmailTemplate')
-  //   this.formType = true
+    //   if(this.router.url === '/createEmailTemplate')
+    //   this.formType = true
   }
 
   safehtmlinput($event: any, item: any) {
@@ -168,15 +163,16 @@ export class FormInpComponent implements OnInit {
       activity: [''],
       status: ['', Validators.required],
       targetAudience: ['', Validators.required],
-      subject: ['', Validators.required],
-      body: ['', Validators.required],
       lang: [''],
+      // subject: ['', Validators.required],
+      // body: ['', Validators.required],
+      mailDetails: this.fb.array([]),
     });
   }
 
   submit(data: any) {
-    console.log('data issssss',data);
-    
+    console.log('data issssss', data);
+
     if (this.formType == 'edit') {
       this.active.paramMap.subscribe((params) => {
         this.id = params.get('id');
@@ -191,11 +187,11 @@ export class FormInpComponent implements OnInit {
         }
       });
     } else {
-      console.log('data.....',data)
+      console.log('data.....', data);
       this.formService.submitForm(data).subscribe((result: any) => {
         if (result) {
           console.log(result.data.templateCode);
-          
+
           this.router.navigate(['/allTemplateData']);
           this.toastr.success<any>('Your Data Submited successfully!!');
         }
@@ -246,6 +242,15 @@ export class FormInpComponent implements OnInit {
   onDeselect() {
     this.langArr = [];
   }
+  addMails() {
+    const mails = this.myForm.controls.mailDetails as FormArray;
+    mails.push(
+      this.fb.group({
+        subject: '',
+        body: '',
+      })
+    );
+  }
 
   // updateUser(data: any) {
   //   this.active.paramMap.subscribe((params) => {
@@ -267,5 +272,4 @@ export class FormInpComponent implements OnInit {
   //     templateName: this.form.myForm.value,
   //   });
   // }
-
 }

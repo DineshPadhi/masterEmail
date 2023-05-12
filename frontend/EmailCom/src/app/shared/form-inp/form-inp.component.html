@@ -350,7 +350,7 @@
 
     <br />
 
-    <div *ngIf="langArr.length >= 1; else elseBlock">
+    <!-- <div *ngIf="langArr.length >= 1; else elseBlock">
       <div *ngFor="let item of langArr;let i =index">
         <div class="row">
           <div class="col">
@@ -494,7 +494,33 @@
           ></iframe>
         </div>
       </div>
-    </ng-template>
+    </ng-template> -->
+
+    <button (click)="addMails()">Add</button>
+
+    <div
+      formArrayName="mailDetails"
+      *ngFor="let creds of myForm.controls.mailDetails?.value; let i = index"
+    >
+      <!-- <div> -->
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Select Subject"
+        aria-label="Select Subject"
+        placeholder="Subject"
+        [formControlName]="'subject'"
+      />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Select Subject"
+        aria-label="Select Subject"
+        placeholder="Body"
+        [formControlName]="'body'"
+      />
+      <!-- </div> -->
+    </div>
 
     <br /><br />
 
