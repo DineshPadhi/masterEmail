@@ -13,11 +13,11 @@ export class SendMailComponent {
   selectedValue: any = '';
   myForm: FormGroup;
   add: number = 1;
-  addArr: any = [1];
+  // addArr: any = [1];
   formfields: any = {
-    templateCode: [''],
     tname1: [''],
     lang1: [''],
+    templateCode: [''],
   };
   emailForm: any;
   constructor(
@@ -26,7 +26,12 @@ export class SendMailComponent {
     private router: Router,
     private toastr: ToastrService
   ) {
-    this.createForm(' ');
+    this.myForm = this.fb.group({
+      tos: this.fb.array([]),
+      templateCode: '',
+    });
+
+    // this.createForm(' ');
   }
 
   ngOnInit(): void {}
@@ -34,47 +39,114 @@ export class SendMailComponent {
     this.selectedValue = value;
   }
 
-  createForm(value: any) {
-    this.formfields = {
-      templateCode: value.templateCode,
-    };
-    for (let i = 1; i <= this.addArr.length; i++) {
-      this.formfields[`tname${i}`] = value[`tname${i}`] || [''];
-      this.formfields[`lang${i}`] = value[`lang${i}`] || [''];
-    }
-    // this.formfields = {
-    //   templateCode: [''],
-    //   tname1: [''],
-    //   lang1: [''],
-    // };
-
-    this.myForm = this.fb.group(this.formfields);
-  }
-  addInp(value: any) {
-    this.add += 1;
-    console.log('e is', value);
-
-    this.addArr.push(this.add);
-
-    this.createForm(value);
+  createForm(): FormArray {
+    return this.myForm.get('tos') as FormArray;
   }
 
-  value: any;
-
-  send(data: any, e: any) {
-    console.log('data before sending', data);
-
-    this.sendService.sendMail(data).subscribe((result: any) => {
-      if (result) {
-        console.log('result---->.', result);
-
-        // this.router.navigate(['/allTemplateData']);
-        // this.toastr.success<any>('Your Data Submited successfully!!');
-      }
+  newcreateForm(): FormGroup {
+    return this.fb.group({
+      to: '',
+      lang: '',
     });
-
-    // e.preventDefault();
-    // this.value = data;
-    // console.log(this.value);
   }
+  // this.formfields = {
+  //   templateCode: [''],
+  //   tname1: [''],
+  //   lang1: [''],
+  // };
+
+  addInp() {
+    this.createForm().push(this.newcreateForm());
+  }
+
+  remove(i: number) {
+    this.createForm().removeAt(i);
+  }
+
+  onSubmit(value: any) {
+    console.log('value is--->>', value);
+  }
+  //   createForm(value: any) {
+  //     this.formfields={
+  //       templateCode: value.templateCode,
+  //     };
+  //     for (let i = 1; i <= this.addArr.length; i++) {
+  //       this.formfields[`tname${i}`] = value[`tname${i}`] || [''];
+  //       this.formfields[`lang${i}`] = value[`lang${i}`] || [''];
+  //     }
+
+  //     this.myForm = this.fb.group(this.formfields);
+  //   }
+  //   addInp(value: any) {
+  //     this.add += 0;
+  //   // console.log('addArr in add  is',this.addArr);
+  //   // console.log('add in add is',this.add);
+
+  //     this.addArr.push(this.add);
+
+  //     this.createForm(value);
+  //   }
+
+  //   send(data: any) {
+  //     console.log('data before sending',data);
+
+  //     this.sendService.sendMail(data).subscribe((result:any)=>{
+  //       console.log('yesssh');
+
+  //       if (result) {
+  //         console.log('result in send mail file---->.',result);
+
+  //         this.router.navigate(['/allTemplateData']);
+
+  //         this.toastr.success<any>('Mail Send successfully!!');
+
+  //             }
+  //           })
+  //         }
+
+  //       // } else {
+  //       //   this.formService.submitForm(data).subscribe((result: any) => {
+  //       //     if (result) {
+  //       //       console.log('result in form',result);
+
+  //       //       console.log(result.data.templateCode);
+
+  //       //       this.router.navigate(['/allTemplateData']);
+  //       //       this.toastr.success<any>('Your Data Submited successfully!!');
+  //       //     }
+  //       //   });
+  //       // }
+  //  remove(value:any){
+  //   if (this.add>=2) {
+
+  //   //   console.log('value is',value+1);
+  //    const index = this.addArr.indexOf(value+1);
+  //   //  console.log('index is',index);
+  //   //  console.log('addArr is before',this.addArr);
+
+  //   //  console.log('add is before',this.add);
+
+  //   this.add -=1;
+  //   //  console.log('add is after',this.add);
+  //   //  console.log('addArr  is after',this.addArr);
+  //   // this.formfields[`tname${value+1}`] = [''];
+  //   //     this.formfields[`lang${value+1}`] =  [''];
+  //   //     console.log('formrmrmrmrrm',this.formfields);
+
+  //  if (index > -1) { // only splice array when item is found
+  //    this.addArr.splice(value, 1); // 2nd parameter means remove one item only
+  //  }
+  //    this.addArr.remove(value)
+  //   }
+  // }
+  // e.preventDefault();
+  // this.value = data;
+  // console.log(this.value);
+
+  // remove(i:number){
+  //   i = this.addArr.indexOf(i+1);
+
+  //   this.add -=1;
+  //   this.addArr.pop(this.add -=1)
+  // }
 }

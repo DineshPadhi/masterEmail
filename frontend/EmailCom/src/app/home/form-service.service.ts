@@ -30,7 +30,7 @@ export class FormServiceService implements OnInit {
       body,
     } = data;
 
-    return this.http.post(this.url, {
+    let formservice =  this.http.post(this.url, {
       templateName,
       templateCode,
       scenario,
@@ -45,11 +45,15 @@ export class FormServiceService implements OnInit {
       subject,
       body,
     });
+    console.log('formservicee---',formservice);
+    return formservice
+    
   }
 
   sendMail(data:any){
      let datasend =  this.http.post(`${this.url}/sendMail`,data  );
-     console.log('datasend----',datasend);
+     console.log('datasend----',data);
+     console.log('datasenddatasend----',datasend);
      
      return datasend;
   }
