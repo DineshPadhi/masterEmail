@@ -1,6 +1,6 @@
 import { KeyValue } from '@angular/common';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
@@ -130,10 +130,10 @@ export class FormInpComponent implements OnInit {
               activity: result.data[0].activity,
               status: result.data[0].status,
               targetAudience: result.data[0].targetAudience,
+              lang: this.langArr,
               // subject: result.data[0].subject,
               // body: result.data[0].body,
               // lang: [{item_text:"English"}],
-              lang: this.langArr,
             });
           }
         });
@@ -180,9 +180,8 @@ export class FormInpComponent implements OnInit {
         if (this.id) {
           this.FilterService.update(this.id, data).subscribe((result: any) => {
             if (result) {
+              console.log('result of form', result);
 
-              console.log('result of form',result);
-              
               this.router.navigate(['/allTemplateData']);
               this.toastr.success<any>('Your Data Updated successfully!!');
             }
@@ -193,8 +192,8 @@ export class FormInpComponent implements OnInit {
       console.log('data.....', data);
       this.formService.submitForm(data).subscribe((result: any) => {
         if (result) {
-          console.log('result in form',result);
-          
+          console.log('result in form', result);
+
           console.log(result.data.templateCode);
 
           this.router.navigate(['/allTemplateData']);
