@@ -8,7 +8,7 @@ module.exports = class EmailService {
 
   async postEmailSql(data) {
     let resultSql = await templateModel.createSqlForm(data);
-    // console.log('data', resultSql);
+    console.log('data', resultSql);
     return { resultSql, status: true };
   }
 
@@ -50,11 +50,11 @@ module.exports = class EmailService {
   return result;
 }
 
-// async sendMail(name,sub,body){
-//    await scheduler.providers(name, sub,body)
-//   console.log('name====',name);
-
-//  }
+async sendMail(name,sub,body){
+   await scheduler.providers(name, sub,body)
+  console.log('name====',name);
+  // return 0
+ }
 
   //   // console.log('hiii');
     // console.log('name1===',name);

@@ -1,54 +1,109 @@
 // format data to store in mysql
-const sqlformatter = (data) => {
-  let=userArr=[]
-  let=languArr=[]
-  // console.log('data is in formatter',data);
-  Object.keys(data).some(function(prop){
-    if (prop.includes("tname")) {
-      // console.log('user is',prop);
-      // console.log('its data',data[prop]);
-      userArr.push(data[prop])
-    }
-    if (prop.includes("lang")) {
-      // console.log('lang is',prop);
-      languArr.push(data[prop])
-    }
-  })
-  // console.log('useeeeee',userArr);
-  data.toUsers=userArr
-  data.lang=languArr
-  // for (let i = 0; i < array.length; i++) {
+// const sqlformatter = (data) => {
+//   let=userArr=[]
+//   let=languArr=[]
+//   // console.log('data is in formatter',data);
+//   Object.keys(data).some(function(prop){
+//     if (prop.includes("tname")) {
+//       // console.log('user is',prop);
+//       // console.log('its data',data[prop]);
+//       userArr.push(data[prop])
+//     }
+//     if (prop.includes("lang")) {
+//       // console.log('lang is',prop);
+//       languArr.push(data[prop])
+//     }
+//   })
+//   // console.log('useeeeee',userArr);
+//   data.toUsers=userArr
+//   data.lang=languArr
+//   // for (let i = 0; i < array.length; i++) {
+
+const { raw } = require("body-parser");
+
     
-  // }
-  if (typeof data.toUsers==='string') {
-    // console.log('yo');
-    let perMail = {};
-        perMail.to = data.toUsers;
-        perMail.lang = data.lang;
-        perMail.templateCode = data.templateCode;
-        // console.log('permail is',perMail);
-        return perMail
+//   // }
+//   if (typeof data.toUsers==='string') {
+//     // console.log('yo');
+//     let perMail = {};
+//         perMail.to = data.toUsers;
+//         perMail.lang = data.lang;
+//         perMail.templateCode = data.templateCode;
+//         // console.log('permail is',perMail);
+//         return perMail
     
-  } else {
+//   } else {
     
-    let users = data.toUsers;
-    let arr = []
-    for (let i = 0; i < users.length; i++) {
+//     let users = data.toUsers;
+//     let arr = []
+//     for (let i = 0; i < users.length; i++) {
       
       
-      let perMail = {};
-        perMail.to = data.toUsers[i];
-        perMail.lang = data.lang[i];
-        perMail.templateCode = data.templateCode;
+//       let perMail = {};
+//         perMail.to = data.toUsers[i];
+//         perMail.lang = data.lang[i];
+//         perMail.templateCode = data.templateCode;
   
        
-        arr.push(perMail);
-      } 
-      // console.log('arrsa is',arr);
-      return arr
-  }
-}
+//         arr.push(perMail);
+//       } 
+//       // console.log('arrsa is',arr);
+//       return arr
+//   }
+// }
   
+const Emailformatter= (data) => {
+  
+  let userArr = [];
+  let langArr = [];
+  console.log('data in formatter',data);
+
+  Object.keys(data).some(function(prop){
+        if (prop.includes("tname")) {
+          // console.log('user is',prop);
+          // console.log('its data',data[prop]);
+          userArr.push(data[prop])
+        }
+        if (prop.includes("lang")) {
+          console.log('lang is',prop);
+          langArr.push(data[prop])
+        }
+      })
+      // console.log('useeeeee',userArr);
+      data.toUsers=userArr
+      data.lang=langArr
+      // for (let i = 0; i < array.length; i++) {
+        
+      // }
+      if (typeof data.toUsers==='string') {
+            // console.log('yo');
+            let perMail = {};
+                perMail.to = data.toUsers;
+                perMail.lang = data.lang;
+                perMail.templateCode = data.templateCode;
+                // console.log('permail is',perMail);
+                return perMail
+            
+          } else {
+            
+            let users = data.toUsers;
+            let arr = []
+            for (let i = 0; i < users.length; i++) {
+              
+              
+              let perMail = {};
+                perMail.to = data.toUsers[i];
+                perMail.lang = data.lang[i];
+                perMail.templateCode = data.templateCode;
+          
+               
+                arr.push(perMail);
+              } 
+              // console.log('arrsa is',arr);
+              return arr
+          }
+
+}
 
   
   // data.templateCode = "Happy Diwali";
@@ -56,8 +111,10 @@ const sqlformatter = (data) => {
   // const template = data;
   // return template;
 
-// const sqlformatter = (req) => {
-//   let userArr = [];
+const sqlformatter = (req) => {
+
+
+
 
 //   let userData = "";
 //   if (req.params.id) {
@@ -84,49 +141,51 @@ const sqlformatter = (data) => {
 //     userData = userArr.join(",");
 //   }
 
-//   let langArr = [];
-//   let langData = "";
-//   if (req.params.id) {
-//     if (typeof req.body.lang[0] === "string") {
-//       req.body.lang.forEach((element) => {
-//         if (!langArr.includes(element)) {
-//           langArr.push(element);
-//         }
-//         langData = langArr.join(",");
-//       });
-//     } else {
-//       const defaultLangArr = req.body.lang;
-//       defaultLangArr.forEach((element) => {
-//         langArr.push(element.item_text);
-//       });
+  let langArr = [];
+  let langData = "";
+  if (req.params.id) {
+    if (typeof req.body.lang[0] === "string") {
+      req.body.lang.forEach((element) => {
+        if (!langArr.includes(element)) {
+          langArr.push(element);
+        }
+        langData = langArr.join(",");
+      });
+    } else {
+      const defaultLangArr = req.body.lang;
+      defaultLangArr.forEach((element) => {
+        langArr.push(element.item_text);
+      });
 
-//       langData = langArr.join(",");
-//     }
-//   } else {
-//     const defaultLangArr = req.body.lang;
-//     defaultLangArr.forEach((element) => {
-//       langArr.push(element.item_text);
-//     });
-//     langData = langArr.join(",");
-//   }
+      langData = langArr.join(",");
+    }
+  } else {
+    const defaultLangArr = req.body.lang;
+    defaultLangArr.forEach((element) => {
+      langArr.push(element.item_text);
+    });
+    langData = langArr.join(",");
+  }
+  console.log('langArr isssssssssss',langArr);
+  
+  user = {
+    templateName: req.body.templateName,
+    templateCode: req.body.templateCode,
+    scenario: req.body.scenario,
+    providers: req.body.providers,
+    tier: req.body.tier,
+    emailType: req.body.emailType,
+    activity: req.body.activity,
+    status: req.body.status,
+    targetAudience: req.body.targetAudience,
+    lang: langData,
+    subject: req.body.subject,
+    body: req.body.body,
+  };
+  return user;
+}
 
-//   user = {
-//     templateName: req.body.templateName,
-//     templateCode: req.body.templateCode,
-//     scenario: req.body.scenario,
-//     providers: req.body.providers,
-//     user: userData,
-//     tier: req.body.tier,
-//     emailType: req.body.emailType,
-//     activity: req.body.activity,
-//     status: req.body.status,
-//     targetAudience: req.body.targetAudience,
-//     lang: langData,
-//     subject: req.body.subject,
-//     body: req.body.body,
-//   };
-//   return user;
-// };
+
 // format data to store in mongodb
 const mongoformatter = (req) => {
   let langObject;
@@ -178,7 +237,7 @@ const mongoformatter = (req) => {
     activity: req.body.activity,
     status: req.body.status,
     targetAudience: req.body.targetAudience,
-    lang: langObject,
+    lang: langObject
   };
 
   if (req.body.user.item_text) {
@@ -195,4 +254,4 @@ const mongoformatter = (req) => {
   }
 };
 
-module.exports = { sqlformatter, mongoformatter };
+module.exports = { sqlformatter, mongoformatter ,Emailformatter};

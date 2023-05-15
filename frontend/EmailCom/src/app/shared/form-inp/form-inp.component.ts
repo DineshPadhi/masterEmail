@@ -182,6 +182,9 @@ export class FormInpComponent implements OnInit {
         if (this.id) {
           this.FilterService.update(this.id, data).subscribe((result: any) => {
             if (result) {
+
+              console.log('result of form',result);
+              
               this.router.navigate(['/allTemplateData']);
               this.toastr.success<any>('Your Data Updated successfully!!');
             }
@@ -191,6 +194,8 @@ export class FormInpComponent implements OnInit {
     } else {
       this.formService.submitForm(data).subscribe((result: any) => {
         if (result) {
+          console.log('result in form',result);
+          
           console.log(result.data.templateCode);
 
           this.router.navigate(['/allTemplateData']);

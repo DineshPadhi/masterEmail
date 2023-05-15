@@ -1,5 +1,5 @@
 let Validator = require("validatorjs");
-const { sqlformatter, mongoformatter } = require("../formatter/Formatter.js");
+const { sqlformatter, mongoformatter ,Emailformatter} = require("../formatter/Formatter.js");
 const formValidator = require("../validator/Validator.js");
 // const { knex } = require("../connections/Conn.js");
 const EmailService = new (require("../service/Service.js"))();
@@ -10,8 +10,10 @@ module.exports = class SegmentController {
   // controller to validate and store data
   async templateForm(req, res) {
     try {
+      console.log('body is',req.body);
       // format data to store in sql
       const sqlData = sqlformatter(req);
+      console.log('sqlData==>>',sqlData);
       let rules = formValidator.formValidator();
       // check the formatted data
       let validation = new Validator(sqlData, rules);
@@ -110,13 +112,12 @@ module.exports = class SegmentController {
   async sendMail(req, res) {
     try {
       console.log("req is", req.body);
-      const sqlData = sqlformatter(req.body);
+      const sqlData = Emailformatter(req.body);
       console.log('data in controller is',sqlData);
       let sqlResult =  await EmailService.sendSql(sqlData);
       console.log('from db is',sqlResult);
+
       for (let i = 0; i < sqlData.length; i++) {
-        
-        
         await EmailService.sendMail(
           sqlResult[i].to,
           sqlResult[i].subject,
@@ -124,7 +125,7 @@ module.exports = class SegmentController {
              );
       }
       
-            console.log('email=====', email);
+      console.log('email=====');
       return Response.success(res, sqlResult);
     } catch (error) {
       return Response.error(res, error);
