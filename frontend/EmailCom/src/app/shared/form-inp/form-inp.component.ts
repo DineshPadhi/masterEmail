@@ -1,5 +1,6 @@
+import { KeyValue } from '@angular/common';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
@@ -7,14 +8,12 @@ import { ToastrService } from 'ngx-toastr';
 import { FilterService } from 'src/app/filter/filter.service';
 import { FormServiceService } from 'src/app/home/form-service.service';
 
-
 @Component({
   selector: 'app-form-inp',
   templateUrl: './form-inp.component.html',
   styleUrls: ['./form-inp.component.css'],
 })
 export class FormInpComponent implements OnInit {
-
   @ViewChild('iframe') preview_iframe: ElementRef;
 
   data: any = [];
@@ -32,11 +31,12 @@ export class FormInpComponent implements OnInit {
   id: any;
   @Input() formType: any = '';
   valuesInSelect = [];
-  getlang:any
-  checkedValue:any
-  langObj:any={}
-  langArr:any=[]
-  prevLangArr:any=["English","Hindi","Marathi"]
+  getlang: any;
+  checkedValue: any;
+  langObj: any = {};
+  langArr: any = [];
+  prevLangArr: any = ['English', 'Hindi', 'Marathi'];
+  count: any = 0;
 
   constructor(
     private active: ActivatedRoute,
@@ -97,54 +97,51 @@ export class FormInpComponent implements OnInit {
     //           body: result.data[0].body,
     //           lang: result.data[0].lang,
     //         });
-            
+
     //       }
     //     });
     //   }
     // });
 
-
-
     this.active.paramMap.subscribe((params) => {
-      if(params.get('id')){
-      this.id = params.get('id');
+      if (params.get('id')) {
+        this.id = params.get('id');
 
-      this.FilterService.getDataById(this.id).subscribe((result: any) => {
-        this.htmlContent = result.data[0].body;
-        const iframe = document.getElementById('preview_iframe_5');
-        iframe['contentWindow'].document.open();
-        iframe['contentDocument'].write(this.htmlContent);
-        iframe['contentWindow'].document.close();
-        if (this.id) {
-          result.data[0].lang.forEach((element:any) => {
-            this.langObj={}
-            this.langObj.item_id=this.prevLangArr.indexOf(element)+1
-            this.langObj.item_text=element
-            this.langArr.push(this.langObj)
-          });
-          this.myForm.patchValue({
-            templateName: result.data[0].templateName,
-            templateCode: result.data[0].templateCode,
-            scenario: result.data[0].scenario,
-            providers: result.data[0].providers,
-            tier: result.data[0].tier,
-            emailType: result.data[0].emailType,
-            activity: result.data[0].activity,
-            status: result.data[0].status,
-            targetAudience: result.data[0].targetAudience,
-            // subject: result.data[0].subject,
-            // body: result.data[0].body,
-            // lang: [{item_text:"English"}],
-            lang: this.langArr,
-          });
-        }
-      });
-    }
+        this.FilterService.getDataById(this.id).subscribe((result: any) => {
+          this.htmlContent = result.data[0].body;
+          const iframe = document.getElementById('preview_iframe_5');
+          iframe['contentWindow'].document.open();
+          iframe['contentDocument'].write(this.htmlContent);
+          iframe['contentWindow'].document.close();
+          if (this.id) {
+            result.data[0].lang.forEach((element: any) => {
+              this.langObj = {};
+              this.langObj.item_id = this.prevLangArr.indexOf(element) + 1;
+              this.langObj.item_text = element;
+              this.langArr.push(this.langObj);
+            });
+            this.myForm.patchValue({
+              templateName: result.data[0].templateName,
+              templateCode: result.data[0].templateCode,
+              scenario: result.data[0].scenario,
+              providers: result.data[0].providers,
+              tier: result.data[0].tier,
+              emailType: result.data[0].emailType,
+              activity: result.data[0].activity,
+              status: result.data[0].status,
+              targetAudience: result.data[0].targetAudience,
+              // subject: result.data[0].subject,
+              // body: result.data[0].body,
+              // lang: [{item_text:"English"}],
+              lang: this.langArr,
+            });
+          }
+        });
+      }
     });
 
-
-  //   if(this.router.url === '/createEmailTemplate')
-  //   this.formType = true
+    //   if(this.router.url === '/createEmailTemplate')
+    //   this.formType = true
   }
 
   safehtmlinput($event: any, item: any) {
@@ -168,15 +165,14 @@ export class FormInpComponent implements OnInit {
       activity: [''],
       status: ['', Validators.required],
       targetAudience: ['', Validators.required],
-      subject: ['', Validators.required],
-      body: ['', Validators.required],
       lang: [''],
+      insideMail: this.fb.array([]),
     });
   }
 
   submit(data: any) {
-    console.log('data issssss',data);
-    
+    console.log('data issssss', data);
+
     if (this.formType == 'edit') {
       this.active.paramMap.subscribe((params) => {
         this.id = params.get('id');
@@ -191,11 +187,11 @@ export class FormInpComponent implements OnInit {
         }
       });
     } else {
-      console.log('data.....',data)
+      console.log('data.....', data);
       this.formService.submitForm(data).subscribe((result: any) => {
         if (result) {
           console.log(result.data.templateCode);
-          
+
           this.router.navigate(['/allTemplateData']);
           this.toastr.success<any>('Your Data Submited successfully!!');
         }
@@ -217,9 +213,7 @@ export class FormInpComponent implements OnInit {
     this.selectedValue = value;
   }
   onItemSelect(items: any) {
-    this.langArr.forEach((element: any, i: any) => {
-      this.valuesInSelect.push({ item_id: i, item_text: element });
-    });
+    this.addInsideMail(items.item_id);
 
     console.log('hiiiiii', items);
     if (this.langArr.includes(items.item_text)) {
@@ -228,23 +222,62 @@ export class FormInpComponent implements OnInit {
       this.langArr.push(items.item_text);
       console.log('langArr', this.langArr);
     }
+    this.langArr.forEach((element: any, i: any) => {
+      this.valuesInSelect.push({ item_id: i, item_text: element });
+    });
   }
   removeItem(items: any) {
     console.log('hello', items);
-    let index = this.langArr.indexOf(items);
+    let index = this.langArr.indexOf(items.item_text);
+    console.log('index----------------------------', index);
+
     this.langArr.splice(index, 1);
 
     console.log('langArr to remove', this.langArr);
+    this.removeInsideMail(items, index + 1);
   }
   onSelectAll(items: any) {
+    console.log('items are', items);
+
     this.langArr = [];
     items.forEach((element: any) => {
-      this.langArr.push(element.item_text);
+      this.langArr.push(element?.item_text);
+      this.addInsideMail(items.item_id);
     });
     console.log('langarr after select all is', this.langArr);
   }
   onDeselect() {
     this.langArr = [];
+  }
+  // addMails() {
+  //   let mills = this.myForm.controls.insideMail as FormArray;
+  //   mills.push(
+  //     this.fb.group({
+  //       subject: '',
+  //       body: '',
+  //     })
+  //   );
+  // }
+  insideMail(): FormArray {
+    return this.myForm.get('insideMail') as FormArray;
+  }
+  newInsideMail(id: any): FormGroup {
+    this.count += id;
+    return this.fb.group({
+      subject: '',
+      body: '',
+      mailId: id,
+    });
+  }
+  addInsideMail(id: any) {
+    this.insideMail().push(this.newInsideMail(id));
+  }
+  removeInsideMail(empIndex: number, index: number) {
+    console.log('empIndex=========>>>>>>>>>>>', empIndex);
+    console.log('index=========>>>>>>>>>>>', index);
+    console.log('this.insideMail()==>>', this.insideMail());
+
+    this.insideMail().removeAt(index);
   }
 
   // updateUser(data: any) {
@@ -267,5 +300,4 @@ export class FormInpComponent implements OnInit {
   //     templateName: this.form.myForm.value,
   //   });
   // }
-
 }

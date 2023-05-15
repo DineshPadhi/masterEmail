@@ -350,7 +350,7 @@
 
     <br />
 
-    <div *ngIf="langArr.length >= 1; else elseBlock">
+    <!-- <div *ngIf="langArr.length >= 1; else elseBlock">
       <div *ngFor="let item of langArr;let i =index">
         <div class="row">
           <div class="col">
@@ -494,9 +494,34 @@
           ></iframe>
         </div>
       </div>
-    </ng-template>
+    </ng-template> -->
 
     <br /><br />
+    <!-- <button (click)="addMails()">Add</button>
+
+    <div
+      formArrayName="insideMail"
+      *ngFor="let mills of myForm.controls.insideMail?.value; let i = index"
+    >
+      <ng-container [formGroupName]="i">
+        <input placeholder="subject" formControlName="subject" />
+        <input placeholder="body" formControlName="body" />
+      </ng-container>
+    </div> -->
+    <div formArrayName="insideMail">
+      <div *ngFor="let mail of langArr; let mailIndex = index">
+        <div [formGroupName]="mailIndex">
+          <!-- <span>{{ insideMail().controls.values }}</span> -->
+          Subject:
+          <input type="text" formControlName="subject" />
+          Body:
+          <input type="text" formControlName="body" />
+          mailId:
+          <!-- <p>{{ mailIndex }}</p> -->
+        </div>
+      </div>
+    </div>
+    <!-- <button type="button" (click)="addInsideMail()">Add Employee</button> -->
 
     <div class="button">
       <button
