@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { FormServiceService } from '../../form-service.service';
 import { ToastrService } from 'ngx-toastr';
 
-
 @Component({
   selector: 'app-send-mail',
   templateUrl: './send-mail.component.html',
@@ -22,12 +21,11 @@ export class SendMailComponent {
   };
   emailForm: any;
   constructor(
-    private fb: FormBuilder ,
-    private sendService : FormServiceService,
-    private router : Router,
-    private toastr: ToastrService 
-  )
-  {
+    private fb: FormBuilder,
+    private sendService: FormServiceService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {
     this.createForm(' ');
   }
 
@@ -37,10 +35,18 @@ export class SendMailComponent {
   }
 
   createForm(value: any) {
+    this.formfields = {
+      templateCode: value.templateCode,
+    };
     for (let i = 1; i <= this.addArr.length; i++) {
       this.formfields[`tname${i}`] = value[`tname${i}`] || [''];
       this.formfields[`lang${i}`] = value[`lang${i}`] || [''];
     }
+    // this.formfields = {
+    //   templateCode: [''],
+    //   tname1: [''],
+    //   lang1: [''],
+    // };
 
     this.myForm = this.fb.group(this.formfields);
   }
@@ -56,16 +62,16 @@ export class SendMailComponent {
   value: any;
 
   send(data: any, e: any) {
-    console.log('data before sending',data);
-    
-    this.sendService.sendMail(data).subscribe((result:any)=>{
+    console.log('data before sending', data);
+
+    this.sendService.sendMail(data).subscribe((result: any) => {
       if (result) {
-        console.log('result---->.',result);
-        
-              // this.router.navigate(['/allTemplateData']);
-              // this.toastr.success<any>('Your Data Submited successfully!!');
-            }
-    })
+        console.log('result---->.', result);
+
+        // this.router.navigate(['/allTemplateData']);
+        // this.toastr.success<any>('Your Data Submited successfully!!');
+      }
+    });
 
     // e.preventDefault();
     // this.value = data;
