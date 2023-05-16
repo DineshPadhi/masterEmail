@@ -15,11 +15,11 @@ export class SendMailComponent {
   myForm: FormGroup;
   add: number = 1;
   // addArr: any = [1];
-  formfields: any = {
-    tname1: [''],
-    lang1: [''],
-    templateCode: [''],
-  };
+  // formfields: any = {
+  //   tname1: [''],
+  //   lang1: [''],
+  //   templateCode: [''],
+  // };
   emailForm: any;
   constructor(
     private fb: FormBuilder ,
@@ -53,6 +53,10 @@ export class SendMailComponent {
     })
     }
 
+    
+     
+     
+
   addInp(){
     this.createForm().push(this.newcreateForm())
   }
@@ -63,11 +67,14 @@ export class SendMailComponent {
     
     onSubmit(value:any) {
     console.log('value is--->>',value);
+
+    
     this.sendService.sendMail(value).subscribe((result:any)=>{
             // console.log('yesssh');
-            
+
             if (result) {
-              // console.log('result in send mail file---->.',result);
+
+              console.log('result in send mail file---->.',result);
               
               this.router.navigate(['/allTemplateData']);
               

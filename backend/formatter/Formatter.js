@@ -56,23 +56,51 @@ const Emailformatter= (data) => {
   
   let userArr = [];
   let langArr = [];
-  console.log('data in formatter',data.tos[0]);
+  // for (let i = 0; i < data.tos.length; i++) {
+  //   // const element = array[i];
+  //   var tosArray =data.tos[i].tname.split(',')
+  //   console.log('data in formatter',tosArray);
+  // }
+  // let tosArray =data.tos[0].tname.split(',')
+  // console.log('data in formatter',tosArray);
 
-  Object.keys(data.tos).some(function(prop){
+
     console.log('helllllo');
         // if (prop.includes("tname")) {
           // console.log('user is',prop);
           // console.log('its data',data[prop]);
-          for (let i = 0; i < data.tos.length; i++) {
-            // const element = data.tos[i];
-            userArr.push(data.tos[i].tname)
-          console.log('arry====...',userArr);
+          // if(data.tos){
+
+            for (let j = 0; j < data.tos.length; j++) {
+              // const element = data.tos[i];
+              var tosArray =data.tos[j].tname.split(',')
+              console.log({tname:tosArray})
+              userArr.push(tosArray)
+        // for(let i= 0; i < tosArray.length; i++){
+         
         // }
-        // if (prop.includes("lang")) {
-          langArr.push(data.tos[i].lang)
-          console.log('lang is',langArr);
-        // }
-          }
+            console.log('data in formatter',tosArray);
+             
+            console.log('tos arry====...',userArr);
+        
+        
+            langArr.push(data.tos[j].lang)
+            console.log('tos lang is',langArr);
+  
+            }
+          // }
+          // else{
+          //   for (let k = 0; k < data.tos.length; k++) {
+          //     // const element = data.tos[i];
+          //     userArr.push(data.tos[k].tname)
+          //   console.log('nomal arry====...',userArr);
+          // // }
+          // // if (prop.includes("lang")) {
+          //   langArr.push(data.tos[k].lang)
+          //   console.log('nomal lang is',langArr);
+          // // }
+          //   }
+          // }
         //   userArr.push(data.tos[0].tname)
         //   console.log('arry====...',userArr);
         // // }
@@ -80,7 +108,7 @@ const Emailformatter= (data) => {
         //   langArr.push(data.tos[0].lang)
         //   console.log('lang is',langArr);
         // // }
-      })
+
       // console.log('useeeeee',userArr);
       data.toUsers=userArr
       data.lang=langArr
@@ -97,9 +125,11 @@ const Emailformatter= (data) => {
                 // console.log('permail is',perMail);
                 return perMail
             
-          } else {
+          } 
+          else {
             
             let users = data.toUsers;
+            console.log('users...',users);
             let arr = []
             for (let i = 0; i < users.length; i++) {
               

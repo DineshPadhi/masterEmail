@@ -1,19 +1,25 @@
+<nav aria-label="breadcrumb" class="m-4">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/createEmailTemplate">Back</a></li>
+  </ol>
+</nav>
 <link
   href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
   rel="stylesheet"
 />
 <br />
+<h3 class="text-center">Send New Massage</h3>
 <br />
 <div class="container bootdey">
-  <div class="email-app" style="border: non;">
+  <div class="email-app" style="border: 1px solid grey;">
 
     <main>
 
       <div class="container" >
+
   
         
         <form [formGroup]="myForm" >
-          
           <p>
             <label for="name">Template Code</label>
             <input type="text" id="name" name="templateCode" formControlName="templateCode" class="form-control">
@@ -33,7 +39,7 @@
                  
                   <input type="text" name="tname" formControlName="tname" placeholder="Enter Email" class="form-control">
               </td>
-              <td style="border: none; margin: 15px;">
+              <td style="width: 150px; ">
                  
                   <select  class="form-control"
                   placeholder="Select Your Language"
