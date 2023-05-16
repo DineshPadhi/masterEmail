@@ -56,18 +56,30 @@ const Emailformatter= (data) => {
   
   let userArr = [];
   let langArr = [];
-  console.log('data in formatter',data);
+  console.log('data in formatter',data.tos[0]);
 
-  Object.keys(data).some(function(prop){
-        if (prop.includes("tname")) {
+  Object.keys(data.tos).some(function(prop){
+    console.log('helllllo');
+        // if (prop.includes("tname")) {
           // console.log('user is',prop);
           // console.log('its data',data[prop]);
-          userArr.push(data[prop])
-        }
-        if (prop.includes("lang")) {
-          console.log('lang is',prop);
-          langArr.push(data[prop])
-        }
+          for (let i = 0; i < data.tos.length; i++) {
+            // const element = data.tos[i];
+            userArr.push(data.tos[i].tname)
+          console.log('arry====...',userArr);
+        // }
+        // if (prop.includes("lang")) {
+          langArr.push(data.tos[i].lang)
+          console.log('lang is',langArr);
+        // }
+          }
+        //   userArr.push(data.tos[0].tname)
+        //   console.log('arry====...',userArr);
+        // // }
+        // // if (prop.includes("lang")) {
+        //   langArr.push(data.tos[0].lang)
+        //   console.log('lang is',langArr);
+        // // }
       })
       // console.log('useeeeee',userArr);
       data.toUsers=userArr
@@ -75,6 +87,7 @@ const Emailformatter= (data) => {
       // for (let i = 0; i < array.length; i++) {
         
       // }
+      
       if (typeof data.toUsers==='string') {
             // console.log('yo');
             let perMail = {};

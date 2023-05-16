@@ -62,7 +62,8 @@ const sendMailSql = async (data)=> {
     .select('*')
       .where((qb) => {
         if (data[i].templateCode) {
-          console.log('data...>>>>>', data);
+          console.log('data...>>>>>', data[i].templateCode);
+          console.log('data...>>>>>', data[i].lang);
           
           qb.where("templateCode", data[i].templateCode)
         }
@@ -70,7 +71,8 @@ const sendMailSql = async (data)=> {
           qb.andWhere("language", '=', data[i].lang)
         }
         
-      });
+      }
+      );
       console.log('result is',result);
       multiEmail.to=data[i].to
       multiEmail.subject=result[0].subject
