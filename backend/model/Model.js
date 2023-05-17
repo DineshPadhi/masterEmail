@@ -18,7 +18,7 @@ const ShowData = async () => {
 
 const ShowByID = async (id) => {
   let result = await knex("TemplateData").select("*").where("id", id);
-  console.log({result:result});
+  console.log("resshhh is", result);
   return result;
 };
 
@@ -53,54 +53,52 @@ const updateUserMongo = async (id, data) => {
   return result;
 };
 
-const sendMailSql = async (data)=> {
-  let userMultiEmail=[]
-  let multiEmail={}
+const sendMailSql = async (data) => {
+  let userMultiEmail = [];
+  let multiEmail = {};
   for (let i = 0; i < data.length; i++) {
-    multiEmail={}
-    let result = await knex('lang')
-    .select('*')
+    multiEmail = {};
+    let result = await knex("lang")
+      .select("*")
       .where((qb) => {
         if (data[i].templateCode) {
-          console.log('data...>>>>>', data[i].templateCode);
-          console.log('data...>>>>>', data[i].lang);
-          
-          qb.where("templateCode", data[i].templateCode)
+          console.log("data...>>>>>", data[i].templateCode);
+          console.log("data...>>>>>", data[i].lang);
+
+          qb.where("templateCode", data[i].templateCode);
         }
         if (data[i].lang) {
-          qb.andWhere("language", '=', data[i].lang)
+          qb.andWhere("language", "=", data[i].lang);
         }
-        
-      }
-      );
-      console.log('result is',result);
-      multiEmail.to=data[i].to
-      multiEmail.subject=result[0].subject
-      multiEmail.body=result[0].body
-      console.log('multiEmail is',multiEmail);
+      });
+    console.log("result is", result);
+    multiEmail.to = data[i].to;
+    multiEmail.subject = result[0].subject;
+    multiEmail.body = result[0].body;
+    console.log("multiEmail is", multiEmail);
 
-      userMultiEmail.push(multiEmail)
-    }
-    console.log('result in model is',userMultiEmail);
- 
+    userMultiEmail.push(multiEmail);
+  }
+  console.log("result in model is", userMultiEmail);
+
   // const result = await knex('lang')
   // .select('*')
   //   .where((qb) => {
   //     if (data[0].templateCode) {
   //       console.log('data...>>>>>', data);
-        
+
   //       qb.where("templateCode", data[0].templateCode)
   //     }
   //     if (data[0].lang) {
   //       qb.andWhere("language", '=', data[0].lang)
   //     }
-      
+
   //   });
 
   //   console.log('result.......>>>',result);
-    
+
   return userMultiEmail;
-}
+};
 
 module.exports = {
   createSqlForm,
@@ -110,5 +108,5 @@ module.exports = {
   updateUserSql,
   createMongForm,
   updateUserMongo,
-  sendMailSql
+  sendMailSql,
 };

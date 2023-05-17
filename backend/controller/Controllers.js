@@ -68,8 +68,8 @@ module.exports = class SegmentController {
       const id = req.params.id;
       const result = await EmailService.showByIds(id);
 
-      // result.result[0].user = result.result[0].user.split(",");
       result.result[0].lang = result.result[0].lang.split(",");
+      console.log("result in controller is", result.result);
       return Response.success(res, result.result);
     } catch (error) {
       return Response.error(res, error);
