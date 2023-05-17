@@ -51,8 +51,11 @@ export class FormServiceService implements OnInit {
   }
 
   sendMail(data:any){
+    console.log('data......>>>>',data);
+    
+
      let datasend =  this.http.post(`${this.url}/sendMail`,data  );
-     console.log('datasend----',data);
+     console.log('datasend----',data.tname);
      console.log('datasenddatasend----',datasend);
      
      return datasend;

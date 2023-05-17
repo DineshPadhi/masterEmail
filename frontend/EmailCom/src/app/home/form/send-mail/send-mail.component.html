@@ -1,40 +1,48 @@
+<nav aria-label="breadcrumb" class="m-4">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/createEmailTemplate">Back</a></li>
+  </ol>
+</nav>
 <link
   href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
   rel="stylesheet"
 />
 <br />
+<h3 class="text-center">Send New Massage</h3>
 <br />
 <div class="container bootdey">
-  <div class="email-app">
+  <div class="email-app" style="border: 1px solid grey;">
 
     <main>
 
-      <div class="container">
+      <div class="container" >
+
   
         
-        <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
-          
+        <form [formGroup]="myForm" >
           <p>
             <label for="name">Template Code</label>
             <input type="text" id="name" name="templateCode" formControlName="templateCode" class="form-control">
           </p>
         
           <table class="table table-bordered" formArrayName="tos">
-            <tr>
-              <th colspan="2">Add Multiple Quantity:</th>
-              <th width="150px"><button (click)="addInp()" class="btn btn-danger"
-            >Add User</button></th>
-            </tr>
-            <tr *ngFor="let quantity of createForm().controls; let i=index" >
-              <div [formGroupName]="i">
-                <td>
-                  To:
-                  <input type="text" name="to" formControlName="to" class="form-control">
+            <!-- <tr> -->
+              <!-- <th colspan="2">TO:</th> -->
+              <!-- <th width="150px"> -->
+                <!-- <label for="">To:</label>&nbsp;&nbsp; -->
+              <!-- </th> -->
+            <!-- </tr> -->
+            
+            <tr *ngFor="let quantity of createForm().controls; let i=index" [formGroupName]="i" style="margin-bottom: 10px;">
+              
+                <td style = "margin: 15px;">
+                 
+                  <input type="text" name="tname" formControlName="tname" placeholder="Enter Email" class="form-control">
               </td>
-              <td>
-                  Language:
+              <td style="width: 150px; ">
+                 
                   <select  class="form-control"
-                  
+                  placeholder="Select Your Language"
                   aria-label="Default select example"
                   data-bs-toggle="#dropdown"
                   formControlName="lang"
@@ -48,21 +56,24 @@
                   <option class="dropdown-item" value="Hindi">Hindi</option>
                   <option class="dropdown-item" value="Marathi">Marathi</option>
                 </select>
+                
               </td>
-              <td>
-                  <button (click)="remove(i)" class="btn btn-danger">Remove</button>
-              </td>
-              </div>
+              <!-- <td> -->
+                  <button (click)="remove(i)" class="btn btn-danger" style="margin-left: 10px;">Remove</button>
+              <!-- </td> -->
+              
              
             </tr>
+            <button (click)="addInp()" class="btn btn-primary" style="margin-top: 10px;">Add User</button>
+
           </table>
          
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button (click)="onSubmit(myForm.value)" type="submit" class="btn btn-success">Submit</button>
           
         </form>
           
         <br/>
-        {{this.myForm.value | json}}
+        <!-- {{this.myForm.value | json}} -->
       </div>
 
 

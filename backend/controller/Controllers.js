@@ -119,7 +119,7 @@ module.exports = class SegmentController {
       const sqlData = Emailformatter(req.body);
       console.log("data in controller is", sqlData);
       let sqlResult = await EmailService.sendSql(sqlData);
-      console.log("from db is", sqlResult);
+      console.log("from db is", sqlData);
 
       for (let i = 0; i < sqlData.length; i++) {
         await EmailService.sendMail(
@@ -129,7 +129,7 @@ module.exports = class SegmentController {
         );
       }
 
-      console.log("email=====");
+      // console.log('email=====');
       return Response.success(res, sqlResult);
     } catch (error) {
       return Response.error(res, error);
