@@ -14,37 +14,41 @@ export class FormServiceService implements OnInit {
   ngOnInit(): void {}
 
   submitForm(data: any) {
-    let {
-      templateName,
-      templateCode,
-      scenario,
-      providers,
-      user,
-      tier,
-      emailType,
-      activity,
-      status,
-      targetAudience,
-      lang,
-      insideMail,
-    } = data;
+    // let {
+    //   templateName,
+    //   templateCode,
+    //   scenario,
+    //   providers,
+    //   user,
+    //   tier,
+    //   emailType,
+    //   activity,
+    //   status,
+    //   targetAudience,
+    //   lang,
+    //   insideMail,
+    // } = data;
 
-    let formservice = this.http.post(this.url, {
-      templateName,
-      templateCode,
-      scenario,
-      providers,
-      user,
-      tier,
-      emailType,
-      activity,
-      status,
-      targetAudience,
-      lang,
-      insideMail,
-    });
-    console.log('formservicee---', formservice);
-    return formservice;
+      // data
+      let formservice =  this.http.post(this.url, data);
+      console.log('formservice...',data);
+      return formservice;
+      
+      // templateName,
+      // templateCode,
+      // scenario,
+      // providers,
+      // user,
+      // tier,
+      // emailType,
+      // activity,
+      // status,
+      // targetAudience,
+      // lang,
+      // insideMail,
+  
+    // console.log('formservicee---', formservice);
+    // return formservice;
   }
 
   sendMail(data: any) {

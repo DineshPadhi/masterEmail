@@ -13,13 +13,8 @@ export class SendMailComponent {
   selectedValue: any = '';
   myForm: FormGroup;
   add: number = 1;
-  // addArr: any = [1];
-  // formfields: any = {
-  //   tname1: [''],
-  //   lang1: [''],
-  //   templateCode: [''],
-  // };
   emailForm: any;
+
   constructor(
     private fb: FormBuilder,
     private sendService: FormServiceService,
@@ -31,7 +26,7 @@ export class SendMailComponent {
       templateCode: '',
     });
 
-    // this.createForm(' ');
+  
   }
 
   ngOnInit(): void {}

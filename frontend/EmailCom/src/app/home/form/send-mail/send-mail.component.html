@@ -1,6 +1,7 @@
 <nav aria-label="breadcrumb" class="m-4">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a routerLink="/createEmailTemplate">Back</a></li>
+    <li class="breadcrumb-item"><a routerLink="/createEmailTemplate">Home</a></li>
+    <li class="breadcrumb-item"><a routerLink="/allTemplateData">Edit Template</a></li>
   </ol>
 </nav>
 <link
@@ -26,12 +27,7 @@
           </p>
         
           <table class="table table-bordered" formArrayName="tos">
-            <!-- <tr> -->
-              <!-- <th colspan="2">TO:</th> -->
-              <!-- <th width="150px"> -->
-                <!-- <label for="">To:</label>&nbsp;&nbsp; -->
-              <!-- </th> -->
-            <!-- </tr> -->
+
             
             <tr *ngFor="let quantity of createForm().controls; let i=index" [formGroupName]="i" style="margin-bottom: 10px;">
               
