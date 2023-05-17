@@ -10,7 +10,7 @@
     <div class="row">
       <div class="col">
         <label for=""
-          >Template Namesssssssss<span style="color: red">*</span></label
+          >Template Name<span style="color: red">*</span></label
         >
         <input
           type="text"
@@ -512,13 +512,107 @@
       <div *ngFor="let mail of langArr; let mailIndex = index">
         <div [formGroupName]="mailIndex">
           <!-- <span>{{ insideMail().controls.values }}</span> -->
-          Subject:
-          <input type="text" formControlName="subject" />
-          Body:
-          <input type="text" formControlName="body" />
-          mailId:
-          <!-- <p>{{ mailIndex }}</p> -->
+          <div class="row">
+            <label for="">Subject {{mail}}:</label>
+          
+          <input type="text" formControlName="subject" class="form-control"  />
         </div>
+
+        <br/>
+
+          <!-- <div class="row">
+            <div class="col">
+              <label for=""
+                >Subject for {{mail}}<span style="color: red">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Select Subject for {{mail}}"
+                formControlName="subject"
+                
+              />
+              <div
+                *ngIf="
+                  myForm!.controls['subject'].invalid &&
+                  (myForm!.controls['subject'].dirty ||
+                    myForm!.controls['subject'].touched)
+                "
+                class="alert"
+              >
+                <div *ngIf="myForm!.controls['subject'].errors!.required">
+                  <span style="color: red">Please Enter Subject</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col">
+              <label for="">Body for {{mail}}<span style="color: red">*</span></label>
+              <textarea
+                class="form-control length"
+                placeholder="Email body in English"
+                id="floatingTextarea"
+                formControlName="body"
+                style="height: 300px"
+                (keyup)="safehtmlinput($event, '')"
+              ></textarea>
+              <div
+                *ngIf="
+                  myForm!.controls['body'].invalid &&
+                  (myForm!.controls['body'].dirty ||
+                    myForm!.controls['body'].touched)
+                "
+                class="alert"
+              >
+                <div *ngIf="myForm!.controls['body'].errors!.required">
+                  <span style="color: red">Please Enter Body</span>
+                </div>
+              </div>
+            </div>
+    
+            <div class="col">
+              <label for="">Preview</label>
+              <iframe
+                width="100%"
+                id="preview_iframe_5"
+                style="
+                  border: 1px solid lightgray;
+                  height: 300px;
+                  border-radius: 5px;
+                "
+              ></iframe>
+            </div>
+          </div> -->
+
+
+          <div class="row">
+            <div class="col">
+              <label for="">Body {{mail}}:</label>
+          <textarea type="text" formControlName="body"  (keyup)="safehtmlinput($event, mailIndex)" class="form-control" style="height: 300px;"></textarea>
+        </div>
+        
+
+
+          <div class="col">
+            <label for="">Preview</label>
+            <iframe
+              width="100%"
+              [id]="'preview_iframe_5'+mailIndex"
+              style="
+                border: 1px solid lightgray;
+                height: 300px;
+                border-radius: 5px;
+              "
+            ></iframe>
+          </div>
+        </div>
+          <!-- mailId: -->
+          <!-- <p>{{ mailIndex }}</p> -->
+        <br/>
+      </div>
       </div>
     </div>
     <!-- <button type="button" (click)="addInsideMail()">Add Employee</button> -->
