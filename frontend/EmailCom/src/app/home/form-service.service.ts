@@ -26,11 +26,10 @@ export class FormServiceService implements OnInit {
       status,
       targetAudience,
       lang,
-      subject,
-      body,
+      insideMail,
     } = data;
 
-    let formservice =  this.http.post(this.url, {
+    let formservice = this.http.post(this.url, {
       templateName,
       templateCode,
       scenario,
@@ -42,24 +41,19 @@ export class FormServiceService implements OnInit {
       status,
       targetAudience,
       lang,
-      subject,
-      body,
+      insideMail,
     });
-    console.log('formservicee---',formservice);
-    return formservice
-    
+    console.log('formservicee---', formservice);
+    return formservice;
   }
 
-  sendMail(data:any){
-    console.log('data......>>>>',data);
-    
+  sendMail(data: any) {
+    console.log('data......>>>>', data);
 
-     let datasend =  this.http.post(`${this.url}/sendMail`,data  );
-     console.log('datasend----',data.tname);
-     console.log('datasenddatasend----',datasend);
-     
-     return datasend;
+    let datasend = this.http.post(`${this.url}/sendMail`, data);
+    console.log('datasend----', data.tname);
+    console.log('datasenddatasend----', datasend);
+
+    return datasend;
   }
 }
-
-

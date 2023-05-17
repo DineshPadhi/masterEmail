@@ -3,6 +3,7 @@ const {
   sqlformatter,
   mongoformatter,
   storeToLangDB,
+  Emailformatter,
 } = require("../formatter/Formatter.js");
 const formValidator = require("../validator/Validator.js");
 const { knex } = require("../connections/Conn.js");
@@ -136,7 +137,7 @@ module.exports = class SegmentController {
     }
   }
 
-  async storeInLang(req, res) {
+  async storeInSql(req, res) {
     let data = sqlformatter(req);
 
     let rules = formValidator.formValidator();
@@ -144,12 +145,15 @@ module.exports = class SegmentController {
     let validation = new Validator(data, rules);
     if (validation.passes() && !validation.fails()) {
       let result = await knex("TemplateData").insert(data);
+      console.log("it passes");
       if (result) {
         console.log("result========>", result);
         req.body.template_id = result[0];
         console.log("body===", req.body);
+        console.log("req.insideMail", req.body.insideMail);
 
         let data2 = storeToLangDB(req);
+        console.log("langTableArr===>>>", data2);
         let rules2 = formValidator.langDbValidator();
         let sqlvalidation = new Validator(data2, rules2);
 

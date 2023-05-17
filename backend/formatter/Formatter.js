@@ -140,92 +140,49 @@ const Emailformatter = (data) => {
 // return template;
 
 const sqlformatter = (req) => {
-  let userArr = [];
-
-  let userData = "";
+  let langArr = [];
+  let langData = "";
+  // console.log('id...',req.body.id);
   if (req.params.id) {
-    if (typeof req.body.user[0] === "string") {
-      req.body.user.forEach((element) => {
-        if (!userArr.includes(element)) {
-          userArr.push(element);
+    if (typeof req.body.lang[0] === "string") {
+      req.body.lang.forEach((element) => {
+        if (!langArr.includes(element)) {
+          langArr.push(element);
         }
-        userData = userArr.join(",");
+        langData = langArr.join(",");
       });
     } else {
-      const defaultArr = req.body.user;
-      defaultArr.forEach((element) => {
-        userArr.push(element.item_text);
+      const defaultLangArr = req.body.lang;
+      defaultLangArr.forEach((element) => {
+        langArr.push(element.item_text);
       });
 
-      let userData = "";
-      if (req.params.id) {
-        if (typeof req.body.user[0] === "string") {
-          req.body.user.forEach((element) => {
-            if (!userArr.includes(element)) {
-              userArr.push(element);
-            }
-            userData = userArr.join(",");
-          });
-        } else {
-          const defaultArr = req.body.user;
-          defaultArr.forEach((element) => {
-            userArr.push(element.item_text);
-          });
-
-          userData = userArr.join(",");
-        }
-      } else {
-        const defaultArr = req.body.user;
-        defaultArr.forEach((element) => {
-          userArr.push(element.item_text);
-        });
-        userData = userArr.join(",");
-      }
-
-      let langArr = [];
-      let langData = "";
-      if (req.params.id) {
-        if (typeof req.body.lang[0] === "string") {
-          req.body.lang.forEach((element) => {
-            if (!langArr.includes(element)) {
-              langArr.push(element);
-            }
-            langData = langArr.join(",");
-          });
-        } else {
-          const defaultLangArr = req.body.lang;
-          defaultLangArr.forEach((element) => {
-            langArr.push(element.item_text);
-          });
-
-          langData = langArr.join(",");
-        }
-      } else {
-        const defaultLangArr = req.body.lang;
-        defaultLangArr.forEach((element) => {
-          langArr.push(element.item_text);
-        });
-        langData = langArr.join(",");
-      }
-      console.log("langArr isssssssssss", langArr);
-
-      user = {
-        templateName: req.body.templateName,
-        templateCode: req.body.templateCode,
-        scenario: req.body.scenario,
-        providers: req.body.providers,
-        tier: req.body.tier,
-        emailType: req.body.emailType,
-        activity: req.body.activity,
-        status: req.body.status,
-        targetAudience: req.body.targetAudience,
-        lang: langData,
-        subject: req.body.subject,
-        body: req.body.body,
-      };
-      return user;
+      langData = langArr.join(",");
     }
+  } else {
+    console.log("else body======", req.body);
+    const defaultLangArr = req.body.lang;
+    defaultLangArr.forEach((element) => {
+      langArr.push(element.item_text);
+    });
+    langData = langArr.join(",");
   }
+  console.log("langArr isssssssssss", langArr);
+
+  user = {
+    templateName: req.body.templateName,
+    templateCode: req.body.templateCode,
+    scenario: req.body.scenario,
+    providers: req.body.providers,
+    tier: req.body.tier,
+    emailType: req.body.emailType,
+    activity: req.body.activity,
+    status: req.body.status,
+    targetAudience: req.body.targetAudience,
+    lang: langData,
+  };
+  console.log("user is", user);
+  return user;
 };
 
 // user = {
@@ -270,26 +227,22 @@ const storeToLangDB = (req) => {
     defaultLangArr.forEach((element) => {
       langArr.push(element.item_text);
     });
-    langData = langArr.join(",");
+    // langData = langArr.join(",");
+    // console.log();
+  }
+  langTableArr = [];
+  for (let i = 0; i < req.body.insideMail.length; i++) {
+    lang = {
+      template_id: req.body.template_id,
+      templateCode: req.body.templateCode,
+      language: langArr[i],
+      subject: req.body.insideMail[i].subject,
+      body: req.body.insideMail[i].body,
+    };
+    langTableArr.push(lang);
   }
 
-  lang = {
-    // templateName: req.body.templateName,
-    template_id: req.body.template_id,
-    templateCode: req.body.templateCode,
-    // scenario: req.body.scenario,
-    // providers: req.body.providers,
-    // user: userData,
-    // tier: req.body.tier,
-    // emailType: req.body.emailType,
-    // activity: req.body.activity,
-    // status: req.body.status,
-    // targetAudience: req.body.targetAudience,
-    language: langData,
-    subject: req.body.subject,
-    body: req.body.body,
-  };
-  return lang;
+  return langTableArr;
 };
 
 // format data to store in mongodb
