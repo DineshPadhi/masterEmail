@@ -11,13 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.css'],
 })
-export class FilterComponent implements OnInit {
-  constructor(
-    private FilterService: FilterService,
-    private router: Router,
-    private active: ActivatedRoute,
-    private toastr: ToastrService
-  ) {}
+export class FilterComponent  {
   templateData: any = [];
   filterData: any = [];
   searchValue: string;
@@ -30,14 +24,26 @@ export class FilterComponent implements OnInit {
   currentPage: number;
   totalItems: number = 0;
   page: number = 1;
-
-  ngOnInit(): void {
+  constructor(
+    private FilterService: FilterService,
+    private router: Router,
+    private active: ActivatedRoute,
+    private toastr: ToastrService
+  ) {
     this.allData();
+  
   }
+
+
+  // ngOnInit(): void {
+  //   this.allData();
+  // }
 
   allData() {
     this.FilterService.getAllData().subscribe((res: any) => {
+   
       this.templateData = res.data;
+      console.log({data:this.templateData})
     });
   }
 

@@ -1,7 +1,12 @@
 <nav aria-label="breadcrumb" class="m-4">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a routerLink="/createEmailTemplate">Home</a></li>
-    <li class="breadcrumb-item"><a routerLink="/allTemplateData">Edit Template</a></li>
+    <li class="breadcrumb-item">
+      <a routerLink="/createEmailTemplate">Home</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a routerLink="/allTemplateData">EditTemplate</a>
+    </li>
+    <li class="breadcrumb-item">SendMail</li>
   </ol>
 </nav>
 <link
@@ -12,32 +17,39 @@
 <h3 class="text-center">Send New Massage</h3>
 <br />
 <div class="container bootdey">
-  <div class="email-app" style="border: 1px solid grey;">
-
+  <div class="email-app" style="border: 1px solid grey">
     <main>
-
-      <div class="container" >
-
-  
-        
-        <form [formGroup]="myForm" >
+      <div class="container">
+        <form [formGroup]="myForm">
           <p>
             <label for="name">Template Code</label>
-            <input type="text" id="name" name="templateCode" formControlName="templateCode" class="form-control">
+            <input
+              type="text"
+              id="name"
+              name="templateCode"
+              formControlName="templateCode"
+              class="form-control"
+            />
           </p>
-        
-          <table class="table table-bordered" formArrayName="tos">
 
-            
-            <tr *ngFor="let quantity of createForm().controls; let i=index" [formGroupName]="i" style="margin-bottom: 10px;">
-              
-                <td style = "margin: 15px;">
-                 
-                  <input type="text" name="tname" formControlName="tname" placeholder="Enter Email" class="form-control">
+          <table class="table table-bordered" formArrayName="tos">
+            <tr
+              *ngFor="let quantity of createForm().controls; let i = index"
+              [formGroupName]="i"
+              style="margin-bottom: 10px"
+            >
+              <td style="margin: 15px">
+                <input
+                  type="text"
+                  name="tname"
+                  formControlName="tname"
+                  placeholder="Enter Email"
+                  class="form-control"
+                />
               </td>
-              <td style="width: 150px; ">
-                 
-                  <select  class="form-control"
+              <td style="width: 150px">
+                <select
+                  class="form-control"
                   placeholder="Select Your Language"
                   aria-label="Default select example"
                   data-bs-toggle="#dropdown"
@@ -48,40 +60,45 @@
                   <option value="" style="color: gray" selected disabled>
                     Select Language
                   </option>
-                  <option class="dropdown-item" value="English">English</option>
-                  <option class="dropdown-item" value="Hindi">Hindi</option>
-                  <option class="dropdown-item" value="Marathi">Marathi</option>
+                  <option
+                    *ngFor="let lang of languageArray"
+                    class="dropdown-item"
+                  >
+                    {{ lang }}
+                  </option>
                 </select>
-                
               </td>
               <!-- <td> -->
-                  <button (click)="remove(i)" class="btn btn-danger" style="margin-left: 10px;">Remove</button>
+              <button
+                (click)="remove(i)"
+                class="btn btn-danger"
+                style="margin-left: 10px"
+              >
+                Remove
+              </button>
               <!-- </td> -->
-              
-             
             </tr>
-            <button (click)="addInp()" class="btn btn-primary" style="margin-top: 10px;">Add User</button>
-
+            <button
+              (click)="addInp()"
+              class="btn btn-primary"
+              style="margin-top: 10px"
+            >
+              Add User
+            </button>
           </table>
-         
-          <button (click)="onSubmit(myForm.value)" type="submit" class="btn btn-success">Submit</button>
-          
+
+          <button
+            (click)="onSubmit(myForm.value)"
+            type="submit"
+            class="btn btn-success"
+          >
+            Submit
+          </button>
         </form>
-          
-        <br/>
+
+        <br />
         <!-- {{this.myForm.value | json}} -->
       </div>
-
-
-
-
-
-
-
-
-
-
-
 
       <!-- <p class="text-center">New Message</p>
       <form #filterForm="ngForm" [formGroup]="myForm">
@@ -148,8 +165,8 @@
     </main>
   </div>
 </div> -->
-<!-- ------------------------------------------------------------------------------------------------------------------ -->
-<!-- <link
+      <!-- ------------------------------------------------------------------------------------------------------------------ -->
+      <!-- <link
   href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
   rel="stylesheet"
 />
@@ -157,7 +174,7 @@
 <br />
 <div class="container bootdey">
   <div class="email-app"> -->
-<!-- <nav>
+      <!-- <nav>
         <a href="#" class="btn btn-danger btn-block">New Email</a>
         <ul class="nav">
             <li class="nav-item">
@@ -180,7 +197,7 @@
             </li>
         </ul>
     </nav> -->
-<!-- <main>
+      <!-- <main>
       <p class="text-center">New Message</p>
       <form #filterForm="ngForm" [formGroup]="myForm" *ngIf="this.myForm">
         <div class="form-row mb-3">
@@ -251,3 +268,6 @@
     </main>
   </div>
 </div> -->
+    </main>
+  </div>
+</div>

@@ -9,9 +9,7 @@
   <div class="m-4" (keyup)="seePreview($event)">
     <div class="row">
       <div class="col">
-        <label for=""
-          >Template Name<span style="color: red">*</span></label
-        >
+        <label for="">Template Name<span style="color: red">*</span></label>
         <input
           type="text"
           class="form-control"
@@ -526,7 +524,7 @@
     <div class="button">
       <button
         class="btn btn-primary"
-        type="submit"
+        type="button"
         [disabled]="!myForm.valid"
         (click)="submit(myForm.value)"
       >
