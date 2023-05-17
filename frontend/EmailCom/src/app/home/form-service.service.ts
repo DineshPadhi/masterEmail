@@ -29,24 +29,7 @@ export class FormServiceService implements OnInit {
     //   insideMail,
     // } = data;
 
-      // data
-      let formservice =  this.http.post(this.url, data);
-      console.log('formservice...',data);
-      return formservice;
-      
-      // templateName,
-      // templateCode,
-      // scenario,
-      // providers,
-      // user,
-      // tier,
-      // emailType,
-      // activity,
-      // status,
-      // targetAudience,
-      // lang,
-      // insideMail,
-  
+    return this.http.post(this.url, data);
     // console.log('formservicee---', formservice);
     // return formservice;
   }

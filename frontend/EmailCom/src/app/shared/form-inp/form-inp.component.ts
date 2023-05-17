@@ -108,12 +108,16 @@ export class FormInpComponent implements OnInit {
         this.id = params.get('id');
 
         this.FilterService.getDataById(this.id).subscribe((result: any) => {
-          this.htmlContent = result.data[0].body;
-          const iframe = document.getElementById('preview_iframe_5');
-          iframe['contentWindow'].document.open();
-          iframe['contentDocument'].write(this.htmlContent);
-          iframe['contentWindow'].document.close();
+          console.log('ressssuslt is', result);
+
+          // this.htmlContent = result.data[0].body;
+          // const iframe = document.getElementById('preview_iframe_5');
+          // iframe['contentWindow'].document.open();
+          // iframe['contentDocument'].write(this.htmlContent);
+          // iframe['contentWindow'].document.close();
           if (this.id) {
+            console.log('result.data[0].lang===>>>', result.data[0].lang);
+
             result.data[0].lang.forEach((element: any) => {
               this.langObj = {};
               this.langObj.item_id = this.prevLangArr.indexOf(element) + 1;
@@ -172,7 +176,7 @@ export class FormInpComponent implements OnInit {
 
   submit(data: any) {
     console.log('data issssss', data);
-
+    this.router.navigate(['/allTemplateData']);
     if (this.formType == 'edit') {
       this.active.paramMap.subscribe((params) => {
         this.id = params.get('id');
@@ -182,7 +186,7 @@ export class FormInpComponent implements OnInit {
             if (result) {
               console.log('result of form', result);
 
-              this.router.navigate(['/allTemplateData']);
+              // this.router.navigate(['/allTemplateData']);
               this.toastr.success<any>('Your Data Updated successfully!!');
             }
           });
@@ -190,6 +194,7 @@ export class FormInpComponent implements OnInit {
       });
     } else {
       console.log('data.....', data);
+      // this.router.navigate(['/allTemplateData']);
       this.formService.submitForm(data).subscribe((result: any) => {
         if (result) {
           console.log('result in form', result);
