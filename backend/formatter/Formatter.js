@@ -25,7 +25,7 @@ const Emailformatter = (data) => {
     }
     return arr;
   }
-};
+
 
 const sqlformatter = (req) => {
   let langArr = [];
