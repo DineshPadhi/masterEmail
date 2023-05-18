@@ -19,6 +19,9 @@ export class FilterService implements OnInit {
   getDataById(id: any) {
     return this.httpClient.get(`${this.url}/getById/${id}`);
   }
+  getDataByIdLang(id: any) {
+    return this.httpClient.get(`${this.url}/getByIdLang/${id}`);
+  }
 
   getFilterData(data: any) {
     let result = this.httpClient.post(`${this.url}/search`, data);
@@ -26,6 +29,8 @@ export class FilterService implements OnInit {
   }
 
   update(id: any, data: any) {
+    console.log('data herer is', data);
+
     return this.httpClient.post(`${this.url}/update/${id}`, data);
   }
 }

@@ -1,14 +1,14 @@
 const templateModel = require("../model/Model.js");
-const configureDetails = require('../config/Config.js');
-const nodeMailer = require('nodemailer')
-const scheduler = require('../scheduler/scheduler.js')
+const configureDetails = require("../config/Config.js");
+const nodeMailer = require("nodemailer");
+const scheduler = require("../scheduler/scheduler.js");
 
 module.exports = class EmailService {
   constuctor() {}
 
   async postEmailSql(data) {
     let resultSql = await templateModel.createSqlForm(data);
-    console.log('data', resultSql);
+    console.log("data", resultSql);
     return { resultSql, status: true };
   }
 
@@ -27,6 +27,10 @@ module.exports = class EmailService {
     const result = await templateModel.ShowByID(id);
     return { result, status: true };
   }
+  async showByIdsLang(id) {
+    const result = await templateModel.ShowByIDLang(id);
+    return { result, status: true };
+  }
 
   async filterDatas(searchCriteria) {
     let result = await templateModel.filterData(searchCriteria);
@@ -43,21 +47,25 @@ module.exports = class EmailService {
     return { result, status: true };
   }
 
+  async sendSql(data) {
+    const result = await templateModel.sendMailSql(data);
+    console.log("result in service", result);
+    return result;
+  }
+  async updateLang(data) {
+    const result = await templateModel.updateLangSql(data);
+    console.log("result in service===>>>>", result);
+    return result;
+  }
 
- async sendSql(data){
-  const result = await templateModel.sendMailSql(data)
-  console.log('result in service',result);
-  return result;
-}
-
-async sendMail(name,sub,body){
-   await scheduler.providers(name, sub,body)
-  console.log('name====',name);
-  // return 0
- }
+  async sendMail(name, sub, body) {
+    await scheduler.providers(name, sub, body);
+    console.log("name====", name);
+    // return 0
+  }
 
   //   // console.log('hiii');
-    // console.log('name1===',name);
+  // console.log('name1===',name);
   //   let send = nodeMailer.createTransport({
   //     service:'gmail',
   //     auth: {
@@ -83,6 +91,4 @@ async sendMail(name,sub,body){
   //       console.log('Email send Successfully');
   //     }
   //   })
-  
-
 };

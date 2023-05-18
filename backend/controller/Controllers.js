@@ -75,6 +75,19 @@ module.exports = class SegmentController {
       return Response.error(res, error);
     }
   }
+  async showByIdsLang(req, res) {
+    try {
+      const id = req.params.id;
+      const result = await EmailService.showByIdsLang(id);
+      console.log("result for lang is", result);
+
+      // result.result[0].lang = result.result[0].lang.split(",");
+      console.log("result in controller is", result.result);
+      return Response.success(res, result.result);
+    } catch (error) {
+      return Response.error(res, error);
+    }
+  }
 
   async searchAllDatas(req, res) {
     try {
@@ -98,11 +111,10 @@ module.exports = class SegmentController {
         let sqlResult = await EmailService.updateSql(id, sqlData);
         if (sqlResult) {
           req.body.sqlId = req.params.id;
-          let data = mongoformatter(req);
-          let mongoResult = await EmailService.updateMongo(
-            req.body.sqlId,
-            data
-          );
+          console.log("reqqqq is ", req.body);
+
+          let resultsss = await EmailService.updateLang(req.body);
+          console.log("result in shervish", resultsss);
           return Response.success(res, data);
         } else {
           return Response.error(res, "not updated");
