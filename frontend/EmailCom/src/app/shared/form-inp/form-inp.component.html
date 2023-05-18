@@ -139,7 +139,7 @@
       </div> -->
 
       <div class="col">
-        <label for="">Select Languages</label>
+        <label for="">Select Languages<span style="color: red">*</span></label>
 
         <div style="width: 100%">
           <ng-multiselect-dropdown
@@ -163,6 +163,17 @@
             [(ngModel)]="valuesInSelect"
           >
           </ng-multiselect-dropdown> -->
+          <div
+          *ngIf="
+            myForm!.controls['lang'].invalid &&
+            (myForm!.controls['lang'].dirty || myForm!.controls['lang'].touched)
+          "
+          class="alert"
+        >
+          <div *ngIf="myForm!.controls['lang'].errors!.required">
+            <span style="color: red">Please Select Languages</span>
+          </div>
+        </div>
         </div>
       </div>
 
@@ -513,9 +524,9 @@
         <div [formGroupName]="mailIndex">
           <!-- <span>{{ insideMail().controls.values }}</span> -->
           <div class="row">
-            <label for="">Subject {{mail}}:</label>
+            <label for="">Subject for {{mail}}<span style="color: red">*</span></label>
           
-          <input type="text" formControlName="subject" class="form-control"  />
+          <input type="text" formControlName="subject" class="form-control" required />
         </div>
 
         <br/>
@@ -590,11 +601,9 @@
 
           <div class="row">
             <div class="col">
-              <label for="">Body {{mail}}:</label>
-          <textarea type="text" formControlName="body"  (keyup)="safehtmlinput($event, mailIndex)" class="form-control" style="height: 300px;"></textarea>
+              <label for="">Body for {{mail}}<span style="color: red">*</span></label>
+          <textarea type="text" formControlName="body"  (keyup)="safehtmlinput($event, mailIndex)" class="form-control" style="height: 300px;" required></textarea>
         </div>
-        
-
 
           <div class="col">
             <label for="">Preview</label>

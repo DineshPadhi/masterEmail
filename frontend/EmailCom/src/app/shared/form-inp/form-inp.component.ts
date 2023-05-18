@@ -165,7 +165,7 @@ export class FormInpComponent implements OnInit {
       activity: [''],
       status: ['', Validators.required],
       targetAudience: ['', Validators.required],
-      lang: [''],
+      lang: ['', Validators.required],
       insideMail: this.fb.array([]),
     });
   }
