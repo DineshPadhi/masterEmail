@@ -30,8 +30,6 @@ export class FormServiceService implements OnInit {
     // } = data;
 
     return this.http.post(this.url, data);
-    // console.log('formservicee---', formservice);
-    // return formservice;
   }
 
   sendMail(data: any) {
