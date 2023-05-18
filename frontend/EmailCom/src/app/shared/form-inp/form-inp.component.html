@@ -282,9 +282,7 @@
       <div *ngFor="let mail of langArr; let mailIndex = index">
         <div [formGroupName]="mailIndex">
           <div class="row">
-            <label for=""
-              >Subject for {{ mail }}<span style="color: red">*</span></label
-            >
+            <label for="">Subject<span style="color: red">*</span></label>
 
             <input
               type="text"
@@ -296,11 +294,9 @@
 
           <br />
 
-         <div class="row">
+          <div class="row">
             <div class="col">
-              <label for=""
-                >Body for {{ mail }}<span style="color: red">*</span></label
-              >
+              <label for="">Body<span style="color: red">*</span></label>
               <textarea
                 type="text"
                 formControlName="body"
