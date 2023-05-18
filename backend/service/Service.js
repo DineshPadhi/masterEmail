@@ -48,14 +48,21 @@ module.exports = class EmailService {
   }
 
   async sendSql(data) {
-    const result = await templateModel.sendMailSql(data);
-    console.log("result in service", result);
-    return result;
+    try {
+      
+      const result = await templateModel.sendMailSql(data);
+      console.log("result in service", result);
+      return {result,status:true};
+    } catch (error) {
+      return {result,status:false}
+    }
+    // return result
   }
   async updateLang(data) {
     const result = await templateModel.updateLangSql(data);
     console.log("result in service===>>>>", result);
-    return result;
+    return {result,status:true}; 
+    // return result
   }
 
   async sendMail(name, sub, body) {

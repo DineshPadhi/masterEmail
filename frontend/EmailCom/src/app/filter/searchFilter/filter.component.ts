@@ -13,14 +13,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class FilterComponent  {
   templateData: any = [];
-  filterData: any = [];
-  searchValue: string;
   data: any[];
-  filteredDatas: any[];
-  searchText: any;
   id: any;
-  myForm: FormGroup;
-  itemsPerPage: number = 5;
+  itemsPerPage: number = 3;
   currentPage: number;
   totalItems: number = 0;
   page: number = 1;
@@ -48,8 +43,8 @@ export class FilterComponent  {
   }
 
   filterSearch(data: any) {
-    this.FilterService.getFilterData(data).subscribe((resu: any) => {
-      this.templateData = resu.data;
+    this.FilterService.getFilterData(data).subscribe((result: any) => {
+      this.templateData = result.data;
       if (this.templateData.length == 0) {
         this.toastr.info('No Data Available');
       } else if (this.templateData){

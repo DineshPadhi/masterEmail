@@ -115,7 +115,7 @@ module.exports = class SegmentController {
 
           let resultsss = await EmailService.updateLang(req.body);
           console.log("result in shervish", resultsss);
-          return Response.success(res, data);
+          return Response.success(res, data); 
         } else {
           return Response.error(res, "not updated");
         }
@@ -133,16 +133,9 @@ module.exports = class SegmentController {
       console.log("data in controller is", sqlData);
       let sqlResult = await EmailService.sendSql(sqlData);
       console.log("from db is", sqlData);
+      console.log("from db is 2", sqlResult.result);
 
-      for (let i = 0; i < sqlData.length; i++) {
-        await EmailService.sendMail(
-          sqlResult[i].to,
-          sqlResult[i].subject,
-          sqlResult[i].body
-        );
-      }
-
-      // console.log('email=====');
+      
       return Response.success(res, sqlResult);
     } catch (error) {
       return Response.error(res, error);
