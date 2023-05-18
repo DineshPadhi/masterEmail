@@ -14,21 +14,6 @@ export class FormServiceService implements OnInit {
   ngOnInit(): void {}
 
   submitForm(data: any) {
-    // let {
-    //   templateName,
-    //   templateCode,
-    //   scenario,
-    //   providers,
-    //   user,
-    //   tier,
-    //   emailType,
-    //   activity,
-    //   status,
-    //   targetAudience,
-    //   lang,
-    //   insideMail,
-    // } = data;
-
     return this.http.post(this.url, data);
   }
 
@@ -38,7 +23,6 @@ export class FormServiceService implements OnInit {
     let datasend = this.http.post(`${this.url}/sendMail`, data);
     console.log('datasend----', data.tname);
     console.log('datasenddatasend----', datasend);
-
     return datasend;
   }
 }

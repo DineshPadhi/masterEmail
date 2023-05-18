@@ -4,10 +4,6 @@ const nodeMailer = require('nodemailer')
 
 async function providers(name, sub,body) {
 
-    console.log('Cancelled email cron executed')
-    // console.log('hiii');
-    // console.log('name2===',name);
-
     let send = nodeMailer.createTransport({
         service:'gmail',
         auth: {
@@ -24,8 +20,7 @@ async function providers(name, sub,body) {
       }
   
     await send.sendMail(mailDetails, (err, data)=>{
-    //   console.log('data==',data);
-    //   console.log('err==',err);
+
         if(err){
           console.log('can not send email');
         }
