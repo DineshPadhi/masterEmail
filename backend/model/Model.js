@@ -21,6 +21,11 @@ const ShowByID = async (id) => {
   console.log("resshhh is", result);
   return result;
 };
+const ShowByIDLang = async (id) => {
+  let result = await knex("lang").select("*").where("template_id", id);
+  console.log("resshhh is", result);
+  return result;
+};
 
 const filterData = async (searchCriteria) => {
   let result = await knex("TemplateData")
@@ -43,6 +48,28 @@ const filterData = async (searchCriteria) => {
 
 const updateUserSql = async (id, data) => {
   let result = await knex("TemplateData").update(data).where("id", id);
+  return result;
+};
+let lanobj = {};
+const updateLangSql = async (data) => {
+  console.log("daataaa=====>>>>", data);
+  const result = await knex("lang").where("template_id", data.sqlId).del();
+  // if (result) {
+  for (let i = 0; i < data.lang.length; i++) {
+    console.log("voy voy");
+    lanobj = {};
+    lanobj.templateCode = data.templateCode;
+    lanobj.template_id = data.sqlId;
+    lanobj.language = data.lang[i].item_text;
+    lanobj.subject = data.insideMail[i].subject;
+    lanobj.body = data.insideMail[i].body;
+    console.log("lanobj====>>>".lanobj);
+    await knex("lang").insert(lanobj);
+  }
+  console.log("in lanobj", lanobj);
+  // const result = await knex("lang").where("template_id", data.sqlId).del();
+  // }
+  console.log("after result", result);
   return result;
 };
 
@@ -104,9 +131,11 @@ module.exports = {
   createSqlForm,
   ShowData,
   ShowByID,
+  ShowByIDLang,
   filterData,
   updateUserSql,
   createMongForm,
   updateUserMongo,
   sendMailSql,
+  updateLangSql,
 };

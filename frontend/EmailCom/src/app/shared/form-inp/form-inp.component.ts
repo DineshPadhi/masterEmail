@@ -109,37 +109,91 @@ export class FormInpComponent implements OnInit {
 
         this.FilterService.getDataById(this.id).subscribe((result: any) => {
           console.log('ressssuslt is', result);
+          this.FilterService.getDataByIdLang(result.data[0].id).subscribe(
+            (result2: any) => {
+              // console.log('result in lang table is', result2.data);
+              let patchLangArr = [];
+              patchLangArr = result2.data;
+              console.log('patchLangArr====>>>', patchLangArr);
 
-          // this.htmlContent = result.data[0].body;
-          // const iframe = document.getElementById('preview_iframe_5');
-          // iframe['contentWindow'].document.open();
-          // iframe['contentDocument'].write(this.htmlContent);
-          // iframe['contentWindow'].document.close();
-          if (this.id) {
-            console.log('result.data[0].lang===>>>', result.data[0].lang);
+              patchLangArr.forEach((element) => {
+                this.insideMail().push(
+                  this.patchedInsideMail(
+                    element.id,
+                    element.subject,
+                    element.body
+                  )
+                );
+              });
 
-            result.data[0].lang.forEach((element: any) => {
-              this.langObj = {};
-              this.langObj.item_id = this.prevLangArr.indexOf(element) + 1;
-              this.langObj.item_text = element;
-              this.langArr.push(this.langObj);
-            });
-            this.myForm.patchValue({
-              templateName: result.data[0].templateName,
-              templateCode: result.data[0].templateCode,
-              scenario: result.data[0].scenario,
-              providers: result.data[0].providers,
-              tier: result.data[0].tier,
-              emailType: result.data[0].emailType,
-              activity: result.data[0].activity,
-              status: result.data[0].status,
-              targetAudience: result.data[0].targetAudience,
-              lang: this.langArr,
-              // subject: result.data[0].subject,
-              // body: result.data[0].body,
-              // lang: [{item_text:"English"}],
-            });
-          }
+              // this.htmlContent = result.data[0].body;
+              // const iframe = document.getElementById('preview_iframe_5');
+              // iframe['contentWindow'].document.open();
+              // iframe['contentDocument'].write(this.htmlContent);
+              // iframe['contentWindow'].document.close();
+              if (this.id) {
+                console.log('result.data[0].lang===>>>', result.data[0].lang);
+
+                result.data[0].lang.forEach((element: any, i: any) => {
+                  this.langObj = {};
+                  this.langObj.item_id = this.prevLangArr.indexOf(element) + 1;
+                  this.langObj.item_text = element;
+                  this.langArr.push(this.langObj);
+                  this.valuesInSelect.push({ item_id: i, item_text: element });
+                });
+                // this.langArr.forEach((element: any, i: any) => {
+                // });
+                // insideMail: [
+
+                // ],
+                // this.myForm.get('insideMail.subject').patchValue('9876543 ha');
+                // this.myForm.patchValue({
+                //   insideMail: { subject: '1234567 wellll' },
+                // });
+
+                this.myForm.patchValue({
+                  templateName: result.data[0].templateName,
+                  templateCode: result.data[0].templateCode,
+                  scenario: result.data[0].scenario,
+                  providers: result.data[0].providers,
+                  tier: result.data[0].tier,
+                  emailType: result.data[0].emailType,
+                  activity: result.data[0].activity,
+                  status: result.data[0].status,
+                  targetAudience: result.data[0].targetAudience,
+                  lang: this.langArr,
+                  // lang: result2.data[0].lang.split(','),
+                  // insideMail: {
+                  //   subject: '1234567 wellll',
+                  //   body: 'this is body',
+                  // },
+                  // insideMail: { subject: 'yo yo' },
+                  // subject: result.data[0].subject,
+                  // body: result.data[0].body,
+                  // lang: [{item_text:"English"}],
+                });
+                // patchedInsideMail(id: any): FormGroup {
+                //   return this.fb.group({
+                //     subject: '',
+                //     body: '',
+                //     mailId: id,
+                //   });
+                // }
+                // this.insides.patchValue([
+                //   { subject: '111', body: 'Mohan' },
+                //   { subject: '112', body: 'Angular' },
+                // ]);
+                // this.insides.setValue([
+                //   { subject: '111', body: 'Mohan' },
+                //   { subject: '112', body: 'Krishna' },
+                // ]);
+                // var formArray = this.myForm.get('insideMail') as FormArray;
+                // formArray
+                //   .at(0)
+                //   ['controls']['subject'].patchValue('Value that you want to pass');
+              }
+            }
+          );
         });
       }
     });
@@ -174,6 +228,23 @@ export class FormInpComponent implements OnInit {
     });
   }
 
+  // patchValue1() {
+  //   console.log('patchValue1');
+  //   var data = {
+  //     insideMail: [
+  //       {
+  //         subject: 'subjectsss 2',
+  //         body: 'some bolise',
+  //       },
+  //       {
+  //         subject: 'subjectsss',
+  //         body: 'some bolise',
+  //       },
+  //     ],
+  //   };
+
+  //   this.myForm.patchValue(data);
+  // }
   submit(data: any) {
     console.log('data issssss', data);
     this.router.navigate(['/allTemplateData']);
@@ -271,10 +342,16 @@ export class FormInpComponent implements OnInit {
     return this.myForm.get('insideMail') as FormArray;
   }
   newInsideMail(id: any): FormGroup {
-    this.count += id;
     return this.fb.group({
       subject: '',
       body: '',
+      mailId: id,
+    });
+  }
+  patchedInsideMail(id: any, subject: any, body: any): FormGroup {
+    return this.fb.group({
+      subject: subject,
+      body: body,
       mailId: id,
     });
   }

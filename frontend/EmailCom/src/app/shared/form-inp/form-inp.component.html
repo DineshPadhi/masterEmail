@@ -154,11 +154,11 @@
             formControlName="lang"
             [settings]="dropdownSettings"
             [data]="dropdownList"
+            [(ngModel)]="valuesInSelect"
             (onSelect)="onItemSelect($event)"
             (onDeSelect)="removeItem($event)"
             (onSelectAll)="onSelectAll($event)"
             (onDeSelectAll)="onDeselect()"
-            [(ngModel)]="valuesInSelect"
           >
           </ng-multiselect-dropdown> -->
         </div>
@@ -519,12 +519,13 @@
         </div>
       </div>
     </div>
+    <!-- <button (click)="patchValue1()">PatchValue1</button> -->
     <!-- <button type="button" (click)="addInsideMail()">Add Employee</button> -->
 
     <div class="button">
       <button
         class="btn btn-primary"
-        type="submit"
+        type="button"
         [disabled]="!myForm.valid"
         (click)="submit(myForm.value)"
       >

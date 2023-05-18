@@ -10,6 +10,7 @@ let segmentController = new (require("../controller/Controllers.js"))();
 router.get("/get", segmentController.showAllDatas);
 // router.get("/getById/:id", loggerMiddleware, segmentController.showById);
 router.get("/getById/:id", segmentController.showById);
+router.get("/getByIdLang/:id", segmentController.showByIdsLang);
 // router.post("/search", loggerMiddleware, segmentController.searchAllDatas);
 router.post("/search", segmentController.searchAllDatas);
 // router.post("/update/:id", loggerMiddleware, segmentController.updateData);
