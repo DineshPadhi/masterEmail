@@ -109,15 +109,6 @@ const Emailformatter = (data) => {
 
   // }
 
-  if (typeof data.toUsers === "string") {
-    // console.log('yo');
-    let perMail = {};
-    perMail.to = data.toUsers;
-    perMail.lang = data.lang;
-    perMail.templateCode = data.templateCode;
-    // console.log('permail is',perMail);
-    return perMail;
-  } else {
     let users = data.toUsers;
     console.log("users...", users);
     let arr = [];
@@ -126,13 +117,14 @@ const Emailformatter = (data) => {
       perMail.to = data.toUsers[i];
       perMail.lang = data.lang[i];
       perMail.templateCode = data.templateCode;
+      console.log('permail is in else part',perMail);
 
       arr.push(perMail);
     }
     // console.log('arrsa is',arr);
     return arr;
   }
-};
+
 
 // data.templateCode = "Happy Diwali";
 // console.log("data in formatter is", data);
