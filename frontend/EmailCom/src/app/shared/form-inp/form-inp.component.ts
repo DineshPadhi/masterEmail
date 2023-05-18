@@ -1,4 +1,3 @@
-import { KeyValue } from '@angular/common';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -71,37 +70,6 @@ export class FormInpComponent implements OnInit {
       idField: 'item_id',
       textField: 'item_text',
     };
-    // this.active.paramMap.subscribe((params) => {
-    //   if (params.get('id')) {
-    //     this.id = params.get('id');
-    //     this.FilterService.getDataById(this.id).subscribe((result: any) => {
-    //       this.htmlContent = result.data[0].body;
-    //       this.langArr = result.data[0].lang;
-    //       const iframe = document.getElementById('preview_iframe_5');
-    //       iframe['contentWindow'].document.open();
-    //       iframe['contentDocument'].write(this.htmlContent);
-    //       iframe['contentWindow'].document.close();
-    //       if (this.id) {
-    //         this.myForm.patchValue({
-    //           templateName: result.data[0].templateName,
-    //           templateCode: result.data[0].templateCode,
-    //           scenario: result.data[0].scenario,
-    //           providers: result.data[0].providers,
-    //           user: result.data[0].user,
-    //           tier: result.data[0].tier,
-    //           emailType: result.data[0].emailType,
-    //           activity: result.data[0].activity,
-    //           status: result.data[0].status,
-    //           targetAudience: result.data[0].targetAudience,
-    //           subject: result.data[0].subject,
-    //           body: result.data[0].body,
-    //           lang: result.data[0].lang,
-    //         });
-
-    //       }
-    //     });
-    //   }
-    // });
 
     this.active.paramMap.subscribe((params) => {
       if (params.get('id')) {
@@ -126,11 +94,6 @@ export class FormInpComponent implements OnInit {
                 );
               });
 
-              // this.htmlContent = result.data[0].body;
-              // const iframe = document.getElementById('preview_iframe_5');
-              // iframe['contentWindow'].document.open();
-              // iframe['contentDocument'].write(this.htmlContent);
-              // iframe['contentWindow'].document.close();
               if (this.id) {
                 console.log('result.data[0].lang===>>>', result.data[0].lang);
 
@@ -141,16 +104,7 @@ export class FormInpComponent implements OnInit {
                   this.langArr.push(this.langObj);
                   this.valuesInSelect.push({ item_id: i, item_text: element });
                 });
-                // this.langArr.forEach((element: any, i: any) => {
-                // });
-                // insideMail: [
-
-                // ],
-                // this.myForm.get('insideMail.subject').patchValue('9876543 ha');
-                // this.myForm.patchValue({
-                //   insideMail: { subject: '1234567 wellll' },
-                // });
-
+               
                 this.myForm.patchValue({
                   templateName: result.data[0].templateName,
                   templateCode: result.data[0].templateCode,
@@ -162,44 +116,13 @@ export class FormInpComponent implements OnInit {
                   status: result.data[0].status,
                   targetAudience: result.data[0].targetAudience,
                   lang: this.langArr,
-                  // lang: result2.data[0].lang.split(','),
-                  // insideMail: {
-                  //   subject: '1234567 wellll',
-                  //   body: 'this is body',
-                  // },
-                  // insideMail: { subject: 'yo yo' },
-                  // subject: result.data[0].subject,
-                  // body: result.data[0].body,
-                  // lang: [{item_text:"English"}],
                 });
-                // patchedInsideMail(id: any): FormGroup {
-                //   return this.fb.group({
-                //     subject: '',
-                //     body: '',
-                //     mailId: id,
-                //   });
-                // }
-                // this.insides.patchValue([
-                //   { subject: '111', body: 'Mohan' },
-                //   { subject: '112', body: 'Angular' },
-                // ]);
-                // this.insides.setValue([
-                //   { subject: '111', body: 'Mohan' },
-                //   { subject: '112', body: 'Krishna' },
-                // ]);
-                // var formArray = this.myForm.get('insideMail') as FormArray;
-                // formArray
-                //   .at(0)
-                //   ['controls']['subject'].patchValue('Value that you want to pass');
-              }
+               }
             }
           );
         });
       }
     });
-
-    //   if(this.router.url === '/createEmailTemplate')
-    //   this.formType = true
   }
 
   safehtmlinput($event: any, item: any) {
@@ -228,26 +151,8 @@ export class FormInpComponent implements OnInit {
     });
   }
 
-  // patchValue1() {
-  //   console.log('patchValue1');
-  //   var data = {
-  //     insideMail: [
-  //       {
-  //         subject: 'subjectsss 2',
-  //         body: 'some bolise',
-  //       },
-  //       {
-  //         subject: 'subjectsss',
-  //         body: 'some bolise',
-  //       },
-  //     ],
-  //   };
-
-  //   this.myForm.patchValue(data);
-  // }
-  submit(data: any) {
+ submit(data: any) {
     console.log('data issssss', data);
-    this.router.navigate(['/allTemplateData']);
     if (this.formType == 'edit') {
       this.active.paramMap.subscribe((params) => {
         this.id = params.get('id');
@@ -257,7 +162,7 @@ export class FormInpComponent implements OnInit {
             if (result) {
               console.log('result of form', result);
 
-              // this.router.navigate(['/allTemplateData']);
+              this.router.navigate(['/allTemplateData']);
               this.toastr.success<any>('Your Data Updated successfully!!');
             }
           });
@@ -265,7 +170,6 @@ export class FormInpComponent implements OnInit {
       });
     } else {
       console.log('data.....', data);
-      // this.router.navigate(['/allTemplateData']);
       this.formService.submitForm(data).subscribe((result: any) => {
         if (result) {
           console.log('result in form', result);
@@ -329,18 +233,11 @@ export class FormInpComponent implements OnInit {
   onDeselect() {
     this.langArr = [];
   }
-  // addMails() {
-  //   let mills = this.myForm.controls.insideMail as FormArray;
-  //   mills.push(
-  //     this.fb.group({
-  //       subject: '',
-  //       body: '',
-  //     })
-  //   );
-  // }
+ 
   insideMail(): FormArray {
     return this.myForm.get('insideMail') as FormArray;
   }
+
   newInsideMail(id: any): FormGroup {
     return this.fb.group({
       subject: '',
@@ -348,6 +245,7 @@ export class FormInpComponent implements OnInit {
       mailId: id,
     });
   }
+
   patchedInsideMail(id: any, subject: any, body: any): FormGroup {
     return this.fb.group({
       subject: subject,
@@ -355,35 +253,15 @@ export class FormInpComponent implements OnInit {
       mailId: id,
     });
   }
+
   addInsideMail(id: any) {
     this.insideMail().push(this.newInsideMail(id));
   }
+
   removeInsideMail(empIndex: number, index: number) {
     console.log('empIndex=========>>>>>>>>>>>', empIndex);
     console.log('index=========>>>>>>>>>>>', index);
     console.log('this.insideMail()==>>', this.insideMail());
-
     this.insideMail().removeAt(index);
   }
-
-  // updateUser(data: any) {
-  //   this.active.paramMap.subscribe((params) => {
-  //     this.id = params.get('id');
-
-  //     if (this.id) {
-  //       this.FilterService.update(this.id, data).subscribe((result: any) => {
-  //         if (result) {
-  //           this.router.navigate(['/allTemplateData']);
-  //           this.toastr.success<any>('Your Data Updated successfully!!');
-  //         }
-  //       });
-  //     }
-  //   });
-  // }
-
-  // edit() {
-  //   this.myForm.patchValue({
-  //     templateName: this.form.myForm.value,
-  //   });
-  // }
 }

@@ -34,10 +34,6 @@
         aria-label="Enter Template Code"
       />
     </div>
-    <!-- <div class="col">
-            <label for="">Status<span></span></label>
-          <input type="text" ngModel name="status" class="form-control" placeholder="Enter Template Code" aria-label="Enter Template Code">
-        </div> -->
     <div class="col">
       <label for="">Status</label>
 
@@ -48,23 +44,9 @@
         name="status"
         ngModel
       >
-        <!-- <option value="" style="color: gray;" selected disabled>Select Status</option> -->
         <option class="dropdown-item" value="Active" selected>Active</option>
         <option class="dropdown-item" value="InActive">InActive</option>
       </select>
-
-      <!-- <div
-            *ngIf="
-              myForm!.controls['status'].invalid &&
-              (myForm!.controls['status'].dirty ||
-                myForm!.controls['status'].touched)
-            "
-            class="alert"
-          >
-            <div *ngIf="myForm!.controls['status'].errors!.required">
-              <span style="color: red">Please Select Status</span>
-            </div>
-          </div> -->
     </div>
   </div>
   <div class="btnn">

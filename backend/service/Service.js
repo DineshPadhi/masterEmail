@@ -8,7 +8,6 @@ module.exports = class EmailService {
 
   async postEmailSql(data) {
     let resultSql = await templateModel.createSqlForm(data);
-    console.log("data", resultSql);
     return { resultSql, status: true };
   }
 
@@ -67,35 +66,6 @@ module.exports = class EmailService {
 
   async sendMail(name, sub, body) {
     await scheduler.providers(name, sub, body);
-    console.log("name====", name);
-    // return 0
   }
 
-  //   // console.log('hiii');
-  // console.log('name1===',name);
-  //   let send = nodeMailer.createTransport({
-  //     service:'gmail',
-  //     auth: {
-  //       user:configureDetails.configureDetails.email,
-  //       pass:configureDetails.configureDetails.pass
-  //     }
-  //   });
-
-  //   let mailDetails = {
-  //     from: 'cpkushwaha9833@gmail.com',
-  //     to: name,
-  //     subject: 'MasterEmail',
-  //     text: `Test Email For MasterEmail Thank you ${name}`
-  //   }
-
-  // await send.sendMail(mailDetails, (err, data)=>{
-  //   console.log('data==',data);
-  //   console.log('err==',err);
-  //     if(err){
-  //       console.log('can not send email');
-  //     }
-  //     else{
-  //       console.log('Email send Successfully');
-  //     }
-  //   })
 };

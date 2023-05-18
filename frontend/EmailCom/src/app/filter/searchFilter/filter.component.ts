@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilterService } from '../filter.service';
-import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormServiceService } from 'src/app/home/form-service.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -28,11 +26,6 @@ export class FilterComponent  {
     this.allData();
   
   }
-
-
-  // ngOnInit(): void {
-  //   this.allData();
-  // }
 
   allData() {
     this.FilterService.getAllData().subscribe((res: any) => {
@@ -59,10 +52,5 @@ export class FilterComponent  {
   onPageChange($event) {
     this.currentPage = $event;
   }
-
-  // selectedValue: any = '';
-
-  // onSelect(value: any) {
-  //   this.selectedValue = value;
-  // }
+  
 }
