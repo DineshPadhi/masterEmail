@@ -13,13 +13,9 @@ export class SendMailComponent {
   selectedValue: any = '';
   myForm: FormGroup;
   add: number = 1;
-  // addArr: any = [1];
-  // formfields: any = {
-  //   tname1: [''],
-  //   lang1: [''],
-  //   templateCode: [''],
-  // };
   emailForm: any;
+  languageArray: any = ['English', 'Hindi', 'Marathi'];
+
   constructor(
     private fb: FormBuilder,
     private sendService: FormServiceService,
@@ -30,8 +26,6 @@ export class SendMailComponent {
       tos: this.fb.array([]),
       templateCode: '',
     });
-
-    // this.createForm(' ');
   }
 
   ngOnInit(): void {}
@@ -57,6 +51,7 @@ export class SendMailComponent {
 
   addInp() {
     this.createForm().push(this.newcreateForm());
+    console.log('create form array is', this.createForm().value);
   }
 
   remove(i: number) {
