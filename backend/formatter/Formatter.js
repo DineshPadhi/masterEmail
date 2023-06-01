@@ -12,20 +12,18 @@ const Emailformatter = (data) => {
   data.toUsers = userArr;
   data.lang = langArr;
 
-    let users = data.toUsers;
-    let arr = [];
-    for (let i = 0; i < users.length; i++) {
-      let perMail = {};
-      perMail.to = data.toUsers[i];
-      perMail.lang = data.lang[i];
-      perMail.templateCode = data.templateCode;
-      console.log('permail is in else part',perMail);
+  let users = data.toUsers;
+  let arr = [];
+  for (let i = 0; i < users.length; i++) {
+    let perMail = {};
+    perMail.to = data.toUsers[i];
+    perMail.lang = data.lang[i];
+    perMail.templateCode = data.templateCode;
 
-      arr.push(perMail);
-    }
-    return arr;
+    arr.push(perMail);
   }
-
+  return arr;
+};
 
 const sqlformatter = (req) => {
   let langArr = [];
